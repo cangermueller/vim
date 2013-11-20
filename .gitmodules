@@ -18,6 +18,6 @@
   path = bundle/vim-ipython
 	url = https://github.com/ivanov/vim-ipython.git
 		
-[submodule "vundle"]
+[submodule  "vundle"]
   path = bundle/vundle
 	url = https://github.com/gmarik/vundle.git
