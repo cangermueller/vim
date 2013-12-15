@@ -1,5 +1,9 @@
 "## VI configuration file #####################################################
 
+
+"-- vundle -------------------------------------------------------------------
+
+
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -9,54 +13,13 @@ Bundle 'ivanov/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jcfaria/Vim-R-plugin'
+Bundle 'majutsushi/tagbar'
 
 filetype plugin indent on
 
-" Python-mode
-" Activate rope
-" Keys:
-" K             Show python docs
-"   Rope autocomplete
-" g     Rope goto definition
-" d     Rope show documentation
-" f     Rope find occurrences
-" b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 1
-
-" Documentation
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-
-"Linting
-let g:pymode_lint = 0
-let g:pymode_lint_checker = 'pychecker'
-let g:pymode_lint_onfly = 0
-" Auto check on save
-let g:pymode_lint_write = 0
-
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = 'b'
-
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
-
-
 
 "-- General settings ----------------------------------------------------------
+
 
 set nocompatible
 set number
@@ -79,19 +42,9 @@ colorscheme default
 syntax on
 filetype indent on
 filetype plugin on
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions+=t
-set cinoptions+=(0,N-s "(0: additional spaces in case of line wrap; N-s: no indent for namespaces
-
-
-" -- pathogen plugin manager
-"execute pathogen#infect()
-
-
-" -- syntastic syntax checker
-"let g:syntastic_enable_highlighting = 1
-"let g:syntastic_auto_jump = 1
-"let g:syntastic_auto_loc_list = 1
-
+" fo-table
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
+"set cinoptions+=(0,N-s "(0: additional spaces in case of line wrap; N-s: no indent for namespaces
 
 
 "-- Key mappings ---------------------------------------------------------------
@@ -111,46 +64,62 @@ map <Leader>cp :cp <CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>qw :GundoToggle <CR>
-map <Leader>m :make <CR>
-" change keymapping for r-plugin argument completion
-imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
-" block comments
 map <Leader>,# :s/^/# /<CR>:nohlsearch<CR>
 map <Leader>.# :s/^#\s\?//<CR>:nohlsearch<CR>
 map <Leader>,/ :s/^/\/\/ /<CR>:nohlsearch<CR>
 map <Leader>./ :s/^\/\/\s\?//<CR>:nohlsearch<CR>
 
 
+"-- ipy mapping --------------------------------------------------------------
 
 
-"-- OmniCppComplete ------------------------------------------------------------
+autocmd Filetype python call PythonMappings()
+function PythonMappings()
+  let g:ipy_perform_mappings = 0
+  map  <buffer> <silent> <Leader>rf     :IPython<CR>
+  map  <buffer> <silent> <Leader>aa     <Plug>(IPython-RunFile)
+  map  <buffer> <silent> <Leader>l     <Plug>(IPython-RunLine)
+  map  <buffer> <silent> <Leader>L     <Plug>(IPython-RunLineAsTopLevel)
+  map  <buffer> <silent> <Leader>d     <Plug>(IPython-RunLine) j
+  map  <buffer> <silent> <Leader>D     <Plug>(IPython-RunLineAsTopLevel) j
+  xmap <buffer> <silent> <Leader>l     <Plug>(IPython-RunLines)
+endfunction
 
 
-"set tags+=~/.vim/tags/cpp
-"let OmniCpp_NamespaceSearch = 1
-"let OmniCpp_GlobalScopeSearch = 1
-"let OmniCpp_ShowAccess = 1
-"let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-"let OmniCpp_MayCompleteDot = 0 " autocomplete after .
-"let OmniCpp_MayCompleteArrow = 0 " autocomplete after ->
-"let OmniCpp_MayCompleteScope = 0 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"map <F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-"map <C-j> :exec("tag ".expand("<cword>"))<CR>
-"map <C-k> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-"map <C-l> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-"set completeopt=menuone,menu,longest,preview
-"ruby
-" autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"-- pymode -------------------------------------------------------------------
 
 
+let g:pymode_run = 0  " use ipy run instead of pymode
+let g:pymode_rope = 1 " activate rope
+let g:pymode_doc = 1  " activate pydoc
+let g:pymode_doc_key = 'K'
+
+" pylint syntax checking
+let g:pymode_lint = 1
+"let g:pymode_lint_checker = 'pyflakes'
+let g:pymode_lint_ignore = ''
+let g:pymode_lint_onfly = 0
+let g:pymode_lint_write = 0
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Enable breakpoints plugin
+let g:pymode_breakpoint = 0
+let g:pymode_breakpoint_key = 'b'
+
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+
+" Don't autofold code
+let g:pymode_folding = 0
 
 
 "-- R plugin ----------------------------------------------------------------
+
 
 let vimrplugin_notmuxconf = 0
 let vimrplugin_assign = 0
@@ -160,3 +129,5 @@ let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let vimrplugin_openpdf = 0 "automatically open pdf. \kop to open pdf
 let vimrplugin_openpdf_quietly = 1
+let vimrplugin_routmorecolors=1
+"imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
