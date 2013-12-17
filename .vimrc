@@ -73,6 +73,12 @@ map <Leader>./ :s/^\/\/\s\?//<CR>:nohlsearch<CR>
 "-- ipy mapping --------------------------------------------------------------
 
 
+autocmd FileType gitconfig setl noexpandtab ts=4
+
+
+"-- ipy mapping --------------------------------------------------------------
+
+
 autocmd Filetype python call PythonMappings()
 function PythonMappings()
   let g:ipy_perform_mappings = 0
