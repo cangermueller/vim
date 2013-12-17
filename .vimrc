@@ -73,7 +73,7 @@ map <Leader>./ :s/^\/\/\s\?//<CR>:nohlsearch<CR>
 "-- ipy mapping --------------------------------------------------------------
 
 
-autocmd FileType gitconfig setl noexpandtab ts=4
+autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 
 
 "-- ipy mapping --------------------------------------------------------------
