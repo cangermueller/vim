@@ -14,6 +14,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jcfaria/Vim-R-plugin'
 Bundle 'majutsushi/tagbar'
+Bundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on
 
@@ -137,3 +138,9 @@ let vimrplugin_openpdf = 0 "automatically open pdf. \kop to open pdf
 let vimrplugin_openpdf_quietly = 1
 let vimrplugin_routmorecolors=1
 "imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
+
+
+"-- vim-markdown -------------------------------------------------------------
+
+
+let g:vim_markdown_folding_disabled=1
