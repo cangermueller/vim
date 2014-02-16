@@ -1,34 +1,29 @@
 "## VI configuration file #####################################################
 
 
-"-- vundle -------------------------------------------------------------------
-
+"-- General settings ----------------------------------------------------------
 
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'klen/python-mode'
-Bundle 'ivanov/vim-ipython'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jcfaria/Vim-R-plugin'
-Bundle 'majutsushi/tagbar'
-Bundle 'plasticboy/vim-markdown'
-
+source ~/.vim/vundle.vim
 filetype plugin indent on
 
 
-"-- General settings ----------------------------------------------------------
-
-
 set nocompatible
-set number
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
+
+set number
+set cursorline
+" hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+set ruler
+
+set autoindent
+set smartindent
+
 set mouse=r
 set wrap
-set ignorecase
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -39,19 +34,24 @@ set nocp
 set diffopt+=vertical
 set splitright
 set splitbelow
-colorscheme default
+
 syntax on
 filetype indent on
 filetype plugin on
-" fo-table
+
+set t_Co=256
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
-"set cinoptions+=(0,N-s "(0: additional spaces in case of line wrap; N-s: no indent for namespaces
+
+
 
 
 "-- Key mappings ---------------------------------------------------------------
 
 
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
 map <Leader>2 :nohls<CR>
 map <Leader>3 :set cursorline!<CR>
@@ -62,6 +62,10 @@ map <Leader>cw :botright cw <CR>
 map <Leader>cc :ccl <CR>
 map <Leader>cn :cn <CR>
 map <Leader>cp :cp <CR>
+map <Leader>lw :botright lopen <CR>
+map <Leader>lc :lcl <CR>
+map <Leader>ln :lnext <CR>
+map <Leader>lp :lprev <CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>qw :GundoToggle <CR>
@@ -97,16 +101,16 @@ endfunction
 
 
 let g:pymode_run = 0  " use ipy run instead of pymode
-let g:pymode_rope = 1 " activate rope
-let g:pymode_doc = 1  " activate pydoc
+let g:pymode_rope = 0 " activate rope
+let g:pymode_doc = 0  " activate pydoc
 let g:pymode_doc_key = 'K'
 
 " pylint syntax checking
 let g:pymode_lint = 1
 "let g:pymode_lint_checker = 'pyflakes'
-let g:pymode_lint_ignore = ''
+let g:pymode_lint_ignore = 'E226'
 let g:pymode_lint_onfly = 0
-let g:pymode_lint_write = 0
+let g:pymode_lint_write = 1
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
@@ -125,13 +129,15 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 
 
+
+
 "-- R plugin ----------------------------------------------------------------
 
 
 let vimrplugin_notmuxconf = 0
 let vimrplugin_assign = 0
 let vimrplugin_vimpager="tabnew"
-let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
+let vimrplugin_insert_mode_cmds=0 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let vimrplugin_openpdf = 0 "automatically open pdf. \kop to open pdf
@@ -144,3 +150,9 @@ let vimrplugin_routmorecolors=1
 
 
 let g:vim_markdown_folding_disabled=1
+
+let g:LatexBox_viewer='open -a Preview'
+let g:LatexBox_quickfix=2
+let g:LatexBox_Folding=1
+let g:LatexBox_show_warnings=0
+let g:LatexBox_latexmk_preview_continuously=1
