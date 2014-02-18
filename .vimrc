@@ -10,20 +10,20 @@ filetype plugin indent on
 
 set nocompatible
 set hlsearch
+nnoremap * *<C-O>
 set incsearch
 set ignorecase
 set smartcase
 
 set number
 set cursorline
-" hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 set ruler
 
 set autoindent
 set smartindent
+set wrap
 
 set mouse=r
-set wrap
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -44,9 +44,24 @@ let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
+set undofile
+set undodir=~/.vim/undo
+
+set list
+set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
+
+set spell
+set spelllang=en_gb
+
+set updatetime=1000
+
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
+autocmd FileType make setlocal noexpandtab
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 
-
+cabbr th tab help
+cabbr tn tab new
 
 
 "-- Key mappings ---------------------------------------------------------------
@@ -57,7 +72,6 @@ map <Leader>2 :nohls<CR>
 map <Leader>3 :set cursorline!<CR>
 map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<CR>
 map <Leader>5 ml:execute 'match Search //'<CR>
-map <Leader>6 ml:execute 'match ErrorMsg "\%>80v.\+"'<CR>
 map <Leader>cw :botright cw <CR>
 map <Leader>cc :ccl <CR>
 map <Leader>cn :cn <CR>
@@ -67,18 +81,14 @@ map <Leader>lc :lcl <CR>
 map <Leader>ln :lnext <CR>
 map <Leader>lp :lprev <CR>
 map <Leader>qq :NERDTree <CR>
+
 map <Leader>qe :TagbarToggle <CR>
-map <Leader>qw :GundoToggle <CR>
+let g:tagbar_ctags_bin='~/apps/bin/ctags'
+
 map <Leader>,# :s/^/# /<CR>:nohlsearch<CR>
 map <Leader>.# :s/^#\s\?//<CR>:nohlsearch<CR>
 map <Leader>,/ :s/^/\/\/ /<CR>:nohlsearch<CR>
 map <Leader>./ :s/^\/\/\s\?//<CR>:nohlsearch<CR>
-
-
-"-- ipy mapping --------------------------------------------------------------
-
-
-autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 
 
 "-- ipy mapping --------------------------------------------------------------
@@ -101,7 +111,7 @@ endfunction
 
 
 let g:pymode_run = 0  " use ipy run instead of pymode
-let g:pymode_rope = 0 " activate rope
+let g:pymode_rope = 1 " activate rope
 let g:pymode_doc = 0  " activate pydoc
 let g:pymode_doc_key = 'K'
 
@@ -110,7 +120,7 @@ let g:pymode_lint = 1
 "let g:pymode_lint_checker = 'pyflakes'
 let g:pymode_lint_ignore = 'E226'
 let g:pymode_lint_onfly = 0
-let g:pymode_lint_write = 1
+let g:pymode_lint_write = 0
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
@@ -129,15 +139,14 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 
 
-
-
 "-- R plugin ----------------------------------------------------------------
 
 
 let vimrplugin_notmuxconf = 0
-let vimrplugin_assign = 0
+let vimrplugin_assign = 1
+" let vimrplugin_assign_map = "<C-j>"
 let vimrplugin_vimpager="tabnew"
-let vimrplugin_insert_mode_cmds=0 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
+let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let vimrplugin_openpdf = 0 "automatically open pdf. \kop to open pdf
@@ -150,6 +159,8 @@ let vimrplugin_routmorecolors=1
 
 
 let g:vim_markdown_folding_disabled=1
+
+"-- LatexBox -------------------------------------------------------------
 
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
