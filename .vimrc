@@ -63,6 +63,10 @@ autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 cabbr th tab help
 cabbr tn tab new
 
+if filereadable($HOME . '/.vim/local.vim')
+  source ~/.vim/local.vim
+endif
+
 
 "-- Key mappings ---------------------------------------------------------------
 
@@ -80,10 +84,10 @@ map <Leader>lw :botright lopen <CR>
 map <Leader>lc :lcl <CR>
 map <Leader>ln :lnext <CR>
 map <Leader>lp :lprev <CR>
+map <Leader>ll :PymodeLint<CR>
 map <Leader>qq :NERDTree <CR>
 
 map <Leader>qe :TagbarToggle <CR>
-let g:tagbar_ctags_bin='~/apps/bin/ctags'
 
 map <Leader>,# :s/^/# /<CR>:nohlsearch<CR>
 map <Leader>.# :s/^#\s\?//<CR>:nohlsearch<CR>
@@ -94,49 +98,24 @@ map <Leader>./ :s/^\/\/\s\?//<CR>:nohlsearch<CR>
 "-- ipy mapping --------------------------------------------------------------
 
 
-autocmd Filetype python call PythonMappings()
-function PythonMappings()
-  let g:ipy_perform_mappings = 0
-  map  <buffer> <silent> <Leader>rf     :IPython<CR>
-  map  <buffer> <silent> <Leader>aa     <Plug>(IPython-RunFile)
-  map  <buffer> <silent> <Leader>l     <Plug>(IPython-RunLine)
-  map  <buffer> <silent> <Leader>L     <Plug>(IPython-RunLineAsTopLevel)
-  map  <buffer> <silent> <Leader>d     <Plug>(IPython-RunLine) j
-  map  <buffer> <silent> <Leader>D     <Plug>(IPython-RunLineAsTopLevel) j
-  xmap <buffer> <silent> <Leader>l     <Plug>(IPython-RunLines)
-endfunction
-
-
 "-- pymode -------------------------------------------------------------------
 
 
 let g:pymode_run = 0  " use ipy run instead of pymode
 let g:pymode_rope = 1 " activate rope
-let g:pymode_doc = 0  " activate pydoc
+let g:pymode_doc = 0  " activate pydoc -> use jedi instead
 let g:pymode_doc_key = 'K'
 
-" pylint syntax checking
 let g:pymode_lint = 1
-"let g:pymode_lint_checker = 'pyflakes'
-let g:pymode_lint_ignore = 'E226'
-let g:pymode_lint_onfly = 0
-let g:pymode_lint_write = 0
+let g:pymode_lint_ignore = 'E226,E501,W'
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_fly = 0
+let g:pymode_lint_cwindow = 1
 
-" Support virtualenv
-let g:pymode_virtualenv = 1
-
-" Enable breakpoints plugin
 let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_key = 'b'
 
-" syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-
-" Don't autofold code
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 
 
 "-- R plugin ----------------------------------------------------------------
@@ -144,8 +123,7 @@ let g:pymode_folding = 0
 
 let vimrplugin_notmuxconf = 0
 let vimrplugin_assign = 1
-" let vimrplugin_assign_map = "<C-j>"
-let vimrplugin_vimpager="tabnew"
+let vimrplugin_assign_map = "<C-j>"
 let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
@@ -157,7 +135,6 @@ let vimrplugin_routmorecolors=1
 
 "-- vim-markdown -------------------------------------------------------------
 
-
 let g:vim_markdown_folding_disabled=1
 
 "-- LatexBox -------------------------------------------------------------
@@ -165,5 +142,5 @@ let g:vim_markdown_folding_disabled=1
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
 let g:LatexBox_Folding=1
-let g:LatexBox_show_warnings=0
+let g:LatexBox_show_warnings=1
 let g:LatexBox_latexmk_preview_continuously=1
