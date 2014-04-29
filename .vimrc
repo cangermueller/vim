@@ -81,6 +81,7 @@ map <Leader>lp :lprev <CR>
 map <Leader>ll :PymodeLint<CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
+map <Leader>gs :Gstatus <CR>
 
 let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
