@@ -41,3 +41,6 @@
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
+[submodule "bundle/Vim-R-plugin"]
+	path = bundle/Vim-R-plugin
+	url = https://github.com/vim-scripts/Vim-R-plugin.git
