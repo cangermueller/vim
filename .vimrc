@@ -29,6 +29,8 @@ set nocp
 set diffopt+=vertical
 set splitright
 set splitbelow
+set updatetime=1000
+set backspace=2 " Fix backspace problem since vim7.4
 
 syntax on
 filetype indent on
@@ -47,8 +49,6 @@ set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 
 set spell
 set spelllang=en_gb
-
-set updatetime=1000
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
 autocmd FileType make setlocal noexpandtab
