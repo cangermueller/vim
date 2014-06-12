@@ -82,6 +82,7 @@ map <Leader>ll :PymodeLint<CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>gs :Gstatus <CR>
+map <Leader>t :%s/\s\+$//g <CR>
 
 let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
@@ -98,7 +99,7 @@ imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
 
 " python-mode {
 let g:pymode_run = 0  " use ipy run instead of pymode
-let g:pymode_rope = 1 " activate rope
+let g:pymode_rope = 0 " activate rope
 let g:pymode_doc = 0  " activate pydoc -> use jedi instead
 let g:pymode_doc_key = 'K'
 
@@ -139,8 +140,9 @@ let g:vim_markdown_folding_disabled=1
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
 let g:LatexBox_Folding=1
-let g:LatexBox_show_warnings=1
+let g:LatexBox_show_warnings=0
 let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_complete_inlineMath=1
 " }
 
 
