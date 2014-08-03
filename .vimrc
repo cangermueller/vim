@@ -15,7 +15,7 @@ set cursorline
 set ruler
 
 set autoindent
-set smartindent
+set nosmartindent
 set wrap
 
 set mouse=r
@@ -93,11 +93,12 @@ if has("gui_running")
 else
     inoremap <Nul> <C-x><C-o>
 endif
-imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
+autocmd FileType R imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
 "}
 
 
 " python-mode {
+let g:pymode = 1
 let g:pymode_run = 0  " use ipy run instead of pymode
 let g:pymode_rope = 0 " activate rope
 let g:pymode_doc = 0  " activate pydoc -> use jedi instead
@@ -113,6 +114,7 @@ let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_key = 'b'
 
 let g:pymode_folding = 1
+let g:pymode_options = 0
 " }
 
 
