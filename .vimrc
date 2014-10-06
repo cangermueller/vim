@@ -18,6 +18,9 @@ set autoindent
 set nosmartindent
 set wrap
 
+set textwidth=80
+set cc=+1
+
 set mouse=r
 set expandtab
 set tabstop=2
