@@ -86,9 +86,9 @@ map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>gs :Gstatus <CR>
 map <Leader>t :%s/\s\+$//g <CR>
-nmap <C-w>i :wincmd k<CR>
-nmap <C-w>k :wincmd j<CR>
-nmap <C-w>j :wincmd h<CR>
+nmap <C-w>k :wincmd k<CR>
+nmap <C-w>j :wincmd j<CR>
+nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
 
 let maplocalleader=','
