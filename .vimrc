@@ -95,12 +95,9 @@ let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 vmap <LocalLeader>w <Plug>RSendLine
-if has("gui_running")
-    inoremap <C-Space> <C-x><C-o>
-else
-    inoremap <Nul> <C-x><C-o>
-endif
-autocmd FileType R imap <buffer><silent> <C-X><C-U> <C-R>=RCompleteArgs()<CR>
+imap <LocalLeader>a <Plug>RCompleteArgs
+imap <LocalLeader>c <c-x><c-o>
+imap <LocalLeader>i ```{r}<CR>```<ESC>:normal!O<CR> "Insert chunk in Rmd
 "}
 
 
@@ -120,8 +117,12 @@ let g:pymode_lint_cwindow = 1
 let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_key = 'b'
 
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:pymode_options = 0
+" }
+
+" jedi-vim {
+let g:jedi#popup_on_dot = 0
 " }
 
 
@@ -132,12 +133,13 @@ let vimrplugin_assign_map = "<C-j>"
 let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
-let vimrplugin_openpdf = 0 "automatically open pdf. \kop to open pdf
-let vimrplugin_openpdf_quietly = 1
+let vimrplugin_openpdf = 1 "automatically open pdf. \kop to open pdf
 let vimrplugin_routmorecolors=1
 let vimrplugin_vimpager="tabnew"
 let vimrplugin_vsplit = 1
+let vimrplugin_show_args = 1
 "}
+
 
 
 " vim-markdown {
@@ -148,7 +150,7 @@ let g:vim_markdown_folding_disabled=1
 " LaTeX-Box {
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
-let g:LatexBox_Folding=1
+let g:LatexBox_Folding=0
 let g:LatexBox_show_warnings=0
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_complete_inlineMath=1
