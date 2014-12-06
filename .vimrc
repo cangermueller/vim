@@ -21,7 +21,7 @@ set wrap
 set textwidth=80
 set cc=+1
 
-set mouse=r
+set mouse=a
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -90,15 +90,28 @@ nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
+imap <C-a> <C-o>^
+imap <C-r> <C-o>$
+nmap <C-a> ^
+nmap <C-r> $
 
+
+"r-plugin bindings
 let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 vmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>a <Plug>RCompleteArgs
 imap <LocalLeader>c <c-x><c-o>
-imap <LocalLeader>i ```{r}<CR>```<ESC>:normal!O<CR> "Insert chunk in Rmd
+"Insert chunk in Rmd
+imap <LocalLeader>i ```{r}<CR>```<c-o>O
+map <silent> <LocalLeader>rj :call RAction("head")<CR>
+map <silent> <LocalLeader>rk :call RAction("levels")<CR>
+map <silent> <LocalLeader>rz :call RAction("dim")<CR>
+map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
+map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
 "}
+
 
 
 " python-mode {
@@ -123,6 +136,7 @@ let g:pymode_options = 0
 
 " jedi-vim {
 let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = 0
 " }
 
 
@@ -134,10 +148,12 @@ let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-p
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let vimrplugin_openpdf = 1 "automatically open pdf. \kop to open pdf
+let vimrplugin_openhtml = 1
 let vimrplugin_routmorecolors=1
-let vimrplugin_vimpager="tabnew"
+let vimrplugin_vimpager="horizontal" "tabnew, vertical, tab
 let vimrplugin_vsplit = 1
 let vimrplugin_show_args = 1
+let vimrplugin_objbr_place = "script,left"
 "}
 
 
