@@ -3,6 +3,7 @@ filetype off
 source ~/.vim/vundle.vim
 filetype plugin indent on
 
+
 set nocompatible
 set hlsearch
 nnoremap * *<C-O>
@@ -47,13 +48,15 @@ colorscheme solarized
 set undofile
 set undodir=~/.vim/undo
 
+set directory=~/tmp,/tmp,. " directories for swap files
+
 set list
 set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 
 set spell
 set spelllang=en_gb
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
@@ -85,15 +88,15 @@ map <Leader>ll :PymodeLint<CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>gs :Gstatus <CR>
-map <Leader>t :%s/\s\+$//g <CR>
+map <Leader>t :%s/\s\+$//g <CR> <c-o>
 nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
 imap <C-a> <C-o>^
-imap <C-r> <C-o>$
+imap <C-i> <C-o>$
 nmap <C-a> ^
-nmap <C-r> $
+nmap <C-i> $
 
 
 "r-plugin bindings
@@ -101,15 +104,14 @@ let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 vmap <LocalLeader>w <Plug>RSendLine
-imap <LocalLeader>a <Plug>RCompleteArgs
-imap <LocalLeader>c <c-x><c-o>
-"Insert chunk in Rmd
 imap <LocalLeader>i ```{r}<CR>```<c-o>O
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("levels")<CR>
 map <silent> <LocalLeader>rz :call RAction("dim")<CR>
 map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
+map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); run("' . expand("%:t") . '")') <CR>
+imap <silent> <LocalLeader>a <Plug>RCompleteArgs
 "}
 
 
@@ -144,7 +146,7 @@ let g:jedi#show_call_signatures = 0
 let vimrplugin_notmuxconf = 1
 let vimrplugin_assign = 1
 let vimrplugin_assign_map = "<C-j>"
-let vimrplugin_insert_mode_cmds=1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
+let vimrplugin_insert_mode_cmds = 1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
 let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let vimrplugin_openpdf = 1 "automatically open pdf. \kop to open pdf
@@ -154,6 +156,7 @@ let vimrplugin_vimpager="horizontal" "tabnew, vertical, tab
 let vimrplugin_vsplit = 1
 let vimrplugin_show_args = 1
 let vimrplugin_objbr_place = "script,left"
+let r_indent_align_args = 0
 "}
 
 
@@ -178,3 +181,6 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autopreview = 1
 let g:tagbar_autoclose = 1
 " }
+
+" commenter {
+let NERDSpaceDelims=1
