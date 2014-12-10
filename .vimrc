@@ -93,10 +93,10 @@ nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
-imap <C-a> <C-o>^
-imap <C-i> <C-o>$
-nmap <C-a> ^
-nmap <C-i> $
+imap <C-a>a <C-o>^
+imap <C-a>e <C-o>$
+nmap <C-a>a ^
+nmap <C-a>e $
 
 
 "r-plugin bindings
@@ -105,13 +105,17 @@ nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 vmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>i ```{r}<CR>```<c-o>O
+imap <silent> <LocalLeader>a <Plug>RCompleteArgs
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
-map <silent> <LocalLeader>rk :call RAction("levels")<CR>
-map <silent> <LocalLeader>rz :call RAction("dim")<CR>
+map <silent> <LocalLeader>rk :call RAction("dim")<CR>
+map <silent> <LocalLeader>rz :call RAction("levels")<CR>
 map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
-map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); run("' . expand("%:t") . '")') <CR>
-imap <silent> <LocalLeader>a <Plug>RCompleteArgs
+map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); setwd("' . expand("%:p:h") . '"); run("' . expand("%:t") . '")') <CR>
+map <LocalLeader>cn gn
+map <LocalLeader>cN gN
+imap <LocalLeader>cn <c-o>gn
+imap <LocalLeader>cN <c-o>gN
 "}
 
 
