@@ -1,10 +1,6 @@
 " General settings {
-filetype off
 source ~/.vim/vundle.vim
-filetype plugin indent on
 
-
-set nocompatible
 set hlsearch
 nnoremap * *<C-O>
 set incsearch
@@ -20,6 +16,7 @@ set nosmartindent
 set wrap
 
 set textwidth=80
+set linebreak
 set cc=+1
 
 set mouse=a
@@ -60,6 +57,7 @@ set spelllang=en_gb
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType r,rmd setlocal formatoptions-=t " do not break lines automatically
 
 cabbr th tab help
 cabbr tn tab new
@@ -88,7 +86,9 @@ map <Leader>ll :PymodeLint<CR>
 map <Leader>qq :NERDTree <CR>
 map <Leader>qe :TagbarToggle <CR>
 map <Leader>gs :Gstatus <CR>
-map <Leader>t :%s/\s\+$//g <CR> <c-o>
+map <Leader>tt :%s/\s\+$//g <CR> <c-o>
+map <Leader>tw :set textwidth=0 <CR>
+map <Leader>tW :set textwidth=80 <CR>
 nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
@@ -103,8 +103,12 @@ nmap <C-a>e $
 let maplocalleader=','
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
-vmap <LocalLeader>w <Plug>RSendLine
+nmap <LocalLeader>d <Plug>RDSendLine
+nmap <LocalLeader>q <Plug>RSendLine o
+map <LocalLeader>i i```{r}<CR>```<c-o>O
 imap <LocalLeader>i ```{r}<CR>```<c-o>O
+map <LocalLeader>I i```<CR><CR>```{r}<CR>
+imap <LocalLeader>I ```<CR><CR>```{r}<CR>
 imap <silent> <LocalLeader>a <Plug>RCompleteArgs
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("dim")<CR>
@@ -116,6 +120,9 @@ map <LocalLeader>cn gn
 map <LocalLeader>cN gN
 imap <LocalLeader>cn <c-o>gn
 imap <LocalLeader>cN <c-o>gN
+map <LocalLeader>sic :?^```{r?+1<CR>V /^```/-1<CR>
+map <LocalLeader>sac :?^```{r?<CR>V /^```/<CR>
+autocmd FileType rmd,r imap <c-k> <Space>%>%<Space>
 "}
 
 
@@ -161,6 +168,7 @@ let vimrplugin_vsplit = 1
 let vimrplugin_show_args = 1
 let vimrplugin_objbr_place = "script,left"
 let r_indent_align_args = 0
+let vimrplugin_vimcom_wait = -1
 "}
 
 
