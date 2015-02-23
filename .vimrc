@@ -19,7 +19,7 @@ set textwidth=80
 set linebreak
 set cc=+1
 
-set mouse=a
+set mouse=  "a
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -69,6 +69,8 @@ endif
 
 
 " Key bindings {
+let maplocalleader=','
+
 map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
 map <Leader>2 :nohls<CR>
 map <Leader>3 :set cursorline!<CR>
@@ -97,80 +99,7 @@ imap <C-a>a <C-o>^
 imap <C-a>e <C-o>$
 nmap <C-a>a ^
 nmap <C-a>e $
-
-
-"r-plugin bindings
-let maplocalleader=','
-nmap <LocalLeader>w <Plug>RSendLine
-imap <LocalLeader>w <Plug>RSendLine
-nmap <LocalLeader>d <Plug>RDSendLine
-nmap <LocalLeader>q <Plug>RSendLine o
-map <LocalLeader>i i```{r}<CR>```<c-o>O
-imap <LocalLeader>i ```{r}<CR>```<c-o>O
-map <LocalLeader>I i```<CR><CR>```{r}<CR>
-imap <LocalLeader>I ```<CR><CR>```{r}<CR>
-imap <silent> <LocalLeader>a <Plug>RCompleteArgs
-map <silent> <LocalLeader>rj :call RAction("head")<CR>
-map <silent> <LocalLeader>rk :call RAction("dim")<CR>
-map <silent> <LocalLeader>rz :call RAction("levels")<CR>
-map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
-map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
-map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); setwd("' . expand("%:p:h") . '"); run("' . expand("%:t") . '")') <CR>
-map <LocalLeader>cn gn
-map <LocalLeader>cN gN
-imap <LocalLeader>cn <c-o>gn
-imap <LocalLeader>cN <c-o>gN
-map <LocalLeader>sic :?^```{r?+1<CR>V /^```/-1<CR>
-map <LocalLeader>sac :?^```{r?<CR>V /^```/<CR>
-autocmd FileType rmd,r imap <c-k> <Space>%>%<Space>
-"}
-
-
-
-" python-mode {
-let g:pymode = 1
-let g:pymode_run = 0  " use ipy run instead of pymode
-let g:pymode_rope = 0 " activate rope
-let g:pymode_doc = 0  " activate pydoc -> use jedi instead
-let g:pymode_doc_key = 'K'
-
-let g:pymode_lint = 1
-let g:pymode_lint_ignore = 'E226,E501,W'
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_cwindow = 1
-
-let g:pymode_breakpoint = 0
-let g:pymode_breakpoint_key = 'b'
-
-let g:pymode_folding = 0
-let g:pymode_options = 0
 " }
-
-" jedi-vim {
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0
-" }
-
-
-" r-plugin {
-let vimrplugin_notmuxconf = 1
-let vimrplugin_assign = 1
-let vimrplugin_assign_map = "<C-j>"
-let vimrplugin_insert_mode_cmds = 1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
-let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
-let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
-let vimrplugin_openpdf = 1 "automatically open pdf. \kop to open pdf
-let vimrplugin_openhtml = 1
-let vimrplugin_routmorecolors=1
-let vimrplugin_vimpager="horizontal" "tabnew, vertical, tab
-let vimrplugin_vsplit = 1
-let vimrplugin_show_args = 1
-let vimrplugin_objbr_place = "script,left"
-let r_indent_align_args = 0
-let vimrplugin_vimcom_wait = -1
-"}
-
 
 
 " vim-markdown {
@@ -196,3 +125,4 @@ let g:tagbar_autoclose = 1
 
 " commenter {
 let NERDSpaceDelims=1
+"}
