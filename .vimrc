@@ -32,6 +32,9 @@ set splitright
 set splitbelow
 set updatetime=1000
 set backspace=2 " Fix backspace problem since vim7.4
+set pastetoggle=<Leader>p
+set clipboard=unnamed
+
 
 syntax on
 filetype indent on
@@ -51,7 +54,7 @@ set list
 set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 
 set spell
-set spelllang=en_gb
+set spelllang=en_us
 
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
 autocmd FileType make setlocal noexpandtab
@@ -61,6 +64,8 @@ autocmd FileType r,rmd setlocal formatoptions-=t " do not break lines automatica
 
 cabbr th tab help
 cabbr tn tab new
+cabbr vg vimgrep
+
 
 if filereadable($HOME . '/.vim/local.vim')
   source ~/.vim/local.vim
@@ -76,21 +81,25 @@ map <Leader>2 :nohls<CR>
 map <Leader>3 :set cursorline!<CR>
 map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<CR>
 map <Leader>5 ml:execute 'match Search //'<CR>
+nmap <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <Leader>P <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+vmap <Leader>P :!pbpaste<CR>
+nmap <Leader>Y :.w !pbcopy<CR><CR>
+vmap <Leader>Y :w !pbcopy<CR><CR>
 map <Leader>cw :botright cw <CR>
-map <Leader>cq :ccl <CR>
-map <Leader>cn :cn <CR>
-map <Leader>cp :cp <CR>
+map <Leader>cq :cclose <CR>
+map <Leader>cj :cnext <CR>
+map <Leader>ck :cprev <CR>
 map <Leader>lw :botright lopen <CR>
 map <Leader>lq :lcl <CR>
-map <Leader>ln :lnext <CR>
-map <Leader>lp :lprev <CR>
-map <Leader>ll :PymodeLint<CR>
-map <Leader>qq :NERDTree <CR>
-map <Leader>qe :TagbarToggle <CR>
-map <Leader>gs :Gstatus <CR>
-map <Leader>tt :%s/\s\+$//g <CR> <c-o>
-map <Leader>tw :set textwidth=0 <CR>
-map <Leader>tW :set textwidth=80 <CR>
+map <Leader>lj :lnext <CR>
+map <Leader>lk :lprev <CR>
+map <Leader>f :NERDTreeToggle <CR>
+map <Leader>F :cd %:p:h <CR>
+map <Leader>t :TagbarToggle <CR>
+map <Leader>yy :%s/\s\+$//g <CR> <c-o> "remove trailing spaces
+map <Leader>yw :set textwidth=0 <CR>
+map <Leader>yW :set textwidth=80 <CR>
 nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
@@ -99,8 +108,16 @@ imap <C-a>a <C-o>^
 imap <C-a>e <C-o>$
 nmap <C-a>a ^
 nmap <C-a>e $
+map <Leader>gs :Gstatus <CR>
+map <Leader>gS :Git status -u <CR>
+map gb :bnext <CR>
+map gB :bNext <CR>
+map gsb :sbnext <CR>
+map gsB :sbNext <CR>
+map gvb :vertical sbnext <CR>
+map gvB :vertical sbNext <CR>
+map <Leader>n <CR> :set number!<CR>
 " }
-
 
 " vim-markdown {
 let g:vim_markdown_folding_disabled=1
@@ -126,3 +143,16 @@ let g:tagbar_autoclose = 1
 " commenter {
 let NERDSpaceDelims=1
 "}
+
+" airline {
+let g:airline_theme='badwolf' " badwolf, powerlineish
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+" }
+
+" NERDtree {
+let g:NERDTreeShowBookmarks=1
+" }

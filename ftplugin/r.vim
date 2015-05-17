@@ -14,6 +14,9 @@ let vimrplugin_objbr_place = "script,left"
 let r_indent_align_args = 0
 let vimrplugin_vimcom_wait = -1
 
+
+" open safely to avoid seqfault
+map <LocalLeader>rF :tab new .tmp.Rmd<CR><LocalLeader>rf<c-w>q
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 nmap <LocalLeader>d <Plug>RDSendLine
@@ -25,6 +28,7 @@ imap <LocalLeader>I ```<CR><CR>```{r}<CR>
 imap <silent> <LocalLeader>a <Plug>RCompleteArgs
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("dim")<CR>
+map <silent> <LocalLeader>ry :call RAction("glimpse")<CR>
 map <silent> <LocalLeader>rz :call RAction("levels")<CR>
 map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
@@ -35,4 +39,17 @@ imap <LocalLeader>cn <c-o><LocalLeader>gn
 imap <LocalLeader>cN <c-o><LocalLeader>gN
 map <LocalLeader>sic :?^```{r?+1<CR>V /^```/-1<CR>
 map <LocalLeader>sac :?^```{r?<CR>V /^```/<CR>
-autocmd FileType rmd,r imap <c-k> <Space>%>%<Space>
+imap <c-k> <Space>%>%<Space>
+imap <c-l> <Space>%>%
+imap <LocalLeader>rP <c-o>^<LocalLeader>rp<c-o>$
+imap <LocalLeader>rT <c-o>^<LocalLeader>rt<c-o>$
+map <LocalLeader>rP ^<LocalLeader>rp$
+map <LocalLeader>rT ^<LocalLeader>rt$
+map <LocalLeader>rY ^<LocalLeader>ry$
+map <LocalLeader>rJ ^<LocalLeader>rj$
+map <LocalLeader>ct <LocalLeader>ch
+map <LocalLeader>oh :!f=%; f=${f\%.*}.html; open -a firefox $f <CR><CR>
+map <LocalLeader>kc :!rm -rf *_cache/ <CR><CR>
+
+
+cabbr Rh Rhelp

@@ -6,7 +6,9 @@ call vundle#begin()
 
 Bundle 'gmarik/Vundle.vim'
 Bundle 'klen/python-mode'
-Bundle 'ivanov/vim-ipython'
+" Bundle 'ivanov/vim-ipython'
+" ipython3.X support
+Bundle 'nheijermans/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Vim-R-plugin'
@@ -16,6 +18,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-surround'
+
 
 
 call vundle#end()
