@@ -11,6 +11,7 @@ Bundle 'klen/python-mode'
 Bundle 'nheijermans/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
+Bundle 'jalvesaq/R-Vim-runtime'
 Bundle 'vim-scripts/Vim-R-plugin'
 Bundle 'majutsushi/tagbar'
 Bundle 'plasticboy/vim-markdown'
@@ -20,7 +21,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-surround'
-
+Bundle 'jmcantrell/vim-virtualenv'
 
 
 call vundle#end()

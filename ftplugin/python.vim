@@ -28,6 +28,12 @@ map <LocalLeader>ll :PymodeLint<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 map <LocalLeader>lj :lnext <CR>
 map <LocalLeader>lk :lprev <CR>
+map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
+map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
+map <LocalLeader>bu oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
+map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
 
 let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_key = 'b'

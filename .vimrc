@@ -1,4 +1,4 @@
-" General settings {
+
 source ~/.vim/vundle.vim
 
 set hlsearch
@@ -65,6 +65,7 @@ autocmd FileType r,rmd setlocal formatoptions-=t " do not break lines automatica
 cabbr th tab help
 cabbr tn tab new
 cabbr vg vimgrep
+cabbr lop lopen 20
 
 
 if filereadable($HOME . '/.vim/local.vim')
@@ -90,16 +91,17 @@ map <Leader>cw :botright cw <CR>
 map <Leader>cq :cclose <CR>
 map <Leader>cj :cnext <CR>
 map <Leader>ck :cprev <CR>
-map <Leader>lw :botright lopen <CR>
-map <Leader>lq :lcl <CR>
-map <Leader>lj :lnext <CR>
-map <Leader>lk :lprev <CR>
+map <LocalLeader>mm :botright lopen 50 <CR>
+map <LocalLeader>mn :lcl <CR>
+map <LocalLeader>mj :lnext <CR>
+map <LocalLeader>mk :lprev <CR>
 map <Leader>f :NERDTreeToggle <CR>
 map <Leader>F :cd %:p:h <CR>
 map <Leader>t :TagbarToggle <CR>
-map <Leader>yy :%s/\s\+$//g <CR> <c-o> "remove trailing spaces
-map <Leader>yw :set textwidth=0 <CR>
-map <Leader>yW :set textwidth=80 <CR>
+map <Leader>y :%s/\s\+$//g <CR> <c-o> "remove trailing spaces
+map <Leader>e :set expandtab! <CR>
+map <Leader>w :set textwidth=0 <CR>
+map <Leader>W :set textwidth=80 <CR>
 nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
@@ -117,6 +119,11 @@ map gsB :sbNext <CR>
 map gvb :vertical sbnext <CR>
 map gvB :vertical sbNext <CR>
 map <Leader>n <CR> :set number!<CR>
+map <Leader>X :s/^\(.\)/>>> \1/<CR>
+map <Leader>Z :s/^>>> //<CR>
+vmap <Leader>X :s/^\(.\)/>>> \1/<CR>
+vmap <Leader>Z :s/^>>> //<CR>
+map <Leader>D :windo diffthis <CR>
 " }
 
 " vim-markdown {
@@ -149,10 +156,18 @@ let g:airline_theme='badwolf' " badwolf, powerlineish
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
 " }
 
 " NERDtree {
 let g:NERDTreeShowBookmarks=1
 " }
+"
+
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
