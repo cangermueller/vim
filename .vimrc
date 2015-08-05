@@ -106,6 +106,12 @@ nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
+nmap <C-w>% :wincmd v<CR>
+nmap <C-w>T :wincmd s<CR>
+nmap <C-w><Up> :resize +5<CR>
+nmap <C-w><Down> :resize -5<CR>
+nmap <C-w><Left> :vertical resize +5<CR>
+nmap <C-w><Right> :vertical resize -5<CR>
 imap <C-a>a <C-o>^
 imap <C-a>e <C-o>$
 nmap <C-a>a ^
