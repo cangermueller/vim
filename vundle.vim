@@ -6,6 +6,8 @@ call vundle#begin()
 
 Bundle 'gmarik/Vundle.vim'
 Bundle 'klen/python-mode'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'ervandew/supertab'
 " Bundle 'ivanov/vim-ipython'
 " ipython3.X support
 Bundle 'nheijermans/vim-ipython'
@@ -17,11 +19,12 @@ Bundle 'majutsushi/tagbar'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-surround'
 Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'yegappan/mru'
+Bundle 'dkprice/vim-easygrep'
 
 
 call vundle#end()
