@@ -115,12 +115,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let maplocalleader=','
 
-map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
-map <Leader>2 :nohls<CR>
-map <Leader>3 :set cursorline!<CR>
-map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<CR>
-map <Leader>5 ml:execute 'match Search //'<CR>
-
 map <Leader>D :windo diffthis <CR>
 " open file from cur path
 map <leader>E :e <c-r>=expand("%:p:h")<cr>/
@@ -130,6 +124,19 @@ map <Leader>f :NERDTreeToggle <CR>
 map <Leader>F :cd %:p:h <CR>
 " replace word under cursor
 :nnoremap <leader>vs :%s/\<<C-r><C-w>\>/
+
+" Settings
+map <Leader>w :set textwidth=0 <CR>
+map <Leader>W :set textwidth=80 <CR>  l
+map <Leader>N :set number!<CR> " (no) number
+map <Leader>e :set expandtab! <CR>
+
+" Highlighting
+map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
+map <Leader>2 :nohls<CR>
+map <Leader>3 :set cursorline!<CR>
+map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<CR>
+map <Leader>5 ml:execute 'match Search //'<CR>
 
 " Completion
 inoremap <C-l> <C-x><C-l>
@@ -177,7 +184,8 @@ map <LocalLeader>mk :lprev <CR>
 map <Leader>gn :tabnew <CR>
 map <Leader>gc :tabclose <CR>
 map <Leader>go :tabonly <CR>
-map <Leader>e :set expandtab! <CR>
+map <Leader>gh :tabm -1 <CR>
+map <Leader>gl :tabm +1 <CR>
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -186,11 +194,6 @@ map <leader>sk [s
 map <leader>sa zg
 map <leader>sA zug
 map <leader>s? z=
-
-" Settings
-map <Leader>w :set textwidth=0 <CR>
-map <Leader>W :set textwidth=80 <CR>  l
-map <Leader>N :set number!<CR> " (no) number
 
 " Windows
 nmap <C-w>k :wincmd k<CR>
@@ -282,6 +285,5 @@ let EasyGrepJumpToMatch=0
 set completeopt=menuone,longest,preview
 " let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingTabLiteral = "<Leader><tab>"
-let g:SuperTabLongestHighlight = 1
