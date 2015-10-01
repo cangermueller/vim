@@ -143,16 +143,16 @@ inoremap <C-l> <C-x><C-l>
 inoremap <C-f> <C-x><C-f>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap ∆ mz:m+<cr>`z
-nmap  mz:m-2<cr>`z
-vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
-vmap  :m'<-2<cr>`>my`<mzgv`yo`z
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
+nmap <c-j> mz:m+<cr>`z
+nmap <c-k> mz:m-2<cr>`z
+vmap <c-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <c-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" if has("mac") || has("macunix")
+  " nmap <D-j> <M-j>
+  " nmap <D-k> <M-k>
+  " vmap <D-j> <M-j>
+  " vmap <D-k> <M-k>
+" endif
 
 " Emacs like
 imap <C-a>a <C-o>^
@@ -169,16 +169,16 @@ vmap <Leader>Y :w !pbcopy<CR><CR>
 nmap "P "0p
 
 " quickfix
-map <Leader>cw :botright cw <CR>
-map <Leader>cq :cclose <CR>
-map <Leader>cj :cnext <CR>
-map <Leader>ck :cprev <CR>
+map <LocalLeader>no :botright cw <CR>
+map <LocalLeader>nq :cclose <CR>
+map <LocalLeader>nn :cnext <CR>
+map <LocalLeader>nm :cprev <CR>
 
 " location list
-map <LocalLeader>mm :botright lopen 50 <CR>
-map <LocalLeader>mn :lcl <CR>
-map <LocalLeader>mj :lnext <CR>
-map <LocalLeader>mk :lprev <CR>
+map <LocalLeader>mo :botright lopen 50 <CR>
+map <LocalLeader>mq :lcl <CR>
+map <LocalLeader>mm :lnext <CR>
+map <LocalLeader>mn :lprev <CR>
 
 " Tabs
 map <Leader>gn :tabnew <CR>

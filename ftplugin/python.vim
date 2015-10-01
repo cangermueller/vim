@@ -1,5 +1,6 @@
 set textwidth=80
 set formatoptions-=t
+set complete+=t
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python-mode
