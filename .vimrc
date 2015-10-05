@@ -123,7 +123,9 @@ map <leader>T :tabedit <c-r>=expand("%:p:h")<cr>/
 map <Leader>f :NERDTreeToggle <CR>
 map <Leader>F :cd %:p:h <CR>
 " replace word under cursor
-:nnoremap <leader>vs :%s/\<<C-r><C-w>\>/
+:map <leader>vs :%s/\<<C-r><C-w>\>/
+" replace windows ^M newline
+:map <Leader>vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Settings
 map <Leader>w :set textwidth=0 <CR>
