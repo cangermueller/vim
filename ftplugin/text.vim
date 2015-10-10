@@ -1,1 +1,1 @@
-let g:SuperTabDefaultCompletionType = ""
+let b:SuperTabDisabled = 1

@@ -183,11 +183,16 @@ map <LocalLeader>mm :lnext <CR>
 map <LocalLeader>mn :lprev <CR>
 
 " Tabs
-map <Leader>gn :tabnew <CR>
-map <Leader>gc :tabclose <CR>
-map <Leader>go :tabonly <CR>
-map <Leader>gh :tabm -1 <CR>
-map <Leader>gl :tabm +1 <CR>
+map gn :tabnew 
+map gN :-tabnew 
+map gm :$tabnew 
+map gM :0tabnew 
+map gc :tabclose <CR>
+map go :tabonly <CR>
+map gj :tabprev <CR>
+map gk :tabnext  <CR>
+map gh :tabm -1 <CR>
+map gl :tabm +1 <CR>
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -202,8 +207,8 @@ nmap <C-w>k :wincmd k<CR>
 nmap <C-w>j :wincmd j<CR>
 nmap <C-w>h :wincmd h<CR>
 nmap <C-w>l :wincmd l<CR>
-nmap <C-w>% :wincmd v<CR>
-nmap <C-w>T :wincmd s<CR>
+nmap <C-w>% :vsplit 
+nmap <C-w>T :split 
 nmap <C-w><Up> :resize +5<CR>
 nmap <C-w><Down> :resize -5<CR>
 nmap <C-w><Left> :vertical resize +5<CR>
@@ -265,6 +270,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
+let g:airline#extensions#tabline#fnamemod = ':.'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,9 +289,12 @@ let EasyGrepJumpToMatch=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Supertab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=menuone,longest,preview
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingTabLiteral = "<Leader><tab>"
+let g:SuperTabDefaultCompletionTypeDiscovery = [
+\ "&omnifunc:<c-x><c-o>",
+\ "&completefunc:<c-x><c-u>"
+\ ]
