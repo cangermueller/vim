@@ -48,8 +48,8 @@ map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
-map <LocalLeader>j [M
-map <LocalLeader>k ]M
+map <LocalLeader>k [M
+map <LocalLeader>j ]M
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -270,7 +270,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
-let g:airline#extensions#tabline#fnamemod = ':.'
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
