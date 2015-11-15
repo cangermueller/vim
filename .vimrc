@@ -68,7 +68,7 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Training whitespaces
+" => Trailing whitespaces
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 func! DeleteTrailingWS()
   exe "normal mz"
@@ -77,7 +77,11 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
-map <Leader>S :call DeleteTrailingWS()<CR>
+autocmd BufWrite *.R :call DeleteTrailingWS()
+autocmd BufWrite *.Rmd :call DeleteTrailingWS()
+map <Leader>St :call DeleteTrailingWS()<CR>
+" multiple blank lines -> single one
+map <Leader>Sl :g/^\_$\n\_^$/d<CR>:nohlsearch<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,6 +92,9 @@ autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType r,rmd setlocal formatoptions-=t " do not break lines automatically
+" change cwd to current file on insert mode
+autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,7 +122,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let maplocalleader=','
 
-map <Leader>D :windo diffthis <CR>
 " open file from cur path
 map <leader>E :e <c-r>=expand("%:p:h")<cr>/
 " open tab from cur path
@@ -124,7 +130,7 @@ map <Leader>f :NERDTreeToggle <CR>
 map <Leader>F :cd %:p:h <CR>
 " replace word under cursor
 :map <leader>vs :%s/\<<C-r><C-w>\>/
-" replace windows ^M newline
+" replace windows ^M newline (encoding, line wrap)
 :map <Leader>vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Settings
@@ -190,9 +196,10 @@ map gM :0tabnew
 map gc :tabclose <CR>
 map go :tabonly <CR>
 map gj :tabprev <CR>
-map gk :tabnext  <CR>
+map gk :tabnext <CR>
 map gh :tabm -1 <CR>
 map gl :tabm +1 <CR>
+map gi :tab help 
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -215,8 +222,6 @@ nmap <C-w><Left> :vertical resize +5<CR>
 nmap <C-w><Right> :vertical resize -5<CR>
 
 " Buffers
-map <Leader>gs :Gstatus <CR>
-map <Leader>gS :Git status -u <CR>
 map gb :bnext <CR>
 map gB :bNext <CR>
 map gsb :sbnext <CR>
@@ -289,8 +294,8 @@ let EasyGrepJumpToMatch=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Supertab
-set completeopt=menuone,longest,preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set completeopt=menuone,longest,preview
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingTabLiteral = "<Leader><tab>"
@@ -298,3 +303,14 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 \ "&omnifunc:<c-x><c-o>",
 \ "&completefunc:<c-x><c-u>"
 \ ]
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>Gd :Gdiff<CR>:wincmd x<CR>:wincmd h<CR>
+map <Leader>Go :windo diffoff<CR>:wincmd q<CR>
+map <Leader>Gt :windo diffthis<CR>
+map <Leader>Gs :Gstatus <CR>
+map <Leader>GS :Git status -u <CR>
+

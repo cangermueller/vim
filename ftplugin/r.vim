@@ -50,6 +50,7 @@ map <LocalLeader>rJ ^<LocalLeader>rj$
 map <LocalLeader>ct <LocalLeader>ch
 map <LocalLeader>oh :!f=%; f=${f\%.*}.html; open -a firefox $f <CR><CR>
 map <LocalLeader>kc :!rm -rf *_cache/ <CR><CR>
+map <Leader>c<space> <LocalLeader>xx
 
 
 cabbr Rh Rhelp
