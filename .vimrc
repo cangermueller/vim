@@ -199,7 +199,7 @@ map gj :tabprev <CR>
 map gk :tabnext <CR>
 map gh :tabm -1 <CR>
 map gl :tabm +1 <CR>
-map gi :tab help 
+map g? :tab help 
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
