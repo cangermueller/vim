@@ -93,8 +93,8 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType r,rmd setlocal formatoptions-=t " do not break lines automatically
 " change cwd to current file on insert mode
-autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+" autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+" autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
