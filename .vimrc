@@ -138,6 +138,7 @@ map <Leader>w :set textwidth=0 <CR>
 map <Leader>W :set textwidth=80 <CR>  l
 map <Leader>N :set number!<CR> " (no) number
 map <Leader>e :set expandtab! <CR>
+map <Leader>i :set ignorecase!<CR>
 
 " Highlighting
 map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
@@ -193,12 +194,12 @@ map gn :tabnew
 map gN :-tabnew 
 map gm :$tabnew 
 map gM :0tabnew 
-map gc :tabclose <CR>
+map gq :tabclose <CR>
 map go :tabonly <CR>
-map gj :tabprev <CR>
-map gk :tabnext <CR>
-map gh :tabm -1 <CR>
-map gl :tabm +1 <CR>
+map gh :tabprev <CR>
+map gl :tabnext <CR>
+map gH :tabm -1 <CR>
+map gL :tabm +1 <CR>
 map g? :tab help 
 
 " Spell checking

@@ -37,6 +37,7 @@ map <LocalLeader>cn <LocalLeader>gn
 map <LocalLeader>cN <LocalLeader>gN
 imap <LocalLeader>cn <c-o><LocalLeader>gn
 imap <LocalLeader>cN <c-o><LocalLeader>gN
+
 map <LocalLeader>sic :?^```{r?+1<CR>V /^```/-1<CR>
 map <LocalLeader>sac :?^```{r?<CR>V /^```/<CR>
 imap <c-k> <Space>%>%<Space>
@@ -49,7 +50,8 @@ map <LocalLeader>rY ^<LocalLeader>ry$
 map <LocalLeader>rJ ^<LocalLeader>rj$
 map <LocalLeader>ct <LocalLeader>ch
 map <LocalLeader>oh :!f=%; f=${f\%.*}.html; open -a firefox $f <CR><CR>
-map <LocalLeader>kc :!rm -rf *_cache/ <CR><CR>
+map <LocalLeader>kc :!rm -rf %:p:h/*_cache/ <CR><CR>
+" map <LocalLeader>kc :!rm -rf *_cache/ <CR><CR>
 map <Leader>c<space> <LocalLeader>xx
 
 
