@@ -79,6 +79,7 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 autocmd BufWrite *.R :call DeleteTrailingWS()
 autocmd BufWrite *.Rmd :call DeleteTrailingWS()
+autocmd BufWrite *.sh :call DeleteTrailingWS()
 map <Leader>St :call DeleteTrailingWS()<CR>
 " multiple blank lines -> single one
 map <Leader>Sl :g/^\_$\n\_^$/d<CR>:nohlsearch<CR>
