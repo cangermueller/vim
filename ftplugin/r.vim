@@ -23,8 +23,10 @@ nmap <LocalLeader>d <Plug>RDSendLine
 nmap <LocalLeader>q <Plug>RSendLine o
 map <LocalLeader>i i```{r}<CR>```<c-o>O
 imap <LocalLeader>i ```{r}<CR>```<c-o>O
-map <LocalLeader>I i```<CR><CR>```{r}<CR>
-imap <LocalLeader>I ```<CR><CR>```{r}<CR>
+map <LocalLeader>S i<CR>```{r}<CR>opts_chunk$set(eval=F)<CR>```<CR>
+imap <LocalLeader>S ```{r}<CR>opts_chunk$set(eval=F)<CR>```<CR>
+map <LocalLeader>I i```<CR><CR>```{r}
+imap <LocalLeader>I ```<CR><CR>```{r}
 imap <silent> <LocalLeader>a <Plug>RCompleteArgs
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("dim")<CR>
@@ -33,6 +35,8 @@ map <silent> <LocalLeader>rz :call RAction("levels")<CR>
 map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
 map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); setwd("' . expand("%:p:h") . '"); run("' . expand("%:t") . '")') <CR>
+" knit command that works on mounted devices
+map <LocalLeader>kH :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '", output_format="html_document"); ') <CR>
 map <LocalLeader>cn <LocalLeader>gn
 map <LocalLeader>cN <LocalLeader>gN
 imap <LocalLeader>cn <c-o><LocalLeader>gn

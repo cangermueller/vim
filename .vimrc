@@ -116,6 +116,7 @@ command W wa!
 if filereadable($HOME . '/.vim/local.vim')
   source ~/.vim/local.vim
 endif
+let vimrplugin_vimpager='no' "tabnew, vertical, tabnew, horizontal
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,7 +279,9 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
 let g:airline#extensions#tabline#fnamemod = ':t'
-
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#flags = 'f'
+let g:airline#extensions#branch#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MRU
@@ -315,4 +318,3 @@ map <Leader>Go :windo diffoff<CR>:wincmd q<CR>
 map <Leader>Gt :windo diffthis<CR>
 map <Leader>Gs :Gstatus <CR>
 map <Leader>GS :Git status -u <CR>
-
