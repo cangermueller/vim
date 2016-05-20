@@ -36,7 +36,7 @@ map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
 map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); setwd("' . expand("%:p:h") . '"); run("' . expand("%:t") . '")') <CR>
 " knit command that works on mounted devices
-map <LocalLeader>kH :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '", output_format="html_document"); ') <CR>
+map <LocalLeader>kj :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '", output_format="html_document"); ') <CR>
 map <LocalLeader>cn <LocalLeader>gn
 map <LocalLeader>cN <LocalLeader>gN
 imap <LocalLeader>cn <c-o><LocalLeader>gn
