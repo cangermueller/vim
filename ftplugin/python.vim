@@ -39,6 +39,7 @@ let g:pymode_lint_signs = 1
 " => Key binding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <LocalLeader>ll :PymodeLint<CR>
+map <LocalLeader>lL :PymodeLint<CR><C-W>j
 map <LocalLeader>la :PymodeLintAuto<CR>
 map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
@@ -67,7 +68,9 @@ vmap <LocalLeader>Sz :s/^>>> //<CR>
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0 " can be slow
 let g:jedi#auto_close_doc = 0
-map <LocalLeader>D :call jedi#goto_definitions() <CR>
+map <LocalLeader>jd :call jedi#goto_definitions() <CR>
+map <LocalLeader>jD :call jedi#goto_definitions() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+map <LocalLeader>jk :call jedi#show_documentation() <CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -40,6 +40,7 @@ set undofile
 set undodir=~/.vim/undo
 
 set directory=~/tmp,/tmp,. " directories for swap files
+set noswapfile
 
 set list
 set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
@@ -75,14 +76,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-autocmd BufWrite *.R :call DeleteTrailingWS()
-autocmd BufWrite *.Rmd :call DeleteTrailingWS()
-autocmd BufWrite *.sh :call DeleteTrailingWS()
-map <Leader>St :call DeleteTrailingWS()<CR>
-" multiple blank lines -> single one
-map <Leader>Sl :g/^\_$\n\_^$/d<CR>:nohlsearch<CR>
+autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteTrailingWS()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,30 +118,55 @@ let vimrplugin_vimpager='no' "tabnew, vertical, tabnew, horizontal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let maplocalleader=','
 
-" open file from cur path
-map <leader>E :e <c-r>=expand("%:p:h")<cr>/
-" open tab from cur path
-map <leader>T :tabedit <c-r>=expand("%:p:h")<cr>/
-map <Leader>f :NERDTreeToggle <CR>
-map <Leader>F :cd %:p:h <CR>
-" replace word under cursor
+" Misc
+map <Leader>f :NERDTreeToggle<cr>
+map <Leader>F :cd %:p:h<cr>
+map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
+map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
+vmap <Leader>D <s-v>d
+
+
+" Substitution, replacement
+" - replace word under cursor
 :map <leader>vs :%s/\<<C-r><C-w>\>/
-" replace windows ^M newline (encoding, line wrap)
+:map <leader>vS :.,$s/\<<C-r><C-w>\>/
+" - replace windows ^M newline (encoding, line wrap)
 :map <Leader>vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+" Tabs
+map gI :e <c-r>=expand("%:p:h")<cr>/
+map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
+map go :tabedit <c-r>=expand("%:p:h")<cr>/
+map gO :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
+map gp :-tabnew <c-r>=expand("%:p:h")<cr>/
+map gP :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
+map gn :tabnew 
+map gN :-tabnew 
+map gm :$tabnew 
+map gM :0tabnew 
+map gq :tabclose <cr>
+map gQ :tabonly <cr>
+map gh :tabprev <cr>
+map gl :tabnext <cr>
+map gH :tabm -1 <cr>
+map gL :tabm +1 <cr>
+map g? :tab help 
+
 " Settings
-map <Leader>w :set textwidth=0 <CR>
-map <Leader>W :set textwidth=80 <CR>  l
-map <Leader>N :set number!<CR> " (no) number
-map <Leader>e :set expandtab! <CR>
-map <Leader>i :set ignorecase!<CR>
+map <Leader>Sw :set textwidth=0 <cr>
+map <Leader>SW :set textwidth=80 <cr>  l
+map <Leader>Sn :set number!<cr> " (no) number
+map <Leader>Se :set expandtab! <cr>
+map <Leader>Si :set ignorecase!<cr>
+map <Leader>St :call DeleteTrailingWS()<cr>
+map <Leader>Sl :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 
 " Highlighting
-map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<CR>\>'<CR>:set hls<CR>
-map <Leader>2 :nohls<CR>
-map <Leader>3 :set cursorline!<CR>
-map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<CR>
-map <Leader>5 ml:execute 'match Search //'<CR>
+map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<cr>\>'<cr>:set hls<cr>
+map <Leader>2 :nohls<cr>
+map <Leader>3 :set cursorline!<cr>
+map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<cr>
+map <Leader>5 ml:execute 'match Search //'<cr>
 
 " Completion
 inoremap <C-l> <C-x><C-l>
@@ -172,37 +191,24 @@ nmap <C-a>a ^
 nmap <C-a>e $
 
 " Yank and paste
-nmap <Leader>P :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-imap <Leader>P <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-vmap <Leader>P :!pbpaste<CR>
-nmap <Leader>Y :.w !pbcopy<CR><CR>
-vmap <Leader>Y :w !pbcopy<CR><CR>
+nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+vmap <Leader>P :!pbpaste<cr>
+nmap <Leader>Y :.w !pbcopy<cr><cr>
+vmap <Leader>Y :w !pbcopy<cr><cr>
 nmap "P "0p
 
-" quickfix
-map <LocalLeader>no :botright cw <CR>
-map <LocalLeader>nq :cclose <CR>
-map <LocalLeader>nn :cnext <CR>
-map <LocalLeader>nm :cprev <CR>
+" Quickfix
+map <LocalLeader>vv :botright cw <cr>
+map <LocalLeader>vq :cclose <cr>
+map <LocalLeader>vj :cnext <cr>
+map <LocalLeader>vk :cprev <cr>
 
-" location list
-map <LocalLeader>mo :botright lopen 50 <CR>
-map <LocalLeader>mq :lcl <CR>
-map <LocalLeader>mm :lnext <CR>
-map <LocalLeader>mn :lprev <CR>
-
-" Tabs
-map gn :tabnew 
-map gN :-tabnew 
-map gm :$tabnew 
-map gM :0tabnew 
-map gq :tabclose <CR>
-map go :tabonly <CR>
-map gh :tabprev <CR>
-map gl :tabnext <CR>
-map gH :tabm -1 <CR>
-map gL :tabm +1 <CR>
-map g? :tab help 
+" Location list
+map <LocalLeader>cc :botright lopen 50 <cr>
+map <LocalLeader>cq :lcl <cr>
+map <LocalLeader>cj :lnext <cr>
+map <LocalLeader>ck :lprev <cr>
 
 " Spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -213,24 +219,24 @@ map <leader>sA zug
 map <leader>s? z=
 
 " Windows
-nmap <C-w>k :wincmd k<CR>
-nmap <C-w>j :wincmd j<CR>
-nmap <C-w>h :wincmd h<CR>
-nmap <C-w>l :wincmd l<CR>
+nmap <C-w>k :wincmd k<cr>
+nmap <C-w>j :wincmd j<cr>
+nmap <C-w>h :wincmd h<cr>
+nmap <C-w>l :wincmd l<cr>
 nmap <C-w>% :vsplit 
 nmap <C-w>T :split 
-nmap <C-w><Up> :resize +5<CR>
-nmap <C-w><Down> :resize -5<CR>
-nmap <C-w><Left> :vertical resize +5<CR>
-nmap <C-w><Right> :vertical resize -5<CR>
+nmap <C-w><Up> :resize +5<cr>
+nmap <C-w><Down> :resize -5<cr>
+nmap <C-w><Left> :vertical resize +5<cr>
+nmap <C-w><Right> :vertical resize -5<cr>
 
 " Buffers
-map gb :bnext <CR>
-map gB :bNext <CR>
-map gsb :sbnext <CR>
-map gsB :sbNext <CR>
-map gvb :vertical sbnext <CR>
-map gvB :vertical sbNext <CR>
+map gb :bnext <cr>
+map gB :bNext <cr>
+map gsb :sbnext <cr>
+map gsB :sbNext <cr>
+map gvb :vertical sbnext <cr>
+map gvB :vertical sbNext <cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,7 +262,7 @@ let g:LatexBox_complete_inlineMath=1
 let g:tagbar_autofocus = 1
 let g:tagbar_autopreview = 1
 let g:tagbar_autoclose = 1
-map <Leader>t :TagbarToggle <CR>
+map <Leader>t :w<cr>:TagbarToggle<cr>s
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -286,7 +292,7 @@ let g:airline#extensions#branch#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MRU
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>H :MRU <CR>
+map <Leader>H :MRU <cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,8 +319,8 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>Gd :Gdiff<CR>:wincmd x<CR>:wincmd h<CR>
-map <Leader>Go :windo diffoff<CR>:wincmd q<CR>
-map <Leader>Gt :windo diffthis<CR>
-map <Leader>Gs :Gstatus <CR>
-map <Leader>GS :Git status -u <CR>
+map <Leader>Gd :Gdiff<cr>:wincmd x<cr>:wincmd h<cr>
+map <Leader>Go :windo diffoff<cr>:wincmd q<cr>
+map <Leader>Gt :windo diffthis<cr>
+map <Leader>Gs :Gstatus <cr>
+map <Leader>GS :Git status -u <cr>
