@@ -134,12 +134,12 @@ vmap <Leader>D <s-v>d
 :map <Leader>vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Tabs
-map gI :e <c-r>=expand("%:p:h")<cr>/
 map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
-map go :tabedit <c-r>=expand("%:p:h")<cr>/
-map gO :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
-map gp :-tabnew <c-r>=expand("%:p:h")<cr>/
-map gP :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
+map gI :e <c-r>=expand("%:p:h")<cr>/
+map go :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
+map gO :tabedit <c-r>=expand("%:p:h")<cr>/
+map gp :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
+map gP :-tabnew <c-r>=expand("%:p:h")<cr>/
 map gn :tabnew 
 map gN :-tabnew 
 map gm :$tabnew 
