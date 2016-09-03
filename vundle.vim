@@ -6,7 +6,8 @@ call vundle#begin()
 
 Bundle 'gmarik/Vundle.vim'
 Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'davidhalter/jedi-vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
 " Bundle 'ivanov/vim-ipython'
 " ipython3.X support

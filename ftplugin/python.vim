@@ -68,9 +68,16 @@ vmap <LocalLeader>Sz :s/^>>> //<CR>
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0 " can be slow
 let g:jedi#auto_close_doc = 0
-map <LocalLeader>jd :call jedi#goto_definitions() <CR>
-map <LocalLeader>jD :call jedi#goto_definitions() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+map <LocalLeader>jj :call jedi#goto_definitions() <CR>
+map <LocalLeader>jJ :call jedi#goto_definitions() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
 map <LocalLeader>jk :call jedi#show_documentation() <CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <LocalLeader>jj :YcmCompleter GoTo <CR>
+map <LocalLeader>jk :YcmCompleter GetDoc <CR>
+map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,3 +99,19 @@ imap <buffer> <silent> <LocalLeader>q <C-o><Plug>(IPython-RunLine)<CR>
 " => Supertab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+
+" let g:ycm_filetype_blacklist = {
+        " \ 'tagbar' : 1,
+        " \ 'qf' : 1,
+        " \ 'notes' : 1,
+        " \ 'markdown' : 1,
+        " \ 'unite' : 1,
+        " \ 'text' : 1,
+        " \ 'vimwiki' : 1,
+        " \ 'pandoc' : 1,
+        " \ 'infolog' : 1,
+        " \ 'mail' : 1,
+        " \ 'python' : 1,
+        " \}
+        "
+
