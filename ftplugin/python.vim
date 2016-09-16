@@ -75,11 +75,12 @@ map <LocalLeader>jk :call jedi#show_documentation() <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <LocalLeader>jj :YcmCompleter GoTo <CR>
-map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
-map <LocalLeader>jk :YcmCompleter GetDoc <CR>
-map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
-
+if exists("g:ycm_add_preview_to_completeopt")
+  map <LocalLeader>jj :YcmCompleter GoTo <CR>
+  map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+  map <LocalLeader>jk :YcmCompleter GetDoc <CR>
+  map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-ipython
