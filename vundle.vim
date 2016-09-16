@@ -20,11 +20,12 @@ Bundle 'majutsushi/tagbar'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'yegappan/mru'
 Bundle 'dkprice/vim-easygrep'
-
+Bundle 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
