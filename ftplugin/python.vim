@@ -69,13 +69,14 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0 " can be slow
 let g:jedi#auto_close_doc = 0
 map <LocalLeader>jj :call jedi#goto_definitions() <CR>
-map <LocalLeader>jJ :call jedi#goto_definitions() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+map <LocalLeader>jJ :call jedi#goto_definitions() <CR>
 map <LocalLeader>jk :call jedi#show_documentation() <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <LocalLeader>jj :YcmCompleter GoTo <CR>
+map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
 map <LocalLeader>jk :YcmCompleter GetDoc <CR>
 map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
 

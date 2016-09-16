@@ -6,6 +6,7 @@ set incsearch
 set ignorecase
 set smartcase
 
+set relativenumber
 set number
 set cursorline
 set ruler
@@ -124,6 +125,10 @@ map <Leader>F :cd %:p:h<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
 vmap <Leader>D <s-v>d
+" Join/wrap lines without space
+map <Leader>J Jx
+" Apply macro on every visually selected line
+vmap <Leader>m :normal @
 
 
 " Substitution, replacement
