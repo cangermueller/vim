@@ -26,6 +26,7 @@ set shiftwidth=2
 set tabpagemax=20
 set wildmode=longest:full
 set wildmenu
+set wildignore+=*.so,*.swp,*.zip,*.gz,*.pdf,*.pyo,*.ipynb
 set nocp
 set diffopt+=vertical
 set splitright
@@ -294,11 +295,6 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#branch#enabled = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MRU
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>H :MRU <cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyGrep
@@ -329,3 +325,16 @@ map <Leader>Go :windo diffoff<cr>:wincmd q<cr>
 map <Leader>Gt :windo diffthis<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_regexp = 1
+cabbr cp CtrlPMRUFiles<cr>
+cabbr cP CtrlPMixed<cr>
+cabbr cl CtrlPLine<cr>
+cabbr cpb CtrlPBookmarkDir
+cabbr cpd CtrlPDir
+map <F9> :CtrlPMRUFiles<cr>

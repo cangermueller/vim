@@ -23,7 +23,6 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'yegappan/mru'
 Bundle 'dkprice/vim-easygrep'
 Bundle 'ctrlpvim/ctrlp.vim'
 
