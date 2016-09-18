@@ -51,6 +51,8 @@ map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
 map <LocalLeader>k [M
 map <LocalLeader>j ]M
+map <LocalLeader>D o# TODO: 
+imap <LocalLeader>D # TODO: 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
