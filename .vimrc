@@ -315,9 +315,9 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingTabLiteral = "<Leader><tab>"
 let g:SuperTabDefaultCompletionTypeDiscovery = [
-" \ "&omnifunc:<c-x><c-o>",
-" \ "&completefunc:<c-x><c-u>"
-" \ ]
+\ "&omnifunc:<c-x><c-o>",
+\ "&completefunc:<c-x><c-u>"
+\ ]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
