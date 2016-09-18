@@ -157,6 +157,8 @@ map gl :tabnext <cr>
 map gH :tabm -1 <cr>
 map gL :tabm +1 <cr>
 map g? :tab help 
+map g, :tabfirst <cr>
+map g. :tablast <cr>
 
 " Settings
 map <Leader>Sw :set textwidth=0 <cr>
@@ -225,16 +227,17 @@ map <leader>sA zug
 map <leader>s? z=
 
 " Windows
-nmap <C-w>k :wincmd k<cr>
-nmap <C-w>j :wincmd j<cr>
-nmap <C-w>h :wincmd h<cr>
-nmap <C-w>l :wincmd l<cr>
-nmap <C-w>% :vsplit 
-nmap <C-w>T :split 
-nmap <C-w><Up> :resize +5<cr>
-nmap <C-w><Down> :resize -5<cr>
-nmap <C-w><Left> :vertical resize +5<cr>
-nmap <C-w><Right> :vertical resize -5<cr>
+nmap <c-w>k :wincmd k<cr>
+nmap <c-w>j :wincmd j<cr>
+nmap <c-w>h :wincmd h<cr>
+nmap <c-w>l :wincmd l<cr>
+nmap <c-w>% :vsplit 
+nmap <c-w>T :split 
+nmap <C-w><up> :resize +5<cr>
+nmap <C-w><down> :resize -5<cr>
+nmap <C-w><left> :vertical resize +5<cr>
+nmap <c-w><right> :vertical resize -5<cr>
+nmap <c-w>z :wincmd \|<cr>
 
 " Buffers
 map gb :bnext <cr>
@@ -312,9 +315,9 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabMappingTabLiteral = "<Leader><tab>"
 let g:SuperTabDefaultCompletionTypeDiscovery = [
-\ "&omnifunc:<c-x><c-o>",
-\ "&completefunc:<c-x><c-u>"
-\ ]
+" \ "&omnifunc:<c-x><c-o>",
+" \ "&completefunc:<c-x><c-u>"
+" \ ]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
