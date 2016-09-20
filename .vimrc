@@ -163,7 +163,7 @@ map g. :tablast <cr>
 " Settings
 map <Leader>Sw :set textwidth=0 <cr>
 map <Leader>SW :set textwidth=80 <cr>  l
-map <Leader>Sn :set number!<cr> " (no) number
+map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
 map <Leader>Se :set expandtab! <cr>
 map <Leader>Si :set ignorecase!<cr>
 map <Leader>St :call DeleteTrailingWS()<cr>

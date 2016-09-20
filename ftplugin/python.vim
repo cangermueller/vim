@@ -53,6 +53,7 @@ map <LocalLeader>k [M
 map <LocalLeader>j ]M
 map <LocalLeader>D o# TODO: 
 imap <LocalLeader>D # TODO: 
+map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
