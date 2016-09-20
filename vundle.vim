@@ -25,6 +25,7 @@ Bundle 'vim-airline/vim-airline-themes'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'dkprice/vim-easygrep'
 Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
 
 call vundle#end()
 filetype plugin indent on

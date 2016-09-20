@@ -34,7 +34,6 @@ set splitbelow
 set updatetime=1000
 set backspace=2 " Fix backspace problem since vim7.4
 set pastetoggle=<Leader>p
-set clipboard=unnamed
 set showmatch " Show matching bracket
 set mat=2 " Time show matching bracket
 
@@ -99,7 +98,6 @@ autocmd FileType sh,r,rmd setlocal formatoptions-=t " do not break lines automat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cabbr th tab help
 cabbr tn tab new
-cabbr vg vimgrep
 cabbr lop lopen 20
 command Q qa!
 command S xa!
@@ -300,11 +298,15 @@ let g:airline#extensions#branch#enabled = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => EasyGrep
+" => EasyGrep, vimgrep
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let EasyGrepCommand=1
 let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
 let EasyGrepJumpToMatch=0
+let EasyGrepModel=2
+cabbr vg vimgrep
+" Grep word under cursor and show occurrences in current file
+map <Leader>V * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:t")<c-r><cr><cr><cr> :botright cw<cr><c-w>k
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -335,9 +337,14 @@ map <Leader>GS :Git status -u <cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_regexp = 1
-cabbr cp CtrlPMRUFiles<cr>
-cabbr cP CtrlPMixed<cr>
-cabbr cl CtrlPLine<cr>
-cabbr cpb CtrlPBookmarkDir
-cabbr cpd CtrlPDir
-map <F9> :CtrlPMRUFiles<cr>
+
+map <Leader>Cp :CtrlP<cr>
+map <Leader>Cm :CtrlPMRUFiles<cr>
+map <Leader>Cb :CtrlPMixed<cr>
+map <Leader>CB :CtrlPBookmarkDir<cr>
+map <Leader>Cl :CtrlPLine<cr>
+map <Leader>Cd :CtrlPDir<cr>
+map <Leader>Cf :CtrlPFunky<cr>
+map <Leader>CF :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_funky_syntax_highlight = 1
