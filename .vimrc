@@ -175,6 +175,8 @@ map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<cr>
 map <Leader>5 ml:execute 'match Search //'<cr>
 
 " Completion
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <C-l> <C-x><C-l>
 inoremap <C-f> <C-x><C-f>
 
