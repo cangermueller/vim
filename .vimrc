@@ -33,7 +33,6 @@ set splitright
 set splitbelow
 set updatetime=1000
 set backspace=2 " Fix backspace problem since vim7.4
-set pastetoggle=<Leader>p
 set showmatch " Show matching bracket
 set mat=2 " Time show matching bracket
 
@@ -130,13 +129,6 @@ map <Leader>J Jx
 vmap <Leader>m :normal @
 
 
-" Substitution, replacement
-" - replace word under cursor
-:map <leader>vs :%s/\<<C-r><C-w>\>/
-:map <leader>vS :.,$s/\<<C-r><C-w>\>/
-" - replace windows ^M newline (encoding, line wrap)
-:map <Leader>vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
 " Tabs
 map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
 map gI :e <c-r>=expand("%:p:h")<cr>/
@@ -199,6 +191,8 @@ nmap <C-a>a ^
 nmap <C-a>e $
 
 " Yank and paste
+set pastetoggle=<Leader>pt
+nmap <Leader>pp o<ESC>p
 nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
 imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
 vmap <Leader>P :!pbpaste<cr>
@@ -308,7 +302,14 @@ let EasyGrepJumpToMatch=0
 let EasyGrepModel=2
 cabbr vg vimgrep
 " Grep word under cursor and show occurrences in current file
-map <Leader>V * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:t")<c-r><cr><cr><cr> :botright cw<cr><c-w>k
+map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:t")<c-r><cr><cr><cr> :botright cw<cr><c-w>k
+
+" Substitution, replacement
+" - replace word under cursor
+:map <leader>VS :%s/\<<C-r><C-w>\>/
+:map <leader>Vs :.,$s/\<<C-r><C-w>\>/
+" - replace windows ^M newline (encoding, line wrap)
+:map <Leader>Vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -350,3 +351,4 @@ map <Leader>Cf :CtrlPFunky<cr>
 map <Leader>CF :execute 'CtrlPFunky ' . expand('<cword>')<cr>
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_after_jump = 'zxzt'

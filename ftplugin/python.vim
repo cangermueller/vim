@@ -54,6 +54,7 @@ map <LocalLeader>j ]M
 map <LocalLeader>D o# TODO: 
 imap <LocalLeader>D # TODO: 
 map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
+map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
