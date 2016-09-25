@@ -33,6 +33,7 @@ let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " pylint: syntax, very verbose
 let g:pymode_lint_ignore = ''
 let g:pymode_lint_signs = 1
+let g:pymode_lint_sort = ['E', 'C', 'I']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

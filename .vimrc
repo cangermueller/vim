@@ -299,10 +299,10 @@ let g:airline#extensions#branch#enabled = 1
 let EasyGrepCommand=1
 let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
 let EasyGrepJumpToMatch=0
-let EasyGrepModel=2
+let EasyGrepMode=2
 cabbr vg vimgrep
 " Grep word under cursor and show occurrences in current file
-map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:t")<c-r><cr><cr><cr> :botright cw<cr><c-w>k
+map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botright cw<cr><c-w>k
 
 " Substitution, replacement
 " - replace word under cursor
@@ -333,7 +333,8 @@ map <Leader>Go :windo diffoff<cr>:wincmd q<cr>
 map <Leader>Gt :windo diffthis<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
-
+map <Leader>Gb :Gblame<cr>
+map <Leader>Gl :Glog<cr>:botright cw<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP
@@ -343,12 +344,22 @@ let g:ctrlp_regexp = 1
 
 map <Leader>Cp :CtrlP<cr>
 map <Leader>Cm :CtrlPMRUFiles<cr>
-map <Leader>Cb :CtrlPMixed<cr>
-map <Leader>CB :CtrlPBookmarkDir<cr>
+map <Leader>CB :CtrlPMixed<cr>
+map <Leader>Cb :CtrlPBookmarkDir<cr>
 map <Leader>Cl :CtrlPLine<cr>
 map <Leader>Cd :CtrlPDir<cr>
 map <Leader>Cf :CtrlPFunky<cr>
-map <Leader>CF :execute 'CtrlPFunky ' . expand('<cword>')<cr>
+map <Leader>CF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+map <c-a>p :CtrlP<cr>
+map <c-a>f :CtrlPFunky<cr>
+map <c-a>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+map <c-a>m :CtrlPMRUFiles<cr>
+map <c-a>l :CtrlPLine<cr>
+map <c-a>d :CtrlPDir<cr>
+map <c-a>b :CtrlPBookmarkDir<cr>
+map <c-a>B :CtrlPMixed<cr>
+
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
