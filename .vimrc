@@ -78,6 +78,12 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteTrailingWS()
 
+function DeleteEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteEndLines()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => autocmd
@@ -157,6 +163,7 @@ map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
 map <Leader>Se :set expandtab! <cr>
 map <Leader>Si :set ignorecase!<cr>
 map <Leader>St :call DeleteTrailingWS()<cr>
+map <Leader>ST :call DeleteEndLines()<cr>
 map <Leader>Sl :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 
 " Highlighting
