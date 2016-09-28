@@ -39,8 +39,8 @@ let g:pymode_lint_sort = ['E', 'C', 'I']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Key binding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <LocalLeader>ll :PymodeLint<CR>
-map <LocalLeader>lL :PymodeLint<CR><C-W>j
+map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
+map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
@@ -56,6 +56,8 @@ map <LocalLeader>D o# TODO:
 imap <LocalLeader>D # TODO: 
 map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
 map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
+map <LocalLeader>jf G ?^import<cr>]]3kz.:nohls<cr>
+map <LocalLeader>jF [[3kz.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -71,11 +73,14 @@ vmap <LocalLeader>Sz :s/^>>> //<CR>
 " => jedi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0 " can be slow
-let g:jedi#auto_close_doc = 0
+set noshowmode "needed for call_signatures=2
+let g:jedi#show_call_signatures = 2 " can be slow
+let g:jedi#show_call_signatures_delay = 1
+let g:jedi#auto_close_doc = 1
 map <LocalLeader>jj :call jedi#goto_definitions() <CR>
 map <LocalLeader>jJ :call jedi#goto_definitions() <CR>
-map <LocalLeader>jk :call jedi#show_documentation() <CR>
+map <LocalLeader>jk :call jedi#show_documentation() <CR>:wincmd k<CR>
+imap <LocalLeader>jk <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe

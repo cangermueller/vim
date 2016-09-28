@@ -308,6 +308,7 @@ let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
 let EasyGrepJumpToMatch=0
 let EasyGrepMode=2
 cabbr vg vimgrep
+cabbr eg Grep -R
 " Grep word under cursor and show occurrences in current file
 map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botright cw<cr><c-w>k
 
