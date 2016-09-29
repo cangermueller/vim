@@ -124,7 +124,7 @@ let vimrplugin_vimpager='no' "tabnew, vertical, tabnew, horizontal
 let maplocalleader=','
 
 " Misc
-map <Leader>f :NERDTreeToggle<cr>
+map <Leader>f :NERDTree<cr>
 map <Leader>F :cd %:p:h<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
