@@ -115,7 +115,6 @@ command W wa!
 if filereadable($HOME . '/.vim/local.vim')
   source ~/.vim/local.vim
 endif
-let vimrplugin_vimpager='no' "tabnew, vertical, tabnew, horizontal
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,3 +370,11 @@ map <c-a>B :CtrlPMixed<cr>
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
+
+" let R_in_buffer = 0
+" let R_notmuxconf = 1
+" let R_esc_term = 0
+" let R_close_term = 0
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1

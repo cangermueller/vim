@@ -14,8 +14,6 @@ Bundle 'ervandew/supertab'
 Bundle 'nheijermans/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jalvesaq/R-Vim-runtime'
-Bundle 'vim-scripts/Vim-R-plugin'
 Bundle 'majutsushi/tagbar'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
@@ -26,6 +24,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'dkprice/vim-easygrep'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'jalvesaq/Nvim-R'
 
 call vundle#end()
 filetype plugin indent on
