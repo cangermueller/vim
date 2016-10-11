@@ -2,9 +2,10 @@ set textwidth=80
 set formatoptions-=t
 set complete+=t
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => python-mode
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ==============================================================================
+" python-mode
+" ==============================================================================
 let g:pymode = 1
 let g:pymode_run = 0  " use ipy run instead of pymode
 let g:pymode_rope = 0 " activate rope
@@ -36,9 +37,9 @@ let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Key binding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Key binding
+" ==============================================================================
 map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
 map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
@@ -60,18 +61,18 @@ map <LocalLeader>jf G ?^import<cr>]]3kz.:nohls<cr>
 map <LocalLeader>jF [[3kz.
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Sphinx
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Sphinx
+" ==============================================================================
 map <LocalLeader>Sx :s/^\(.\)/>>> \1/<CR>  " Sphinx doctest
 map <LocalLeader>Sz :s/^>>> //<CR>
 vmap <LocalLeader>Sx :s/^\(.\)/>>> \1/<CR>
 vmap <LocalLeader>Sz :s/^>>> //<CR>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => jedi
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" jedi
+" ==============================================================================
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 1
 set noshowmode "needed for call_signatures=2
@@ -82,9 +83,10 @@ map <LocalLeader>jj :call jedi#goto() <CR>
 map <LocalLeader>jk :call jedi#show_documentation() <CR>:wincmd k<CR>
 imap <LocalLeader>jk <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => YouCompleteMe
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ==============================================================================
+" YouCompleteMe
+" ==============================================================================
 if exists("g:ycm_add_preview_to_completeopt")
   map <LocalLeader>jj :YcmCompleter GoTo <CR>
   map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
@@ -92,9 +94,10 @@ if exists("g:ycm_add_preview_to_completeopt")
   map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-ipython
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ==============================================================================
+" vim-ipython
+" ==============================================================================
 let g:ipy_perform_mappings=0 " Disable default key bindings
 map  <buffer> <silent> <LocalLeader>rf :IPython<CR>
 map  <buffer> <silent> <LocalLeader>aa <Plug>(IPython-RunFile)
@@ -107,9 +110,9 @@ map  <buffer> <silent> <LocalLeader>q <Plug>(IPython-RunLine)j
 imap <buffer> <silent> <LocalLeader>q <C-o><Plug>(IPython-RunLine)<CR>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Supertab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Supertab
+" ==============================================================================
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 " let g:ycm_filetype_blacklist = {
@@ -128,5 +131,10 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
         "
 
 
-map <LocalLeader>J j /^def<CR>
-map <LocalLeader>K k ?^def<CR>
+" ==============================================================================
+" Motions
+" ==============================================================================
+map <LocalLeader>eJ :call pymode#motion#move('\v^(class\|def)\s', '')<cr>
+map <LocalLeader>eK :call pymode#motion#move('\v^(class\|def)\s', 'b')<cr>
+map <LocalLeader>ej :call pymode#motion#move('^\s*def\s', '')<cr>
+map <LocalLeader>ek :call pymode#motion#move('^\s*def\s', 'b')<cr>

@@ -1,3 +1,6 @@
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1
 let R_notmuxconf = 1
 let R_assign = 1
 let R_assign_map = "<C-j>"
@@ -15,9 +18,9 @@ let R_indent_align_args = 0
 let R_vimcom_wait = -1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Misc
+" ==============================================================================
 map <Leader>c<space> <LocalLeader>xx
 cabbr Rh Rhelp
 imap <c-k> <Space>%>%<Space>
@@ -26,19 +29,18 @@ imap <c-l> <Space>%>%
 map <LocalLeader>rF :tab new .tmp.Rmd<CR><LocalLeader>rf<c-w>q
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Sending
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Sending
+" ==============================================================================
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
 nmap <LocalLeader>d <Plug>RDSendLine
 nmap <LocalLeader>q <Plug>RSendLine o
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Inserting paragraphs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Inserting paragraphs
+" ==============================================================================
 map <LocalLeader>i i```{r}<CR>```<c-o>O
 imap <LocalLeader>i ```{r}<CR>```<c-o>O
 map <LocalLeader>S i<CR>```{r}<CR>opts_chunk$set(eval=F)<CR>```<CR>
@@ -50,10 +52,9 @@ map <LocalLeader>sic :?^```{r?+1<CR>V /^```/-1<CR>
 map <LocalLeader>sac :?^```{r?<CR>V /^```/<CR>
 
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Navigation
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Navigation
+" ==============================================================================
 map <LocalLeader>cj <LocalLeader>gn
 map <LocalLeader>ck <LocalLeader>gN
 imap <LocalLeader>cj <c-o><LocalLeader>gn
@@ -61,9 +62,9 @@ imap <LocalLeader>ck <c-o><LocalLeader>gN
 map <LocalLeader>ct <LocalLeader>ch
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Printing infos
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Printing infos
+" ==============================================================================
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("dim")<CR>
 map <silent> <LocalLeader>ry :call RAction("glimpse")<CR>
@@ -77,9 +78,9 @@ map <LocalLeader>rY ^<LocalLeader>ry$
 map <LocalLeader>rJ ^<LocalLeader>rj$
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Knit
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Knit
+" ==============================================================================
 map <LocalLeader>kz :w<CR> :call SendCmdToR('library(rmarkdown); render("' . expand("%:t") . '")') <CR>
 map <LocalLeader>kx :w<CR> :call SendCmdToR('library(rmarkdown); setwd("' . expand("%:p:h") . '"); run("' . expand("%:t") . '")') <CR>
 " knit command that works on mounted devices

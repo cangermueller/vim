@@ -1,5 +1,12 @@
+" ==============================================================================
+" Source plugings
+" ==============================================================================
 source ~/.vim/vundle.vim
 
+
+" ==============================================================================
+" Settings
+" ==============================================================================
 set hlsearch
 nnoremap * *<C-O>
 set incsearch
@@ -53,9 +60,9 @@ filetype indent on
 filetype plugin on
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Appearance
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Appearance
+" ==============================================================================
 set t_Co=256
 let g:solarized_termcolors=256
 set background=dark
@@ -68,9 +75,9 @@ function! AdjustWindowHeight(minheight, maxheight)
 endfunction
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Trailing whitespaces
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Trailing whitespaces
+" ==============================================================================
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
@@ -85,10 +92,10 @@ function DeleteEndLines()
 endfunction
 autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteEndLines()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => autocmd
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o formatoptions-=t
+
+" ==============================================================================
+" autocmd
+" ==============================================================================
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
@@ -98,9 +105,10 @@ autocmd FileType sh,r,rmd setlocal formatoptions-=t " do not break lines automat
 " autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Commands
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ==============================================================================
+" Commands
+" ==============================================================================
 cabbr th tab help
 cabbr tn tab new
 cabbr lop lopen 20
@@ -109,22 +117,18 @@ command S xa!
 command W wa!
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Source local configs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if filereadable($HOME . '/.vim/local.vim')
-  source ~/.vim/local.vim
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Key bindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Key bindings
+" ==============================================================================
 let maplocalleader=','
 
+" ------------------------------------------------------------------------------
 " Misc
+" ------------------------------------------------------------------------------
 map <Leader>f :NERDTree<cr>
-map <Leader>F :cd %:p:h<cr>
+map <Leader>Ff :cd %:p:h<cr>
+" Show absolute path of current file
+map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
 vmap <Leader>D <s-v>d
@@ -133,8 +137,22 @@ map <Leader>J Jx
 " Apply macro on every visually selected line
 vmap <Leader>m :normal @
 
+"  Completion
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <C-l> <C-x><C-l>
+inoremap <C-f> <C-x><C-f>
 
+" Emacs like
+imap <C-a>a <C-o>^
+imap <C-a>e <C-o>$
+nmap <C-a>a ^
+nmap <C-a>e $
+
+
+" ------------------------------------------------------------------------------
 " Tabs
+" ------------------------------------------------------------------------------
 map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
 map gI :e <c-r>=expand("%:p:h")<cr>/
 map go :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
@@ -155,78 +173,10 @@ map g? :tab help
 map g, :tabfirst <cr>
 map g. :tablast <cr>
 
-" Settings
-map <Leader>Sw :set textwidth=0 <cr>
-map <Leader>SW :set textwidth=80 <cr>  l
-map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
-map <Leader>Se :set expandtab! <cr>
-map <Leader>Si :set ignorecase!<cr>
-map <Leader>St :call DeleteTrailingWS()<cr>
-map <Leader>ST :call DeleteEndLines()<cr>
-map <Leader>Sl :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 
-" Highlighting
-map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<cr>\>'<cr>:set hls<cr>
-map <Leader>2 :nohls<cr>
-map <Leader>3 :set cursorline!<cr>
-map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<cr>
-map <Leader>5 ml:execute 'match Search //'<cr>
-
-" Completion
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <C-l> <C-x><C-l>
-inoremap <C-f> <C-x><C-f>
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <c-j> mz:m+<cr>`z
-nmap <c-k> mz:m-2<cr>`z
-vmap <c-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <c-k> :m'<-2<cr>`>my`<mzgv`yo`z
-" if has("mac") || has("macunix")
-  " nmap <D-j> <M-j>
-  " nmap <D-k> <M-k>
-  " vmap <D-j> <M-j>
-  " vmap <D-k> <M-k>
-" endif
-
-" Emacs like
-imap <C-a>a <C-o>^
-imap <C-a>e <C-o>$
-nmap <C-a>a ^
-nmap <C-a>e $
-
-" Yank and paste
-set pastetoggle=<Leader>pt
-nmap <Leader>pp o<ESC>p
-nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-vmap <Leader>P :!pbpaste<cr>
-nmap <Leader>Y :.w !pbcopy<cr><cr>
-vmap <Leader>Y :w !pbcopy<cr><cr>
-nmap "P "0p
-
-" Quickfix
-map <LocalLeader>vv :botright cw <cr>
-map <LocalLeader>vq :cclose <cr>
-map <LocalLeader>vj :cnext <cr>
-map <LocalLeader>vk :cprev <cr>
-
-" Location list
-map <LocalLeader>cc :botright lopen 50 <cr>
-map <LocalLeader>cq :lcl <cr>
-map <LocalLeader>cj :lnext <cr>
-map <LocalLeader>ck :lprev <cr>
-
-" Spell checking
-map <leader>ss :setlocal spell!<cr>
-map <leader>sj ]s
-map <leader>sk [s
-map <leader>sa zg
-map <leader>sA zug
-map <leader>s? z=
-
+" ------------------------------------------------------------------------------
 " Windows
+" ------------------------------------------------------------------------------
 nmap <c-w>k :wincmd k<cr>
 nmap <c-w>j :wincmd j<cr>
 nmap <c-w>h :wincmd h<cr>
@@ -239,7 +189,10 @@ nmap <C-w><left> :vertical resize +5<cr>
 nmap <c-w><right> :vertical resize -5<cr>
 nmap <c-w>z :wincmd \|<cr>
 
+
+" ------------------------------------------------------------------------------
 " Buffers
+" ------------------------------------------------------------------------------
 map gb :bnext <cr>
 map gB :bNext <cr>
 map gsb :sbnext <cr>
@@ -248,15 +201,78 @@ map gvb :vertical sbnext <cr>
 map gvB :vertical sbNext <cr>
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------------------------------------------------------
+" Settings
+" ------------------------------------------------------------------------------
+map <Leader>Sw :set textwidth=0 <cr>
+map <Leader>SW :set textwidth=80 <cr>  l
+map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
+map <Leader>Se :set expandtab! <cr>
+map <Leader>Si :set ignorecase!<cr>
+map <Leader>St :call DeleteTrailingWS()<cr>
+map <Leader>ST :call DeleteEndLines()<cr>
+map <Leader>Sl :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
+
+
+" ------------------------------------------------------------------------------
+" Higlighting
+" ------------------------------------------------------------------------------
+map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<cr>\>'<cr>:set hls<cr>
+map <Leader>2 :nohls<cr>
+map <Leader>3 :set cursorline!<cr>
+map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<cr>
+map <Leader>5 ml:execute 'match Search //'<cr>
+
+
+" ------------------------------------------------------------------------------
+" Yank and paste
+" ------------------------------------------------------------------------------
+set pastetoggle=<Leader>pt
+nmap <Leader>pp o<CR><CR><ESC>p
+nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+vmap <Leader>P :!pbpaste<cr>
+nmap <Leader>Y :.w !pbcopy<cr><cr>
+vmap <Leader>Y :w !pbcopy<cr><cr>
+nmap "P "0p
+
+
+" ------------------------------------------------------------------------------
+" Lists
+" ------------------------------------------------------------------------------
+" Quickfix
+map <LocalLeader>vv :botright cw <cr>
+map <LocalLeader>vq :cclose <cr>
+map <LocalLeader>vj :cnext <cr>
+map <LocalLeader>vk :cprev <cr>
+
+" Location list
+map <LocalLeader>cc :botright lopen 50 <cr>
+map <LocalLeader>cq :lcl <cr>
+map <LocalLeader>cj :lnext <cr>
+map <LocalLeader>ck :lprev <cr>
+
+
+" ------------------------------------------------------------------------------
+" Spell checking
+" ------------------------------------------------------------------------------
+map <leader>ss :setlocal spell!<cr>
+map <leader>sj ]s
+map <leader>sk [s
+map <leader>sa zg
+map <leader>sA zug
+map <leader>s? z=
+
+
+" ==============================================================================
+" vim-markdown
+" ==============================================================================
 let g:vim_markdown_folding_disabled=1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => LaTeX-Box
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Latex-box
+" ==============================================================================
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
 let g:LatexBox_Folding=0
@@ -265,25 +281,25 @@ let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_complete_inlineMath=1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => tabbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Tagbar
+" ==============================================================================
 let g:tagbar_autofocus = 1
 let g:tagbar_autopreview = 1
 let g:tagbar_autoclose = 1
 map <Leader>t :w<cr>:TagbarToggle<cr>s
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERD
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" NERDtree
+" ==============================================================================
 let NERDSpaceDelims=1
 let g:NERDTreeShowBookmarks=1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Airline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Airline
+" ==============================================================================
 let g:airline_theme='badwolf' " badwolf, powerlineish
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -299,9 +315,9 @@ let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#branch#enabled = 1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => EasyGrep, vimgrep
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" EasyGrep, vimgrep
+" ==============================================================================
 let EasyGrepCommand=1
 let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
 let EasyGrepJumpToMatch=0
@@ -319,9 +335,9 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <Leader>Vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Supertab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Supertab
+" ==============================================================================
 set completeopt=menuone,longest,preview
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
@@ -332,9 +348,9 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 \ ]
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => fugitive
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ==============================================================================
+" Fugitive
+" ==============================================================================
 map <Leader>Gd :Gdiff<cr>:wincmd x<cr>:wincmd h<cr>
 map <Leader>Go :windo diffoff<cr>:wincmd q<cr>
 map <Leader>Gt :windo diffthis<cr>
@@ -343,9 +359,10 @@ map <Leader>GS :Git status -u <cr>
 map <Leader>Gb :Gblame<cr>
 map <Leader>Gl :Glog<cr>:botright cw<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ==============================================================================
+" Ctrlp
+" ==============================================================================
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_regexp = 1
 
@@ -371,10 +388,10 @@ let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
 
-" let R_in_buffer = 0
-" let R_notmuxconf = 1
-" let R_esc_term = 0
-" let R_close_term = 0
-let R_in_buffer = 0
-let R_applescript = 0
-let R_tmux_split = 1
+
+" ==============================================================================
+" Source local configs
+" ==============================================================================
+if filereadable($HOME . '/.vim/local.vim')
+  source ~/.vim/local.vim
+endif
