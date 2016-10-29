@@ -131,11 +131,14 @@ map <Leader>Ff :cd %:p:h<cr>
 map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
-vmap <Leader>D <s-v>d
 " Join/wrap lines without space
 map <Leader>J Jx
 " Apply macro on every visually selected line
 vmap <Leader>m :normal @
+" Deleting stuff
+map <Leader>Dt :call DeleteTrailingWS()<cr>
+map <Leader>De :call DeleteEndLines()<cr>
+map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 
 "  Completion
 set completeopt=longest,menuone
@@ -204,14 +207,12 @@ map gvB :vertical sbNext <cr>
 " ------------------------------------------------------------------------------
 " Settings
 " ------------------------------------------------------------------------------
-map <Leader>Sw :set textwidth=0 <cr>
-map <Leader>SW :set textwidth=80 <cr>  l
+map <Leader>St :set textwidth=0 <cr>
+map <Leader>ST :set textwidth=80 <cr>
+map <Leader>Sw :set wrap!<cr>
 map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
 map <Leader>Se :set expandtab! <cr>
-map <Leader>Si :set ignorecase!<cr>
-map <Leader>St :call DeleteTrailingWS()<cr>
-map <Leader>ST :call DeleteEndLines()<cr>
-map <Leader>Sl :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
+map <Leader>Si :set ignorecase!<cr>l
 
 
 " ------------------------------------------------------------------------------
@@ -288,6 +289,12 @@ let g:tagbar_autofocus = 1
 let g:tagbar_autopreview = 1
 let g:tagbar_autoclose = 1
 map <Leader>t :w<cr>:TagbarToggle<cr>s
+
+
+" ==============================================================================
+" NERDCommenter
+" ==============================================================================
+let NERDDefaultAlign='both'
 
 
 " ==============================================================================
