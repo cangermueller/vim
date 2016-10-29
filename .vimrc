@@ -20,7 +20,7 @@ set ruler
 
 set autoindent
 set nosmartindent
-set wrap
+set nowrap
 
 set textwidth=80
 set linebreak
