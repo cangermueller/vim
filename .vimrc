@@ -370,7 +370,7 @@ map <Leader>Gl :Glog<cr>:botright cw<cr>
 " ==============================================================================
 " Ctrlp
 " ==============================================================================
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
 map <Leader>Cp :CtrlP<cr>
@@ -394,7 +394,9 @@ map <c-a>B :CtrlPMixed<cr>
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
+cabbr cbb CtrlPBookmarkDirAdd
 
 " ==============================================================================
 " Source local configs
