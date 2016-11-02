@@ -373,23 +373,14 @@ map <Leader>Gl :Glog<cr>:botright cw<cr>
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
-map <Leader>Cp :CtrlP<cr>
-map <Leader>Cm :CtrlPMRUFiles<cr>
-map <Leader>CB :CtrlPMixed<cr>
-map <Leader>Cb :CtrlPBookmarkDir<cr>
-map <Leader>Cl :CtrlPLine<cr>
-map <Leader>Cd :CtrlPDir<cr>
-map <Leader>Cf :CtrlPFunky<cr>
-map <Leader>CF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
 map <c-a>p :CtrlP<cr>
 map <c-a>f :CtrlPFunky<cr>
 map <c-a>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 map <c-a>m :CtrlPMRUFiles<cr>
 map <c-a>l :CtrlPLine<cr>
 map <c-a>d :CtrlPDir<cr>
-map <c-a>b :CtrlPBookmarkDir<cr>
-map <c-a>B :CtrlPMixed<cr>
+map <c-a>b :CtrlPBuffer<cr>
+map <c-a>B :CtrlPBookmarkDir<cr>
 
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
@@ -397,6 +388,10 @@ let g:ctrlp_funky_after_jump = 'zxzt'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
 cabbr cbb CtrlPBookmarkDirAdd
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("t")': ['<c-i>'],
+    \}
 
 " ==============================================================================
 " Source local configs
