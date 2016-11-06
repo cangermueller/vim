@@ -295,6 +295,10 @@ map <Leader>t :w<cr>:TagbarToggle<cr>s
 " NERDCommenter
 " ==============================================================================
 let NERDDefaultAlign='both'
+au BufRead,BufNewFile *.uni setfiletype unison
+let g:NERDCustomDelimiters = {
+    \ 'unison': { 'left': '#', 'leftAlt': 'FOO', 'rightAlt': 'BAR' }
+  \ }
 
 
 " ==============================================================================

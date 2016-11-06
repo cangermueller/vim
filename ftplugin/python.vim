@@ -51,14 +51,12 @@ map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
-map <LocalLeader>k [M
-map <LocalLeader>j ]M
 map <LocalLeader>D o# TODO: 
 imap <LocalLeader>D # TODO: 
 map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
 map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
-map <LocalLeader>jf G ?^import<cr>]]3kz.:nohls<cr>
-map <LocalLeader>jF [[3kz.
+map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>
+map <LocalLeader>jI [[3kz.
 
 
 " ==============================================================================
