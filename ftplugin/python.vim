@@ -32,7 +32,7 @@ let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " pep257: documentation
 " pyflakes: syntax
 " pylint: syntax, very verbose
-let g:pymode_lint_ignore = ''
+let g:pymode_lint_ignore = 'E402' " module level import not at top
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 
@@ -53,10 +53,6 @@ map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
 map <LocalLeader>D o# TODO: 
 imap <LocalLeader>D # TODO: 
-map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
-map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
-map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>
-map <LocalLeader>jI [[3kz.
 
 
 " ==============================================================================
@@ -130,9 +126,13 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 
 " ==============================================================================
-" Motions
+" Motions / Navigation
 " ==============================================================================
 map <LocalLeader>eJ :call pymode#motion#move('\v^(class\|def)\s', '')<cr>
 map <LocalLeader>eK :call pymode#motion#move('\v^(class\|def)\s', 'b')<cr>
 map <LocalLeader>ej :call pymode#motion#move('^\s*def\s', '')<cr>
 map <LocalLeader>ek :call pymode#motion#move('^\s*def\s', 'b')<cr>
+map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
+map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
+map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>
+map <LocalLeader>jI [[3kz.
