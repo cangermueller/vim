@@ -67,15 +67,17 @@ map <LocalLeader>ct <LocalLeader>ch
 " ==============================================================================
 map <silent> <LocalLeader>rj :call RAction("head")<CR>
 map <silent> <LocalLeader>rk :call RAction("dim")<CR>
-map <silent> <LocalLeader>ry :call RAction("glimpse")<CR>
-map <silent> <LocalLeader>rz :call RAction("levels")<CR>
+map <LocalLeader>rT :call RAction("glimpse")<CR>
+map <silent> <LocalLeader>rL :call RAction("levels")<CR>
 map <silent> <LocalLeader>r. :call SendCmdToR("list.files()")<CR>
-imap <LocalLeader>rP <c-o>^<LocalLeader>rp<c-o>$
-imap <LocalLeader>rT <c-o>^<LocalLeader>rt<c-o>$
-map <LocalLeader>rP ^<LocalLeader>rp$
-map <LocalLeader>rT ^<LocalLeader>rt$
-map <LocalLeader>rY ^<LocalLeader>ry$
-map <LocalLeader>rJ ^<LocalLeader>rj$
+
+imap <LocalLeader>Rp <c-o>^<LocalLeader>rp<c-o>$
+imap <LocalLeader>Rt <c-o>^<LocalLeader>rt<c-o>$
+map <LocalLeader>Rp ^<LocalLeader>rp$
+map <LocalLeader>Rt ^<LocalLeader>rt$
+map <LocalLeader>RT ^<LocalLeader>rT$
+map <LocalLeader>Rj ^<LocalLeader>rj$
+map <LocalLeader>Rd ^<LocalLeader>rj$
 
 
 " ==============================================================================
