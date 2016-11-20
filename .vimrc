@@ -139,6 +139,7 @@ vmap <Leader>m :normal @
 map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
+map <Leader>cr :%s/\<run\>/# run/g<cr>
 
 "  Completion
 set completeopt=longest,menuone
