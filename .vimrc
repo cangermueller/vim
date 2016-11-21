@@ -140,6 +140,7 @@ map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 map <Leader>cr :%s/\<run\>/# run/g<cr>
+map <Leader>cR :%s/# run\>/run/g<cr>
 
 "  Completion
 set completeopt=longest,menuone
@@ -318,7 +319,7 @@ if !exists('g:airline_symbols')
 endif
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
 let g:airline#extensions#tabline#fnamemod = ':t'
