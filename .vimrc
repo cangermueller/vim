@@ -168,8 +168,8 @@ map gn :tabnew
 map gN :-tabnew 
 map gm :$tabnew 
 map gM :0tabnew 
-map gq :tabclose <cr>
-map gQ :tabonly <cr>
+map ge :tabclose <cr>
+map gE :tabonly <cr>
 map gh :tabprev <cr>
 map gl :tabnext <cr>
 map gH :tabm -1 <cr>
@@ -345,7 +345,7 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vs :.,$s/\<<C-r><C-w>\>/
 " - replace windows ^M newline (encoding, line wrap)
-:map <Leader>Vn mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+:map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 
 
 " ==============================================================================

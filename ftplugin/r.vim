@@ -6,7 +6,6 @@ let R_assign = 1
 let R_assign_map = "<C-j>"
 let R_insert_mode_cmds = 1 "allow commands in insert mode -> see .vim/r-plugin/common_global.vim: function RCreateMaps
 let rrst_syn_hl_chunk = 1 "syntax highlight chunck options
-let rmd_syn_hl_chunk = 1 "syntax highlight chunck options
 let R_openpdf = 1 "automatically open pdf. \kop to open pdf
 let R_openhtml = 1
 let Rout_more_colors=1
@@ -34,7 +33,7 @@ map <LocalLeader>rF :tab new .tmp.Rmd<CR><LocalLeader>rf<c-w>q
 " ==============================================================================
 nmap <LocalLeader>w <Plug>RSendLine
 imap <LocalLeader>w <Plug>RSendLine
-nmap <LocalLeader>d <Plug>RDSendLine
+nmap <LocalLeader>W <Plug>RDSendLine
 nmap <LocalLeader>q <Plug>RSendLine o
 
 
