@@ -53,6 +53,7 @@ map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
 map <LocalLeader>D o# TODO: 
 imap <LocalLeader>D # TODO: 
+map ff /for.*:$<CR>
 
 
 " ==============================================================================
@@ -70,13 +71,15 @@ vmap <LocalLeader>Sz :s/^>>> //<CR>
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 set noshowmode "needed for call_signatures=2
-let g:jedi#show_call_signatures = 2 " can be slow
+let g:jedi#show_call_signatures = 2
 let g:jedi#show_call_signatures_delay = 1
 let g:jedi#auto_close_doc = 1
 map <LocalLeader>jj :call jedi#goto() <CR>
+map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
 map <LocalLeader>jk :call jedi#show_documentation() <CR>:wincmd k<CR>
 imap <LocalLeader>jk <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
-map <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>
+map <LocalLeader>js :call jedi#show_call_signatures() <CR>
+imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
 
 
 " ==============================================================================

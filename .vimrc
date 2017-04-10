@@ -20,7 +20,7 @@ set ruler
 
 set autoindent
 set nosmartindent
-set nowrap
+set wrap
 
 set textwidth=80
 set linebreak
@@ -83,14 +83,14 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteTrailingWS()
+autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md} :call DeleteTrailingWS()
 
 function DeleteEndLines()
     let save_cursor = getpos(".")
     :silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
-autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteEndLines()
+autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md} :call DeleteEndLines()
 
 
 " ==============================================================================
@@ -99,7 +99,7 @@ autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee} :call DeleteEndLines()
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType sh,r,rmd,unison setlocal formatoptions-=t " do not break lines automatically
+autocmd FileType * setlocal formatoptions-=t " do not break lines automatically
 " change cwd to current file on insert mode
 " autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 " autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
@@ -131,6 +131,9 @@ map <Leader>Ff :cd %:p:h<cr>
 map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
+" Find non-ASCII characters
+map <Leader>Ru /[^\x00-\x7F]<cr>
+
 " Join/wrap lines without space
 map <Leader>J Jx
 " Apply macro on every visually selected line
@@ -215,6 +218,9 @@ map <Leader>Sw :set wrap!<cr>
 map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
 map <Leader>Se :set expandtab! <cr>
 map <Leader>Si :set ignorecase!<cr>l
+map <Leader>Sm :set mouse=a<CR>
+map <Leader>SM :set mouse=<CR>
+
 
 
 " ------------------------------------------------------------------------------
@@ -259,12 +265,14 @@ map <LocalLeader>ck :lprev <cr>
 " ------------------------------------------------------------------------------
 " Spell checking
 " ------------------------------------------------------------------------------
-map <leader>ss :setlocal spell!<cr>
-map <leader>sj ]s
-map <leader>sk [s
-map <leader>sa zg
-map <leader>sA zug
-map <leader>s? z=
+map <LocalLeader>st :setlocal spell!<cr>
+map <LocalLeader>sj ]s
+map <LocalLeader>sk [s
+map <LocalLeader>ss z=
+" add word
+map <LocalLeader>sa zg
+" remove word
+map <LocalLeader>sr zug
 
 
 " ==============================================================================
@@ -278,18 +286,19 @@ let g:vim_markdown_folding_disabled=1
 " ==============================================================================
 let g:LatexBox_viewer='open -a Preview'
 let g:LatexBox_quickfix=2
-let g:LatexBox_Folding=0
 let g:LatexBox_show_warnings=0
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_complete_inlineMath=1
-
+let g:LatexBox_Folding=0
+let g:LatexBox_fold_sections = ["section", "subsection", "subsubsection"]
 
 " ==============================================================================
 " Tagbar
 " ==============================================================================
 let g:tagbar_autofocus = 1
-let g:tagbar_autopreview = 1
+let g:tagbar_autopreview = 0
 let g:tagbar_autoclose = 1
+let g:tagbar_sort = 1
 map <Leader>t :w<cr>:TagbarToggle<cr>s
 
 
@@ -333,19 +342,23 @@ let g:airline#extensions#branch#enabled = 1
 " ==============================================================================
 let EasyGrepCommand=1
 let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
-let EasyGrepJumpToMatch=0
+let EasyGrepJumpToMatch=1
 let EasyGrepMode=2
+let EasyGrepEveryMatch=1
+let EasyGrepReplaceWindowMode=2
 cabbr vg vimgrep
 cabbr eg Grep -R
 " Grep word under cursor and show occurrences in current file
 map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botright cw<cr><c-w>k
 
 " Substitution, replacement
-" - replace word under cursor
+" replace word under cursor
 :map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vs :.,$s/\<<C-r><C-w>\>/
-" - replace windows ^M newline (encoding, line wrap)
+" replace windows ^M newline (encoding, line wrap)
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
+" replace tabs by spaces
+:map <Leader>Vt :%s/\t/  /g
 
 
 " ==============================================================================

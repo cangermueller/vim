@@ -11,7 +11,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
 " Bundle 'ivanov/vim-ipython'
 " ipython3.X support
-Bundle 'nheijermans/vim-ipython'
+" Bundle 'nheijermans/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
