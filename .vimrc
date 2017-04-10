@@ -12,6 +12,8 @@ nnoremap * *<C-O>
 set incsearch
 set ignorecase
 set smartcase
+scriptencoding utf-8
+set encoding=utf-8
 
 set relativenumber
 set number
