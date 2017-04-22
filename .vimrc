@@ -100,8 +100,11 @@ autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md} :call DeleteEndLines()
 autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType * setlocal formatoptions-=t " do not break lines automatically
-autocmd FileType markdown setlocal formatoptions-=tn " do not break lines automatically
+" Do not break/wrap lines automatically
+autocmd FileType * setlocal formatoptions-=t
+autocmd FileType * setlocal formatoptions-=c
+set filetype-=t
+set filetype-=c
 " change cwd to current file on insert mode
 " autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
 " autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
@@ -114,6 +117,7 @@ autocmd FileType markdown setlocal formatoptions-=tn " do not break lines automa
 cabbr th tab help
 cabbr tn tab new
 cabbr lop lopen 20
+cabbr Py python3
 command Q qa!
 command S xa!
 command W wa!
@@ -169,19 +173,19 @@ map go :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
 map gO :tabedit <c-r>=expand("%:p:h")<cr>/
 map gp :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
 map gP :-tabnew <c-r>=expand("%:p:h")<cr>/
-map gn :tabnew 
-map gN :-tabnew 
-map gm :$tabnew 
-map gM :0tabnew 
+map gn :tabnew
+map gN :-tabnew
+map gm :$tabnew
+map gM :0tabnew
 map ge :tabclose <cr>
 map gE :tabonly <cr>
 map gh :tabprev <cr>
 map gl :tabnext <cr>
+map gj :tabfirst <cr>
+map gk :tablast <cr>
 map gH :tabm -1 <cr>
 map gL :tabm +1 <cr>
-map g? :tab help 
-map g, :tabfirst <cr>
-map g. :tablast <cr>
+map g? :tab help
 
 
 " ------------------------------------------------------------------------------
@@ -191,8 +195,8 @@ nmap <c-w>k :wincmd k<cr>
 nmap <c-w>j :wincmd j<cr>
 nmap <c-w>h :wincmd h<cr>
 nmap <c-w>l :wincmd l<cr>
-nmap <c-w>% :vsplit 
-nmap <c-w>T :split 
+nmap <c-w>% :vsplit
+nmap <c-w>T :split
 nmap <C-w><up> :resize +5<cr>
 nmap <C-w><down> :resize -5<cr>
 nmap <C-w><left> :vertical resize +5<cr>
