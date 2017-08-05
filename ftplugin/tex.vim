@@ -1,6 +1,5 @@
 set formatoptions-=t
 set wrap
-set spelllang=en_gb
 
 imap <buffer> [[     \begin{
 imap <buffer> ]]     <Plug>LatexCloseCurEnv

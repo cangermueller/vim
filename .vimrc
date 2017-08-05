@@ -127,6 +127,7 @@ command W wa!
 " Key bindings
 " ==============================================================================
 let maplocalleader=','
+set timeoutlen=500 " time to wait after leader key
 
 " ------------------------------------------------------------------------------
 " Misc
@@ -185,7 +186,7 @@ map gj :tabfirst <cr>
 map gk :tablast <cr>
 map gH :tabm -1 <cr>
 map gL :tabm +1 <cr>
-map g? :tab help
+map g? :tab help 
 
 
 " ------------------------------------------------------------------------------
@@ -242,14 +243,13 @@ map <Leader>5 ml:execute 'match Search //'<cr>
 " ------------------------------------------------------------------------------
 " Yank and paste
 " ------------------------------------------------------------------------------
-set pastetoggle=<Leader>pt
-nmap <Leader>pp o<CR><CR><ESC>p
-nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-vmap <Leader>P :!pbpaste<cr>
-nmap <Leader>Y :.w !pbcopy<cr><cr>
-vmap <Leader>Y :w !pbcopy<cr><cr>
-nmap "P "0p
+set pastetoggle=<Leader>P
+nmap <Leader>p :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+imap <Leader>p <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+vmap <Leader>p :!pbpaste<cr>
+nmap <Leader>y :.w !pbcopy<cr><cr>
+vmap <silent> <leader>y :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
+
 
 
 " ------------------------------------------------------------------------------
@@ -302,10 +302,10 @@ let g:LatexBox_fold_sections = ["section", "subsection", "subsubsection"]
 " Tagbar
 " ==============================================================================
 let g:tagbar_autofocus = 1
-let g:tagbar_autopreview = 0
+let g:tagbar_autopreview = 1
 let g:tagbar_autoclose = 1
-let g:tagbar_sort = 1
-map <Leader>t :w<cr>:TagbarToggle<cr>s
+let g:tagbar_sort = 0
+map <Leader>t :TagbarToggle<cr>
 
 
 " ==============================================================================
@@ -341,6 +341,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 
 " ==============================================================================
@@ -407,10 +410,12 @@ map <c-a>d :CtrlPDir<cr>
 map <c-a>b :CtrlPBuffer<cr>
 map <c-a>B :CtrlPBookmarkDir<cr>
 
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_funky_multi_buffers = 1
+let g:ctrlp_funky_sort_by_mru = 1
 
 cabbr cbb CtrlPBookmarkDirAdd
 
