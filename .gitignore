@@ -2,6 +2,6 @@
 /undo/
 bundle/
 /spell/
-local.vim
+local*
 
 .netrwhist

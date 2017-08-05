@@ -1,4 +1,11 @@
 " ==============================================================================
+" Source pre local configs
+" ==============================================================================
+if filereadable($HOME . '/.vim/local_pre.vim')
+  source ~/.vim/local_pre.vim
+endif
+
+" ==============================================================================
 " Source plugings
 " ==============================================================================
 source ~/.vim/vundle.vim
@@ -91,7 +98,7 @@ function DeleteEndLines()
     :silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
-autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md} :call DeleteEndLines()
+autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md,cpp} :call DeleteEndLines()
 
 
 " ==============================================================================
@@ -132,6 +139,7 @@ let maplocalleader=','
 " Misc
 " ------------------------------------------------------------------------------
 map <Leader>f :NERDTree<cr>
+" Change cwd/pwd to current file
 map <Leader>Ff :cd %:p:h<cr>
 " Show absolute path of current file
 map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
@@ -148,8 +156,12 @@ vmap <Leader>m :normal @
 map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
-map <Leader>cr :%s/\(^\s*\)\<run\>/\1# run/g<cr>
-map <Leader>cR :%s/# run\>/run/g<cr>
+
+" Exiting
+map <Leader>Q :qa!<cr>
+imap <Leader>Q <esc>:qa!<cr>
+map <Leader>E :xa!<cr>
+imap <Leader>E <esc>:xa!<cr>
 
 "  Completion
 set completeopt=longest,menuone
@@ -242,10 +254,11 @@ map <Leader>5 ml:execute 'match Search //'<cr>
 " ------------------------------------------------------------------------------
 " Yank and paste
 " ------------------------------------------------------------------------------
-set pastetoggle=<Leader>pt
-nmap <Leader>pp o<CR><CR><ESC>p
+set pastetoggle=<Leader>p
 nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+imap <Leader>P <esc>:set paste!<cr>a
+
+" imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
 vmap <Leader>P :!pbpaste<cr>
 nmap <Leader>Y :.w !pbcopy<cr><cr>
 vmap <Leader>Y :w !pbcopy<cr><cr>
@@ -418,9 +431,25 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-i>'],
     \}
 
+
 " ==============================================================================
-" Source local configs
+" YouCompleteMe
 " ==============================================================================
-if filereadable($HOME . '/.vim/local.vim')
-  source ~/.vim/local.vim
+let g:ycm_key_list_select_completion=['<TAB>', '<Down>', '`']
+let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
+
+
+" ==============================================================================
+" Source post local configs
+" ==============================================================================
+if filereadable($HOME . '/.vim/local_post.vim')
+  source ~/.vim/local_post.vim
 endif
+
+abbr cb :e $cb<cr>5j zt
+abbr cg :e $cg<cr>5j zt
+abbr cr :e $cr<cr>5j zt
+abbr cp :e $cp<cr>5j zt
+abbr cv :e $cv<cr>5j zt
+abbr brc :e $brc<cr>
+abbr brC :e $brC<cr>

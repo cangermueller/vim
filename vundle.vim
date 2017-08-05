@@ -4,14 +4,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to append `!` to auto-approve removal
+" see :h vundle for more details or wiki for FAQ
+
+
 Bundle 'gmarik/Vundle.vim'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
-" Bundle 'ivanov/vim-ipython'
-" ipython3.X support
-" Bundle 'nheijermans/vim-ipython'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
@@ -30,10 +36,3 @@ call vundle#end()
 filetype plugin indent on
 
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to append `!` to auto-approve removal
-" see :h vundle for more details or wiki for FAQ

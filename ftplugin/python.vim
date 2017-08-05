@@ -1,6 +1,8 @@
 set textwidth=80
 set formatoptions-=t
 set complete+=t
+set tabstop=2
+set shiftwidth=2
 
 
 " ==============================================================================
@@ -43,16 +45,21 @@ let g:pymode_lint_sort = ['E', 'C', 'I']
 map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
 map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
-map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
+if executable("ipdb")
+  map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
+  map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
+else
+  map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
+  map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
+endif
 map <LocalLeader>bu oimport pudb; pudb.set_trace()<ESC>
 map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
 map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bd :g/set_trace()/d <CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
-map <LocalLeader>D o# TODO: 
-imap <LocalLeader>D # TODO: 
+map <LocalLeader>D o# TODO:
+imap <LocalLeader>D # TODO:
 map ff /for.*:$<CR>
 
 
@@ -85,12 +92,12 @@ imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
 " ==============================================================================
 " YouCompleteMe
 " ==============================================================================
-if exists("g:ycm_add_preview_to_completeopt")
-  map <LocalLeader>jj :YcmCompleter GoTo <CR>
-  map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
-  map <LocalLeader>jk :YcmCompleter GetDoc <CR>
-  map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
-endif
+" if exists("g:ycm_add_preview_to_completeopt")
+"   map <LocalLeader>jj :YcmCompleter GoTo <CR>
+"   map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+"   map <LocalLeader>jk :YcmCompleter GetDoc <CR>
+"   map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
+" endif
 
 
 " ==============================================================================
