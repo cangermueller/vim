@@ -45,7 +45,7 @@ let g:pymode_lint_sort = ['E', 'C', 'I']
 map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
 map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
-if executable("ipdb")
+if executable("ipdb3")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
 else
