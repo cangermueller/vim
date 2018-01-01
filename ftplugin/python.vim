@@ -1,8 +1,6 @@
 set textwidth=80
 set formatoptions-=t
 set complete+=t
-set tabstop=2
-set shiftwidth=2
 
 
 " ==============================================================================
@@ -35,6 +33,7 @@ let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " pyflakes: syntax
 " pylint: syntax, very verbose
 let g:pymode_lint_ignore = 'E402' " module level import not at top
+" let g:pymode_lint_ignore = 'E402,E111,E114,W0611' " module level import not at top
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 
@@ -52,14 +51,17 @@ else
   map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
 endif
-map <LocalLeader>bu oimport pudb; pudb.set_trace()<ESC>
-map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
 map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
-map <LocalLeader>bd :g/set_trace()/d <CR>
+map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
+map <LocalLeader>bI oimport ipdb; ipdb.set_trace()<ESC>
+map <LocalLeader>bu oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
+map <LocalLeader>bf /pdb\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
-map <LocalLeader>D o# TODO:
-imap <LocalLeader>D # TODO:
+map <localleader>D o# TODO:
+imap <localleader>D # TODO:
 map ff /for.*:$<CR>
 
 
@@ -81,8 +83,8 @@ set noshowmode "needed for call_signatures=2
 let g:jedi#show_call_signatures = 2
 let g:jedi#show_call_signatures_delay = 1
 let g:jedi#auto_close_doc = 1
-map <LocalLeader>jj :call jedi#goto() <CR>
-map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+map <LocalLeader>jj :call jedi#goto() <CR>zt
+map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>zt
 map <LocalLeader>jk :call jedi#show_documentation() <CR>:wincmd k<CR>
 imap <LocalLeader>jk <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
 map <LocalLeader>js :call jedi#show_call_signatures() <CR>
@@ -139,10 +141,10 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 " ==============================================================================
 " Motions / Navigation
 " ==============================================================================
-map <LocalLeader>eJ :call pymode#motion#move('\v^(class\|def)\s', '')<cr>
-map <LocalLeader>eK :call pymode#motion#move('\v^(class\|def)\s', 'b')<cr>
-map <LocalLeader>ej :call pymode#motion#move('^\s*def\s', '')<cr>
-map <LocalLeader>ek :call pymode#motion#move('^\s*def\s', 'b')<cr>
+map <LocalLeader>eJ :call pymode#motion#move('\v^(class\|def)\s', '')<cr>zt
+map <LocalLeader>eK :call pymode#motion#move('\v^(class\|def)\s', 'b')<cr>zt
+map <LocalLeader>ej :call pymode#motion#move('^\s*def\s', '')<cr>zt
+map <LocalLeader>ek k:call pymode#motion#move('^\s*def\s', 'b')<cr>zt
 map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
 map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
 map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>

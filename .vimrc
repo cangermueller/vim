@@ -36,8 +36,7 @@ set cc=+1
 
 set mouse=  "a
 set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=8 softtabstop=2 shiftwidth=2
 set tabpagemax=20
 set wildmode=longest:full
 set wildmenu
@@ -63,6 +62,9 @@ set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 set spell
 set spelllang=en_us
 
+runtime ftplugin/man.vim " :Man MANPAGE
+let g:ft_man_open_mode = 'tab'
+
 syntax on
 filetype indent on
 filetype plugin on
@@ -87,18 +89,22 @@ endfunction
 " Trailing whitespaces
 " ==============================================================================
 func! DeleteTrailingWS()
+  " Exclude certain file types
+  if &ft =~ 'vim'
+    return
+  endif
   exe "normal mz"
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md} :call DeleteTrailingWS()
+autocmd BufWrite * :call DeleteTrailingWS()
 
 function DeleteEndLines()
     let save_cursor = getpos(".")
     :silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
-autocmd BufWrite *.{py,R,Rmd,sh,txt,coffee,tex,rst,md,cpp} :call DeleteEndLines()
+autocmd BufWrite * :call DeleteEndLines()
 
 
 " ==============================================================================
@@ -128,7 +134,16 @@ cabbr Py python3
 command Q qa!
 command S xa!
 command W wa!
+" command Sh ocwd="google/src/cloud/christofa/al/google3/medical/retina" | cd %:p:h | sh | cd ocwd
 
+function Sh_ ()
+  let a:cwd = getcwd()
+  exec "cd" expand("%:p:h")
+  sh
+  exec "cd" a:cwd
+endfunction
+
+command Sh call Sh_()
 
 " ==============================================================================
 " Key bindings
@@ -139,7 +154,9 @@ set timeoutlen=500 " time to wait after leader key
 " ------------------------------------------------------------------------------
 " Misc
 " ------------------------------------------------------------------------------
-map <Leader>f :NERDTree<cr>
+map <Leader>fF :NERDTree<cr>
+map <Leader>ff :NERDTree %:p:h<cr>
+
 " Change cwd/pwd to current file
 map <Leader>Ff :cd %:p:h<cr>
 " Show absolute path of current file
@@ -157,6 +174,11 @@ vmap <Leader>m :normal @
 map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
+" Change indentation
+map <Leader>I2 :setglobal tabstop=8 softtabstop=2 shiftwidth=2<CR>
+map <Leader>I4 :setglobal tabstop=8 softtabstop=4 shiftwidth=4<CR>
+" Source .vimrc
+map <Leader>Vr :source ~/.vimrc<CR>
 
 " Exiting
 map <Leader>Q :qa!<cr>
@@ -184,12 +206,12 @@ map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
 map gI :e <c-r>=expand("%:p:h")<cr>/
 map go :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
 map gO :tabedit <c-r>=expand("%:p:h")<cr>/
-map gp :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
-map gP :-tabnew <c-r>=expand("%:p:h")<cr>/
-map gn :tabnew
-map gN :-tabnew
-map gm :$tabnew
-map gM :0tabnew
+map g8 :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
+map g* :-tabnew <c-r>=expand("%:p:h")<cr>/
+map gn :tabnew 
+map gN :-tabnew 
+map gm :$tabnew 
+map gM :0tabnew 
 map ge :tabclose <cr>
 map gE :tabonly <cr>
 map gh :tabprev <cr>
@@ -199,6 +221,10 @@ map gk :tablast <cr>
 map gH :tabm -1 <cr>
 map gL :tabm +1 <cr>
 map g? :tab help 
+
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> gp :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> gp :exe "tabn ".g:lasttab<cr>
 
 
 " ------------------------------------------------------------------------------
@@ -234,7 +260,9 @@ map gvB :vertical sbNext <cr>
 map <Leader>St :set textwidth=0 <cr>
 map <Leader>ST :set textwidth=80 <cr>
 map <Leader>Sw :set wrap!<cr>
-map <Leader>Sn :set number!<cr>:set norelativenumber!<cr> " (no) number
+map <Leader>So :set nonumber<cr>:set norelativenumber<cr>
+map <Leader>Sn :set number<cr>:set relativenumber!<cr>
+" map <Leader>Sa :set number<cr>:set relativenumber<cr>
 map <Leader>Se :set expandtab! <cr>
 map <Leader>Si :set ignorecase!<cr>l
 map <Leader>Sm :set mouse=a<CR>
@@ -247,9 +275,8 @@ map <Leader>SM :set mouse=<CR>
 " ------------------------------------------------------------------------------
 map <Leader>1 :let @/='\<<C-R>=expand("<cWORD>")<cr>\>'<cr>:set hls<cr>
 map <Leader>2 :nohls<cr>
-map <Leader>3 :set cursorline!<cr>
-map <Leader>4 ml:execute 'match Search /\%'.line('.').'l/'<cr>
-map <Leader>5 ml:execute 'match Search //'<cr>
+map <Leader>3 ml:execute 'match Search /\%'.line('.').'l/'<cr>
+map <Leader># ml:execute 'match Search //'<cr>
 
 
 " ------------------------------------------------------------------------------
@@ -270,10 +297,14 @@ nmap "P "0p
 " Lists
 " ------------------------------------------------------------------------------
 " Quickfix
+command! ClearQuickfix cclose | call setqflist([])
+
 map <LocalLeader>vv :botright cw <cr>
 map <LocalLeader>vq :cclose <cr>
 map <LocalLeader>vj :cnext <cr>
 map <LocalLeader>vk :cprev <cr>
+map <LocalLeader>vk :cprev <cr>
+map <LocalLeader>vc :ClearQuickfix<cr>
 
 " Location list
 map <LocalLeader>cc :botright lopen 50 <cr>
@@ -328,7 +359,10 @@ map <Leader>t :TagbarToggle<cr>
 let NERDDefaultAlign='both'
 au BufRead,BufNewFile *.uni setfiletype unison
 let g:NERDCustomDelimiters = {
-    \ 'unison': { 'left': '#', 'leftAlt': 'FOO', 'rightAlt': 'BAR' }
+    \ 'unison': { 'left': '#'},
+    \ 'python': { 'left': ' #'},
+    \ 'borg': { 'left': '//'},
+    \ 'pbtxt': { 'left': '#'}
   \ }
 
 
@@ -382,6 +416,7 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 " replace tabs by spaces
 :map <Leader>Vt :%s/\t/  /g
+:map <Leader>VT :tabdo :%s/
 
 
 " ==============================================================================
@@ -400,8 +435,8 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 " ==============================================================================
 " Fugitive
 " ==============================================================================
-map <Leader>Gd :Gdiff<cr>:wincmd x<cr>:wincmd h<cr>
-map <Leader>Go :windo diffoff<cr>:wincmd q<cr>
+map <Leader>Gg :Gdiff<cr>:wincmd x<cr>:wincmd h<cr>
+map <Leader>GG :windo diffoff<cr>:wincmd q<cr>
 map <Leader>Gt :windo diffthis<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
@@ -418,9 +453,10 @@ let g:ctrlp_regexp = 1
 map <c-a>p :CtrlP<cr>
 map <c-a>f :CtrlPFunky<cr>
 map <c-a>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+map <c-a>d :CtrlPCurFile<cr>
+map <c-a>D :CtrlPDir<cr>
 map <c-a>m :CtrlPMRUFiles<cr>
 map <c-a>l :CtrlPLine<cr>
-map <c-a>d :CtrlPDir<cr>
 map <c-a>b :CtrlPBuffer<cr>
 map <c-a>B :CtrlPBookmarkDir<cr>
 
@@ -430,6 +466,7 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
 let g:ctrlp_funky_multi_buffers = 1
 let g:ctrlp_funky_sort_by_mru = 1
+" let g:ctrlp_funky_nerdtree_include_files = 1
 
 cabbr cbb CtrlPBookmarkDirAdd
 
@@ -441,7 +478,7 @@ let g:ctrlp_prompt_mappings = {
 " ==============================================================================
 " YouCompleteMe
 " ==============================================================================
-let g:ycm_key_list_select_completion=['<TAB>', '<Down>', '`']
+let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
 
 
@@ -452,10 +489,15 @@ if filereadable($HOME . '/.vim/local_post.vim')
   source ~/.vim/local_post.vim
 endif
 
-abbr cb :e $cb<cr>5j zt
-abbr cg :e $cg<cr>5j zt
-abbr cr :e $cr<cr>5j zt
-abbr cp :e $cp<cr>5j zt
-abbr cv :e $cv<cr>5j zt
-abbr brc :e $brc<cr>
-abbr brC :e $brC<cr>
+
+" ==============================================================================
+" Jumping to frequently used directories
+" ==============================================================================
+abbr gcb :e $cb<cr>gg 5j zt
+abbr gcg :e $cg<cr>gg 5j zt
+abbr gcr :e $cr<cr>gg 5j zt
+abbr gcp :e $cp<cr>gg 5j zt
+abbr gtf :e $cp/tensorflow.txt<cr>
+abbr gcv :e $cv<cr>gg 5j zt
+abbr gbrc :e $brc<cr>
+abbr gbrC :e $brC<cr>

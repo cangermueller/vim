@@ -34,5 +34,3 @@ Bundle 'jalvesaq/Nvim-R'
 
 call vundle#end()
 filetype plugin indent on
-
-
