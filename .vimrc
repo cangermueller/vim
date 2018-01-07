@@ -175,8 +175,8 @@ map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
 " Change indentation
-map <Leader>I2 :setglobal tabstop=8 softtabstop=2 shiftwidth=2<CR>
-map <Leader>I4 :setglobal tabstop=8 softtabstop=4 shiftwidth=4<CR>
+map <Leader>T2 :set tabstop=8 softtabstop=2 shiftwidth=2<CR>
+map <Leader>T4 :set tabstop=8 softtabstop=4 shiftwidth=4<CR>
 " Source .vimrc
 map <Leader>Vr :source ~/.vimrc<CR>
 

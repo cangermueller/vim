@@ -32,8 +32,8 @@ let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " pep257: documentation
 " pyflakes: syntax
 " pylint: syntax, very verbose
-let g:pymode_lint_ignore = 'E402' " module level import not at top
-" let g:pymode_lint_ignore = 'E402,E111,E114,W0611' " module level import not at top
+"
+let g:pymode_lint_ignore = []
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 
@@ -121,21 +121,6 @@ imap <buffer> <silent> <LocalLeader>q <C-o><Plug>(IPython-RunLine)<CR>
 " Supertab
 " ==============================================================================
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-
-" let g:ycm_filetype_blacklist = {
-        " \ 'tagbar' : 1,
-        " \ 'qf' : 1,
-        " \ 'notes' : 1,
-        " \ 'markdown' : 1,
-        " \ 'unite' : 1,
-        " \ 'text' : 1,
-        " \ 'vimwiki' : 1,
-        " \ 'pandoc' : 1,
-        " \ 'infolog' : 1,
-        " \ 'mail' : 1,
-        " \ 'python' : 1,
-        " \}
-        "
 
 
 " ==============================================================================
