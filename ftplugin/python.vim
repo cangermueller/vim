@@ -27,15 +27,21 @@ let g:pymode_lint_on_write = 0
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_message = 1
+let g:pymode_lint_signs = 1
+let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " pep8: code convention
 " pep257: documentation
 " pyflakes: syntax
 " pylint: syntax, very verbose
-"
-let g:pymode_lint_ignore = []
-let g:pymode_lint_signs = 1
-let g:pymode_lint_sort = ['E', 'C', 'I']
+let g:pymode_lint_ignore = ['E402'] " module level import not at top
+" E501: line too long (83 > 79 characters) [pep8]
+" E402: module level import not at top of file
+" E111: indentation not multiple of four
+" E114: indentation not multiple of four asd
+" E129: visually indented line with same indent as next logical line
+" E125: continuation line with same indent as next logical line
+" C901: function is too complex (21)
 
 
 " ==============================================================================
