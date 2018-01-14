@@ -144,6 +144,7 @@ function Sh_ ()
 endfunction
 
 command Sh call Sh_()
+command Apwd echo expand('%:p')
 
 " ==============================================================================
 " Key bindings
@@ -174,6 +175,7 @@ vmap <Leader>m :normal @
 map <Leader>Dt :call DeleteTrailingWS()<cr>
 map <Leader>De :call DeleteEndLines()<cr>
 map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
+map <Leader>Dl ddO<esc>
 " Change indentation
 map <Leader>T2 :set tabstop=8 softtabstop=2 shiftwidth=2<CR>
 map <Leader>T4 :set tabstop=8 softtabstop=4 shiftwidth=4<CR>
@@ -362,7 +364,7 @@ let g:NERDCustomDelimiters = {
     \ 'unison': { 'left': '#'},
     \ 'python': { 'left': ' #'},
     \ 'borg': { 'left': '//'},
-    \ 'pbtxt': { 'left': '#'}
+    \ 'textpb': { 'left': '#'}
   \ }
 
 
@@ -392,6 +394,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#fnametruncate = 10 " Maximum length filename
 
 
 " ==============================================================================

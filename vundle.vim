@@ -31,6 +31,7 @@ Bundle 'dkprice/vim-easygrep'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'jalvesaq/Nvim-R'
+Bundle 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
