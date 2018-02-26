@@ -50,7 +50,7 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
 map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
-if executable("ipdb3")
+if executable("ipdb")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
 else

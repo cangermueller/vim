@@ -32,6 +32,7 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'jalvesaq/Nvim-R'
 Bundle 'tpope/vim-surround'
+Bundle 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 filetype plugin indent on

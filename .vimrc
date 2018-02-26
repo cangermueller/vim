@@ -204,12 +204,15 @@ nmap <C-a>e $
 " ------------------------------------------------------------------------------
 " Tabs
 " ------------------------------------------------------------------------------
-map gi :e <c-r>=expand("%:p:h")<cr>/<cr>G
-map gI :e <c-r>=expand("%:p:h")<cr>/
-map go :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
-map gO :tabedit <c-r>=expand("%:p:h")<cr>/
-map g8 :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
-map g* :-tabnew <c-r>=expand("%:p:h")<cr>/
+map giI :e <c-r>=expand("%:p:h")<cr>/<cr>G
+map gii :e <c-r>=expand("%:p:h")<cr>/
+map gij :e <c-r>=expand("%:p:r")<cr>
+map goO :tabedit <c-r>=expand("%:p:h")<cr>/<cr>G
+map goo :tabedit <c-r>=expand("%:p:h")<cr>/
+map goj :tabedit <c-r>=expand("%:p:r")<cr>
+map gpP :-tabnew <c-r>=expand("%:p:h")<cr>/<cr>G
+map gpp :-tabnew <c-r>=expand("%:p:h")<cr>/
+map gpj :-tabnew <c-r>=expand("%:p:r")<cr>
 map gn :tabnew 
 map gN :-tabnew 
 map gm :$tabnew 
@@ -225,8 +228,8 @@ map gL :tabm +1 <cr>
 map g? :tab help 
 
 au TabLeave * let g:lasttab = tabpagenr()
-nnoremap <silent> gp :exe "tabn ".g:lasttab<cr>
-vnoremap <silent> gp :exe "tabn ".g:lasttab<cr>
+nnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
 
 
 " ------------------------------------------------------------------------------
@@ -284,15 +287,15 @@ map <Leader># ml:execute 'match Search //'<cr>
 " ------------------------------------------------------------------------------
 " Yank and paste
 " ------------------------------------------------------------------------------
+" Toogle paste mode
 set pastetoggle=<Leader>p
+" Paste / put
 nmap <Leader>P :set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
-imap <Leader>P <esc>:set paste!<cr>a
-
-" imap <Leader>P <Esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>
+imap <Leader>P <esc>:set paste<cr>:r !pbpaste<cr>:set nopaste<cr>kJxi
 vmap <Leader>P :!pbpaste<cr>
+" Copy / yank
 nmap <Leader>Y :.w !pbcopy<cr><cr>
-vmap <Leader>Y :w !pbcopy<cr><cr>
-nmap "P "0p
+vmap <Leader>Y :<cr>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
 
 
 " ------------------------------------------------------------------------------
@@ -362,7 +365,7 @@ let NERDDefaultAlign='both'
 au BufRead,BufNewFile *.uni setfiletype unison
 let g:NERDCustomDelimiters = {
     \ 'unison': { 'left': '#'},
-    \ 'python': { 'left': ' #'},
+    \ 'python': { 'left': '#'},
     \ 'borg': { 'left': '//'},
     \ 'textpb': { 'left': '#'}
   \ }
@@ -394,7 +397,6 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-let g:airline#extensions#tabline#fnametruncate = 10 " Maximum length filename
 
 
 " ==============================================================================
@@ -438,9 +440,8 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 " ==============================================================================
 " Fugitive
 " ==============================================================================
-map <Leader>Gg :Gdiff<cr>:wincmd x<cr>:wincmd h<cr>
-map <Leader>GG :windo diffoff<cr>:wincmd q<cr>
-map <Leader>Gt :windo diffthis<cr>
+map <Leader>Gg :GDiff<cr>:wincmd t<cr>gg
+map <Leader>Gh :windo diffoff<cr>:wincmd t<cr>:wincmd o<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
 map <Leader>Gb :Gblame<cr>
