@@ -30,6 +30,7 @@ let g:pymode_lint_message = 1
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
+let g:pymode_options_max_line_length = 80
 " pep8: code convention
 " pep257: documentation
 " pyflakes: syntax
@@ -38,7 +39,7 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " E501: line too long (83 > 79 characters) [pep8]
 " E402: module level import not at top of file
 " E111: indentation not multiple of four
-" E114: indentation not multiple of four asd
+" E114: indentation not multiple of four
 " E129: visually indented line with same indent as next logical line
 " E125: continuation line with same indent as next logical line
 " C901: function is too complex (21)
@@ -47,8 +48,9 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " ==============================================================================
 " Key binding
 " ==============================================================================
-map <LocalLeader>lL :wincmd o<CR>:PymodeLint<CR>
-map <LocalLeader>ll :wincmd o<CR>:PymodeLint<CR><C-W>j<CR>
+map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>:wincmd j<CR>gg<CR>
+map <LocalLeader>lL :lclose<CR>:PymodeLint<CR>
+map <LocalLeader>lq :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 if executable("ipdb")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
@@ -66,8 +68,6 @@ map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
 map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
 map <LocalLeader>bf /pdb\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
-map <localleader>D o# TODO:
-imap <localleader>D # TODO:
 map ff /for.*:$<CR>
 
 

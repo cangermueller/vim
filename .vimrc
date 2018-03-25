@@ -239,13 +239,16 @@ nmap <c-w>k :wincmd k<cr>
 nmap <c-w>j :wincmd j<cr>
 nmap <c-w>h :wincmd h<cr>
 nmap <c-w>l :wincmd l<cr>
-nmap <c-w>% :vsplit
-nmap <c-w>T :split
-nmap <C-w><up> :resize +5<cr>
-nmap <C-w><down> :resize -5<cr>
-nmap <C-w><left> :vertical resize +5<cr>
-nmap <c-w><right> :vertical resize -5<cr>
-nmap <c-w>z :wincmd \|<cr>
+nmap <c-w>L :vsplit<cr>
+nmap <c-w>H :vsplit<cr>:wincmd h<cr>
+nmap <c-w>J :split<cr>
+nmap <c-w>K :split<cr>:wincmd k<cr>
+nmap <C-w><up> :resize -5<cr>
+nmap <C-w><down> :resize +5<cr>
+nmap <C-w><left> :vertical resize -5<cr>
+nmap <c-w><right> :vertical resize +5<cr>
+" zoom in / <c-w>= to zoom out
+nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
 
 
 " ------------------------------------------------------------------------------
@@ -369,6 +372,10 @@ let g:NERDCustomDelimiters = {
     \ 'borg': { 'left': '//'},
     \ 'textpb': { 'left': '#'}
   \ }
+" TODO mappings
+map <Leader>cd oTODO: <ESC><leader>c<space>A
+map <Leader>cD OTODO: <ESC><leader>c<space>A
+imap <Leader>cd TODO: <ESC><leader>c<space>A
 
 
 " ==============================================================================
@@ -386,17 +393,20 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 set laststatus=2
+
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
-let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 
 " ==============================================================================
@@ -465,6 +475,8 @@ map <c-a>b :CtrlPBuffer<cr>
 map <c-a>B :CtrlPBookmarkDir<cr>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
+let g:ctrlp_open_multiple_files = 't' " open multiple files vertically by default
+
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
@@ -476,6 +488,10 @@ cabbr cbb CtrlPBookmarkDirAdd
 
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<c-i>'],
+    \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>', '<c-l>'],
+    \ 'PrtCurRight()':        ['<right>'],
+    \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>', '<c-h>'],
+    \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
     \}
 
 
