@@ -223,13 +223,62 @@ map gh :tabprev <cr>
 map gl :tabnext <cr>
 map gj :tabfirst <cr>
 map gk :tablast <cr>
-map gH :tabm -1 <cr>
-map gL :tabm +1 <cr>
+map g, :tabm -1 <cr>
+map g. :tabm +1 <cr>
 map g? :tab help 
 
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
+
+function MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    " sp
+    vert below split
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    " sp
+    vert below split
+  else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+map g< :call MoveToPrevTab()<CR>
+map g> :call MoveToNextTab()<CR>
 
 
 " ------------------------------------------------------------------------------
