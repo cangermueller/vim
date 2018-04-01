@@ -59,8 +59,6 @@ set noswapfile
 set list
 set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 
-set spell
-set spelllang=en_us
 
 runtime ftplugin/man.vim " :Man MANPAGE
 let g:ft_man_open_mode = 'tab'
@@ -79,10 +77,13 @@ set background=dark
 colorscheme solarized
 
 
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+" ==============================================================================
+" Spell checking
+" ==============================================================================
+set spell
+set spelllang=en_us
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 
 " ==============================================================================
@@ -374,8 +375,8 @@ map <LocalLeader>ck :lprev <cr>
 " Spell checking
 " ------------------------------------------------------------------------------
 map <LocalLeader>st :setlocal spell!<cr>
-map <LocalLeader>sj ]s
-map <LocalLeader>sk [s
+map <LocalLeader>sk ]s
+map <LocalLeader>sj [s
 map <LocalLeader>ss z=
 " add word
 map <LocalLeader>sa zg
