@@ -357,7 +357,7 @@ vmap <Leader>Y :<cr>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbco
 " Quickfix
 command! ClearQuickfix cclose | call setqflist([])
 
-map <LocalLeader>vv :botright cw <cr><cr>
+map <LocalLeader>vv :botright cw  5<cr><cr>
 map <LocalLeader>ve :cclose <cr>
 map <LocalLeader>vj :cnext <cr>
 map <LocalLeader>vk :cprev <cr>
@@ -365,7 +365,7 @@ map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vc :ClearQuickfix<cr>
 
 " Location list
-map <LocalLeader>cc :botright lopen<cr><cr>
+map <LocalLeader>cc :botright lopen 5<cr><cr>
 map <LocalLeader>ce :lcl <cr>
 map <LocalLeader>cj :lnext <cr>
 map <LocalLeader>ck :lprev <cr>
@@ -515,9 +515,8 @@ let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
 map <c-a>p :CtrlP<cr>
-map <c-m> :CtrlPFunky<cr>
+map <c-n> :CtrlPFunky<cr>
 map <c-a>f :CtrlPFunky<cr>
-map <c-n> :CtrlPCurFile<cr>
 map <c-a>D :CtrlPDir<cr>
 map <c-a>l :CtrlPLine<cr>
 map <c-a>b :CtrlPBuffer<cr>

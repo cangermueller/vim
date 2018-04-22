@@ -14,7 +14,7 @@ call vundle#begin()
 
 
 Bundle 'gmarik/Vundle.vim'
-Bundle 'klen/python-mode'
+Bundle 'python-mode/python-mode'
 Bundle 'davidhalter/jedi-vim'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
