@@ -48,9 +48,8 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " ==============================================================================
 " Key binding
 " ==============================================================================
-map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>:wincmd j<CR>gg<CR>
-map <LocalLeader>lL :lclose<CR>:PymodeLint<CR>
-map <LocalLeader>lq :lclose<CR>
+map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>
+map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 if executable("ipdb")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>

@@ -357,16 +357,16 @@ vmap <Leader>Y :<cr>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbco
 " Quickfix
 command! ClearQuickfix cclose | call setqflist([])
 
-map <LocalLeader>vv :botright cw <cr>
-map <LocalLeader>vq :cclose <cr>
+map <LocalLeader>vv :botright cw <cr><cr>
+map <LocalLeader>ve :cclose <cr>
 map <LocalLeader>vj :cnext <cr>
 map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vc :ClearQuickfix<cr>
 
 " Location list
-map <LocalLeader>cc :botright lopen 50 <cr>
-map <LocalLeader>cq :lcl <cr>
+map <LocalLeader>cc :botright lopen<cr><cr>
+map <LocalLeader>ce :lcl <cr>
 map <LocalLeader>cj :lnext <cr>
 map <LocalLeader>ck :lprev <cr>
 
@@ -515,11 +515,10 @@ let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
 map <c-a>p :CtrlP<cr>
+map <c-m> :CtrlPFunky<cr>
 map <c-a>f :CtrlPFunky<cr>
-map <c-a>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-map <c-a>d :CtrlPCurFile<cr>
+map <c-n> :CtrlPCurFile<cr>
 map <c-a>D :CtrlPDir<cr>
-map <c-a>m :CtrlPMRUFiles<cr>
 map <c-a>l :CtrlPLine<cr>
 map <c-a>b :CtrlPBuffer<cr>
 map <c-a>B :CtrlPBookmarkDir<cr>
@@ -530,9 +529,8 @@ let g:ctrlp_open_multiple_files = 't' " open multiple files vertically by defaul
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
-let g:ctrlp_funky_multi_buffers = 1
 let g:ctrlp_funky_sort_by_mru = 1
-" let g:ctrlp_funky_nerdtree_include_files = 1
+let g:ctrlp_funky_multi_buffers = 1 " does not work.
 
 cabbr cbb CtrlPBookmarkDirAdd
 
@@ -571,3 +569,9 @@ abbr gtf :e $cp/tensorflow.txt<cr>
 abbr gcv :e $cv<cr>gg 5j zt
 abbr gbrc :e $brc<cr>
 abbr gbrC :e $brC<cr>
+
+
+vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
+map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
+map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
