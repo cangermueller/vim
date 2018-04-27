@@ -514,12 +514,12 @@ map <Leader>Gl :Glog<cr>:botright cw<cr>
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
-map <c-a>p :CtrlP<cr>
-map <c-n> :CtrlPFunky<cr>
-map <c-a>d :CtrlPFunky<cr>
+map <c-a>p :CtrlPBuffer<cr>
+map <c-a>j :CtrlPFunky<cr>
+map <c-a>k :CtrlPFunkyMulti<cr>
+map <c-a>i :CtrlPCurFile<cr>
 map <c-a>l :CtrlPLine<cr>
-map <c-a>b :CtrlPBuffer<cr>
-map <c-a>B :CtrlPBookmarkDir<cr>
+map <c-a>b :CtrlPBookmarkDir<cr>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_open_multiple_files = 't' " open multiple files vertically by default
