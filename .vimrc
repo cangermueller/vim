@@ -516,19 +516,21 @@ let g:ctrlp_regexp = 1
 
 map <c-a>p :CtrlPBuffer<cr>
 map <c-a>j :CtrlPFunky<cr>
-map <c-a>k :CtrlPFunkyMulti<cr>
+map <c-a>J :CtrlPFunkyMulti<cr>
+map <c-a>k :CtrlPBufTag<cr>
+map <c-a>K :CtrlPBufTagAll<cr>
 map <c-a>i :CtrlPCurFile<cr>
 map <c-a>l :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
-let g:ctrlp_open_multiple_files = 't' " open multiple files vertically by default
 
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
 let g:ctrlp_funky_sort_by_mru = 1
 let g:ctrlp_funky_multi_buffers = 1 " does not work.
+let g:ctrlp_open_multiple_files = 'v' " open multiple files vertically by default
 
 cabbr cbb CtrlPBookmarkDirAdd
 
