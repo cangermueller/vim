@@ -516,9 +516,8 @@ let g:ctrlp_regexp = 1
 
 map <c-a>p :CtrlPBuffer<cr>
 map <c-a>j :CtrlPFunky<cr>
-map <c-a>J :CtrlPFunkyMulti<cr>
-map <c-a>k :CtrlPBufTag<cr>
-map <c-a>K :CtrlPBufTagAll<cr>
+map <c-a>k :CtrlPFunkyMulti<cr>
+map <c-a>u :CtrlPBufTagAll<cr>
 map <c-a>i :CtrlPCurFile<cr>
 map <c-a>l :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
