@@ -555,22 +555,3 @@ let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
 if filereadable($HOME . '/.vim/local_post.vim')
   source ~/.vim/local_post.vim
 endif
-
-
-" ==============================================================================
-" Jumping to frequently used directories
-" ==============================================================================
-abbr gcb :e $cb<cr>gg 5j zt
-abbr gcg :e $cg<cr>gg 5j zt
-abbr gcr :e $cr<cr>gg 5j zt
-abbr gcp :e $cp<cr>gg 5j zt
-abbr gtf :e $cp/tensorflow.txt<cr>
-abbr gcv :e $cv<cr>gg 5j zt
-abbr gbrc :e $brc<cr>
-abbr gbrC :e $brC<cr>
-
-
-vmap <silent> ,y y:new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
-nmap <silent> ,y :new<CR>:call setline(1,getregtype())<CR>o<Esc>P:wq! ~/reg.txt<CR>
-map <silent> ,p :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>p
-map <silent> ,P :sview ~/reg.txt<CR>"zdddG:q!<CR>:call setreg('"', @", @z)<CR>P
