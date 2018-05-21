@@ -227,6 +227,7 @@ map gk :tablast <cr>
 map g, :tabm -1 <cr>
 map g. :tabm +1 <cr>
 map g? :tab help 
+cabbr ? help
 
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
@@ -359,14 +360,15 @@ command! ClearQuickfix cclose | call setqflist([])
 
 map <LocalLeader>vv :botright cw  5<cr><cr>
 map <LocalLeader>ve :cclose <cr>
+map <LocalLeader>vf :cfirst <cr>
 map <LocalLeader>vj :cnext <cr>
-map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vc :ClearQuickfix<cr>
 
 " Location list
 map <LocalLeader>cc :botright lopen 5<cr><cr>
 map <LocalLeader>ce :lcl <cr>
+map <LocalLeader>cf :lfirst <cr>
 map <LocalLeader>cj :lnext <cr>
 map <LocalLeader>ck :lprev <cr>
 
@@ -462,14 +464,31 @@ let g:airline#extensions#branch#enabled = 1
 " ==============================================================================
 " EasyGrep, vimgrep
 " ==============================================================================
+" \vv // match word
+" \vV // match whole word
+" \vo // option explorer
+" \vr // replace word
+"   * buffers (\vyb), to replace in all buffers
+"   * 'User' (\vyu), to replace only in current file
+" \vR // replace whole word
+" Replace what by // will ask for confirmation
+" Replace /num?y/numpy/
+" ReplaceUndo
 let EasyGrepCommand=1
 let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
 let EasyGrepJumpToMatch=1
 let EasyGrepMode=2
 let EasyGrepEveryMatch=1
-let EasyGrepReplaceWindowMode=2
+let EasyGrepWindow=1
+let EasyGrepReplaceWindowMode=0
+
+cabbr eg Grep
+
+
+" ==============================================================================
+" Substitution / replacements
+" ==============================================================================
 cabbr vg vimgrep
-cabbr eg Grep -R
 " Grep word under cursor and show occurrences in current file
 map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botright cw<cr><c-w>k
 

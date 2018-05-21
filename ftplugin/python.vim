@@ -49,6 +49,7 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " Key binding
 " ==============================================================================
 map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>
+map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>:lfirst<CR>
 map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 if executable("ipdb")
