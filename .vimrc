@@ -279,6 +279,7 @@ function MoveToNextTab()
   exe "b".l:cur_buf
 endfunc
 
+" Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
 
