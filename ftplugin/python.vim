@@ -35,7 +35,7 @@ let g:pymode_options_max_line_length = 80
 " pep257: documentation
 " pyflakes: syntax
 " pylint: syntax, very verbose
-let g:pymode_lint_ignore = ['E402'] " module level import not at top
+" let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " E501: line too long (83 > 79 characters) [pep8]
 " E402: module level import not at top of file
 " E111: indentation not multiple of four
@@ -43,6 +43,14 @@ let g:pymode_lint_ignore = ['E402'] " module level import not at top
 " E129: visually indented line with same indent as next logical line
 " E125: continuation line with same indent as next logical line
 " C901: function is too complex (21)
+"
+autocmd BufNewFile,BufRead *.py let g:pymode_lint_ignore = [
+      \'E402',
+      \'E111',
+      \'E114',
+      \'E129',
+      \'E125',
+      \'C901']
 
 
 " ==============================================================================
@@ -59,12 +67,10 @@ else
   map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
 endif
-map <LocalLeader>bp oimport pdb; pdb.set_trace()<ESC>
-map <LocalLeader>bP Oimport pdb; pdb.set_trace()<ESC>
+map <LocalLeader>pp oimport pdb; pdb.set_trace()<ESC>
+map <LocalLeader>pP Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bI oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>bu oimport pudb; pudb.set_trace()<ESC>
-map <LocalLeader>bU Oimport pudb; pudb.set_trace()<ESC>
 map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
 map <LocalLeader>bf /pdb\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p

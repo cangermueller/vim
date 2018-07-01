@@ -256,6 +256,24 @@ function MoveToPrevTab()
   exe "b".l:cur_buf
 endfunc
 
+" ------------------------------------------------------------------------------
+" Windows
+" ------------------------------------------------------------------------------
+nmap <c-w>k :wincmd k<cr>
+nmap <c-w>j :wincmd j<cr>
+nmap <c-w>h :wincmd h<cr>
+nmap <c-w>l :wincmd l<cr>
+nmap <c-w>L :vsplit<cr>
+nmap <c-w>H :vsplit<cr>:wincmd h<cr>
+nmap <c-w>J :split<cr>
+nmap <c-w>K :split<cr>:wincmd k<cr>
+nmap <C-w><up> :resize -5<cr>
+nmap <C-w><down> :resize +5<cr>
+nmap <C-w><left> :vertical resize -5<cr>
+nmap <c-w><right> :vertical resize +5<cr>
+" zoom in / <c-w>= to zoom out
+nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
+
 function MoveToNextTab()
   "there is only one window
   if tabpagenr('$') == 1 && winnr('$') == 1
@@ -283,24 +301,6 @@ endfunc
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
 
-
-" ------------------------------------------------------------------------------
-" Windows
-" ------------------------------------------------------------------------------
-nmap <c-w>k :wincmd k<cr>
-nmap <c-w>j :wincmd j<cr>
-nmap <c-w>h :wincmd h<cr>
-nmap <c-w>l :wincmd l<cr>
-nmap <c-w>L :vsplit<cr>
-nmap <c-w>H :vsplit<cr>:wincmd h<cr>
-nmap <c-w>J :split<cr>
-nmap <c-w>K :split<cr>:wincmd k<cr>
-nmap <C-w><up> :resize -5<cr>
-nmap <C-w><down> :resize +5<cr>
-nmap <C-w><left> :vertical resize -5<cr>
-nmap <c-w><right> :vertical resize +5<cr>
-" zoom in / <c-w>= to zoom out
-nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
 
 
 " ------------------------------------------------------------------------------
@@ -539,8 +539,10 @@ map <c-a>j :CtrlPFunky<cr>
 map <c-a>k :CtrlPFunkyMulti<cr>
 map <c-a>u :CtrlPBufTagAll<cr>
 map <c-a>i :CtrlPCurFile<cr>
-map <c-a>l :CtrlPLine<cr>
+map <c-a>l :CtrlPLine %<cr>
+map <c-a>L :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
+map <c-a>m :CtrlPSmartTabs<cr>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
