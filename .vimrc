@@ -269,10 +269,12 @@ nmap <c-w>J :split<cr>
 nmap <c-w>K :split<cr>:wincmd k<cr>
 nmap <C-w><up> :resize -5<cr>
 nmap <C-w><down> :resize +5<cr>
-nmap <C-w><left> :vertical resize -5<cr>
-nmap <c-w><right> :vertical resize +5<cr>
+nmap <C-w><right> :vertical resize -5<cr>
+nmap <c-w><left> :vertical resize +5<cr>
 " zoom in / <c-w>= to zoom out
 nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
+" close below
+nmap <LocalLeader>me :wincmd j<cr>:wincmd q<cr>
 
 function MoveToNextTab()
   "there is only one window
@@ -300,6 +302,13 @@ endfunc
 " Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
+
+
+" ------------------------------------------------------------------------------
+" winresizer
+" ------------------------------------------------------------------------------
+" let g:winresizer_start_key="<c-w>w"
+let g:winresizer_start_key="<c-w>w"
 
 
 
@@ -365,6 +374,9 @@ map <LocalLeader>vf :cfirst <cr>
 map <LocalLeader>vj :cnext <cr>
 map <LocalLeader>vk :cprev <cr>
 map <LocalLeader>vc :ClearQuickfix<cr>
+
+" open selection in tab
+autocmd FileType qf nnoremap <buffer> <c-i> <c-w><Enter><c-w>T 
 
 " Location list
 map <LocalLeader>cc :botright lopen 5<cr><cr>
@@ -569,6 +581,24 @@ let g:ctrlp_prompt_mappings = {
 " ==============================================================================
 let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
+
+
+" ==============================================================================
+" easy-align
+" ==============================================================================
+" gaip, // align paragraph by 1st ,
+" gaip*, // align paragraph by all ,
+" a= // align in visual mode by =
+" :EasyAlign  // starts interative mode
+"   c-d   // press c-d multiple times to change alignment
+" :EasyAlign 1 ,  // align by 1st ,
+" :EasyAlign * ,  // align by all ,
+" :EasyAlign! * , // right-align all by ,
+" :EasyAlign * ,ar  // right-align all by ,
+" :EasyAlign * ,ac  // center-align all by ,
+" Use <c-i> to open quickfix selection in new tab (see above)
+vmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 
 " ==============================================================================

@@ -34,6 +34,9 @@ Bundle 'DavidEGx/ctrlp-smarttabs'
 Bundle 'jalvesaq/Nvim-R'
 Bundle 'tpope/vim-surround'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'vim-scripts/a.vim'
+Bundle 'simeji/winresizer'
 
 call vundle#end()
 filetype plugin indent on
