@@ -274,7 +274,7 @@ nmap <c-w><left> :vertical resize +5<cr>
 " zoom in / <c-w>= to zoom out
 nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
 " close below
-nmap <LocalLeader>me :wincmd j<cr>:wincmd q<cr>
+nmap <LocalLeader>ne :wincmd j<cr>:wincmd q<cr>
 
 function MoveToNextTab()
   "there is only one window
@@ -308,6 +308,9 @@ map g> :call MoveToNextTab()<CR>
 " winresizer
 " ------------------------------------------------------------------------------
 " let g:winresizer_start_key="<c-w>w"
+" r // resize mode
+" m // move mode
+" f // focus mode
 let g:winresizer_start_key="<c-w>w"
 
 
@@ -435,7 +438,8 @@ let g:NERDCustomDelimiters = {
     \ 'unison': { 'left': '#'},
     \ 'python': { 'left': '#'},
     \ 'borg': { 'left': '//'},
-    \ 'textpb': { 'left': '#'}
+    \ 'textpb': { 'left': '#'},
+    \ 'proto': { 'left': '//'}
   \ }
 " TODO mappings
 map <Leader>cd oTODO: <ESC><leader>c<space>A
@@ -564,6 +568,7 @@ let g:ctrlp_funky_after_jump = 'zxzt'
 let g:ctrlp_funky_sort_by_mru = 1
 let g:ctrlp_funky_multi_buffers = 1 " does not work.
 let g:ctrlp_open_multiple_files = 'v' " open multiple files vertically by default
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30'
 
 cabbr cbb CtrlPBookmarkDirAdd
 
@@ -599,6 +604,25 @@ let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
 " Use <c-i> to open quickfix selection in new tab (see above)
 vmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+
+" ==============================================================================
+" Fuzzy Finder
+" ==============================================================================
+" :FZF DIRECTORY
+set rtp+=~/opt/stow/fzf
+map <c-a>I :FZF <c-r>=expand("%:p:h")<cr><cr>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'tab split',
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-l': 'vsplit'
+  \}
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
 
 
 " ==============================================================================

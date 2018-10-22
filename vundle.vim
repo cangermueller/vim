@@ -37,6 +37,7 @@ Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'vim-scripts/a.vim'
 Bundle 'simeji/winresizer'
+Bundle 'tpope/vim-repeat'
 
 call vundle#end()
 filetype plugin indent on
