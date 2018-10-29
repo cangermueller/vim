@@ -56,8 +56,8 @@ autocmd BufNewFile,BufRead *.py let g:pymode_lint_ignore = [
 " ==============================================================================
 " Key binding
 " ==============================================================================
-map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>
-map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>:lfirst<CR>
+map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>
+map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>:lfirst<CR>
 map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 if executable("ipdb")

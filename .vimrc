@@ -302,6 +302,8 @@ endfunc
 " Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
+command! -nargs=1 L vsplit <args>
+command! -nargs=1 H split <args>
 
 
 " ------------------------------------------------------------------------------
@@ -566,7 +568,7 @@ let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
 let g:ctrlp_funky_sort_by_mru = 1
-let g:ctrlp_funky_multi_buffers = 1 " does not work.
+" let g:ctrlp_funky_multi_buffers = 1 " does not work.
 let g:ctrlp_open_multiple_files = 'v' " open multiple files vertically by default
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30'
 
