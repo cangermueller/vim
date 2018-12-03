@@ -538,7 +538,7 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 " ==============================================================================
 " Fugitive
 " ==============================================================================
-map <Leader>Gg :GDiff<cr>:wincmd t<cr>gg
+map <Leader>Gg :Gdiff<cr>:wincmd r<cr>:wincmd t<cr>gg
 map <Leader>Gh :windo diffoff<cr>:wincmd t<cr>:wincmd o<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>

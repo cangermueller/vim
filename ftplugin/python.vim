@@ -70,7 +70,7 @@ endif
 map <LocalLeader>pp oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>pP Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>bI oimport ipdb; ipdb.set_trace()<ESC>
+map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
 map <LocalLeader>bf /pdb\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
