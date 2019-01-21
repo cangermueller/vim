@@ -264,7 +264,9 @@ nmap <c-w>j :wincmd j<cr>
 nmap <c-w>h :wincmd h<cr>
 nmap <c-w>l :wincmd l<cr>
 nmap <c-w>L :vsplit<cr>
+cabbr L :vsplit
 nmap <c-w>H :vsplit<cr>:wincmd h<cr>
+cabbr H :split
 nmap <c-w>J :split<cr>
 nmap <c-w>K :split<cr>:wincmd k<cr>
 nmap <C-w><up> :resize -5<cr>
@@ -302,8 +304,6 @@ endfunc
 " Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
-cabbr L vsplit
-cabbr H split
 
 
 " ------------------------------------------------------------------------------
@@ -441,7 +441,7 @@ let g:NERDCustomDelimiters = {
     \ 'python': { 'left': '#'},
     \ 'borg': { 'left': '//'},
     \ 'textpb': { 'left': '#'},
-    \ 'proto': { 'left': '//'},
+    \ 'proto': { 'left': '//'}
   \ }
 " TODO mappings
 map <Leader>cd oTODO: <ESC><leader>c<space>A
@@ -515,14 +515,11 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 " replace word under cursor
 :map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vs :.,$s/\<<C-r><C-w>\>/
-:map <leader>Vw :%s/\<<C-r><C-w>\>/
-:vmap <leader>Vv y<esc>%s/<c-r>"/
 " replace windows ^M newline (encoding, line wrap)
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 " replace tabs by spaces
 :map <Leader>Vt :%s/\t/  /g
 :map <Leader>VT :tabdo :%s/
-:map <Leader>VB :bufdo :%s/
 
 
 " ==============================================================================
@@ -560,7 +557,6 @@ map <c-a>j :CtrlPFunky<cr>
 map <c-a>k :CtrlPFunkyMulti<cr>
 map <c-a>u :CtrlPBufTagAll<cr>
 map <c-a>i :CtrlPCurFile<cr>
-map <c-a>o :CtrlPCurWD<cr>
 map <c-a>l :CtrlPLine %<cr>
 map <c-a>L :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
