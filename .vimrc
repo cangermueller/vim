@@ -101,27 +101,26 @@ endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
 
 function DeleteEndLines()
-    let save_cursor = getpos(".")
-    :silent! %s#\($\n\s*\)\+\%$##
-    call setpos('.', save_cursor)
+  let save_cursor = getpos(".")
+  :silent! %s#\($\n\s*\)\+\%$##
+  call setpos('.', save_cursor)
 endfunction
 autocmd BufWrite * :call DeleteEndLines()
 
 
 " ==============================================================================
-" autocmd
+" autocmd / filetype
 " ==============================================================================
-autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.gin set filetype=gin
+
+autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 " Do not break/wrap lines automatically
 autocmd FileType * setlocal formatoptions-=t
 autocmd FileType * setlocal formatoptions-=c
 set filetype-=t
 set filetype-=c
-" change cwd to current file on insert mode
-" autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-" autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 
 
 
@@ -441,7 +440,8 @@ let g:NERDCustomDelimiters = {
     \ 'python': { 'left': '#'},
     \ 'borg': { 'left': '//'},
     \ 'textpb': { 'left': '#'},
-    \ 'proto': { 'left': '//'}
+    \ 'proto': { 'left': '//'},
+    \ 'gin': { 'left': '#'}
   \ }
 " TODO mappings
 map <Leader>cd oTODO: <ESC><leader>c<space>A
@@ -538,8 +538,16 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 " ==============================================================================
 " Fugitive
 " ==============================================================================
+function DiffOff()
+  diffoff
+  wincmd l
+  diffoff
+  wincmd q
+endfunction
+
 map <Leader>Gg :Gdiff<cr>:wincmd r<cr>:wincmd t<cr>gg
-map <Leader>Gh :windo diffoff<cr>:wincmd t<cr>:wincmd o<cr>
+" map <Leader>Gh :windo diffoff<cr>:wincmd t<cr>:wincmd o<cr>
+map <Leader>Gh :call DiffOff()<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
 map <Leader>Gb :Gblame<cr>

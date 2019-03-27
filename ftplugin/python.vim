@@ -42,6 +42,7 @@ let g:pymode_options_max_line_length = 80
 " E114: indentation not multiple of four
 " E129: visually indented line with same indent as next logical line
 " E125: continuation line with same indent as next logical line
+" E231: missing whitespace after ','
 " C901: function is too complex (21)
 "
 autocmd BufNewFile,BufRead *.py let g:pymode_lint_ignore = [
@@ -50,7 +51,10 @@ autocmd BufNewFile,BufRead *.py let g:pymode_lint_ignore = [
       \'E114',
       \'E129',
       \'E125',
+      \'E501',
+      \'E231',
       \'C901']
+
 
 
 " ==============================================================================
