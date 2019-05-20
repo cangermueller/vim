@@ -71,8 +71,8 @@ else
   map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
 endif
-map <LocalLeader>pp oimport pdb; pdb.set_trace()<ESC>
-map <LocalLeader>pP Oimport pdb; pdb.set_trace()<ESC>
+map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>
+map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
@@ -151,3 +151,7 @@ map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
 map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
 map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>
 map <LocalLeader>jI [[3kz.
+
+if filereadable($HOME . '/.vim/ftplugin/python_local.vim')
+  source ~/.vim/ftplugin/python_local.vim
+endif

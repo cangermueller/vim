@@ -3,5 +3,6 @@
 bundle/
 /spell/
 local*
+ftplugin/python_local.vim
 
 .netrwhist

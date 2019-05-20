@@ -447,6 +447,7 @@ let g:NERDCustomDelimiters = {
 map <Leader>cd oTODO: <ESC><leader>c<space>A
 map <Leader>cD OTODO: <ESC><leader>c<space>A
 imap <Leader>cd TODO: <ESC><leader>c<space>A
+" vmap <Leader>c<space> :NERDCommenterToggle<cr>
 
 
 " ==============================================================================
@@ -501,6 +502,12 @@ let EasyGrepEveryMatch=1
 let EasyGrepWindow=1
 let EasyGrepReplaceWindowMode=0
 
+
+" function GrepRel()
+"   let EasyGrepRoot = expand('<sfile>:p:h')
+"   call s:GrepCommandLine( <q-args> , "")
+" endfunction
+"
 cabbr eg Grep
 
 
