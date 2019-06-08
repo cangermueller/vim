@@ -29,7 +29,9 @@ let g:pymode_lint_cwindow = 1
 let g:pymode_lint_message = 1
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
-let g:pymode_lint_checkers = ['pep8', 'pyflakes']
+"let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+" let g:pymode_lint_checkers = ['pylint', 'pep8', 'pyflakes']
+let g:pymode_lint_checkers = ['pylint', 'pep8', 'pyflakes']
 let g:pymode_options_max_line_length = 80
 " pep8: code convention
 " pep257: documentation
@@ -71,12 +73,16 @@ else
   map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
 endif
+
 map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
 map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>bd :g/pdb\.set_trace()/d<CR>:w<CR>
-map <LocalLeader>bf /pdb\.set_trace<CR>zz:set nohls<CR>
+map <LocalLeader>uu oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>uU Oimport pudb; pudb.set_trace()<ESC>
+
+map <LocalLeader>bd :g/db\.set_trace()/d<CR>:w<CR>
+map <LocalLeader>bf /db\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
 map ff /for.*:$<CR>
 
