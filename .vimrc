@@ -494,13 +494,16 @@ let g:airline#extensions#branch#enabled = 1
 " Replace what by // will ask for confirmation
 " Replace /num?y/numpy/
 " ReplaceUndo
-let EasyGrepCommand=1
-let g:EasyGrepFilesToExclude=".svn,.git,*.pyc,*.swp"
-let EasyGrepJumpToMatch=1
-let EasyGrepMode=2
-let EasyGrepEveryMatch=1
-let EasyGrepWindow=1
-let EasyGrepReplaceWindowMode=0
+let EasyGrepCommand = 1
+let g:EasyGrepFilesToExclude = ".svn,.git,*.pyc,*.swp"
+let EasyGrepJumpToMatch = 0
+let EasyGrepMode = 2
+let EasyGrepEveryMatch = 1
+let EasyGrepWindow = 1
+let EasyGrepReplaceWindowMode = 2
+let EasyGrepRecursive = 1
+let EasyGrepSearchCurrentBufferDir = 0
+let EasyGrepIgnoreCase = 0
 
 
 " function GrepRel()
