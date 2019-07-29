@@ -530,6 +530,7 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 " replace tabs by spaces
 :map <Leader>Vt :%s/\t/  /g
 :map <Leader>VT :tabdo :%s/
+:map <Leader>Vc :g/^\s*#/d<cr>
 
 
 " ==============================================================================
