@@ -104,7 +104,7 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 set noshowmode "needed for call_signatures=2
 " call_signature: 1=above, 2=bottom
-let g:jedi#show_call_signatures = 2
+let g:jedi#show_call_signatures = 0
 let g:jedi#show_call_signatures_delay = 1
 let g:jedi#auto_close_doc = 1
 map <LocalLeader>jj :call jedi#goto() <CR>zt

@@ -48,7 +48,7 @@ set splitbelow
 set updatetime=1000
 set backspace=2 " Fix backspace problem since vim7.4
 set showmatch " Show matching bracket
-set mat=2 " Time show matching bracket
+set matchtime=2 " Time show matching bracket
 
 set undofile
 set undodir=~/.vim/undo
@@ -179,8 +179,6 @@ map <Leader>Dl ddO<esc>
 " Change indentation
 map <Leader>T2 :set tabstop=8 softtabstop=2 shiftwidth=2<CR>
 map <Leader>T4 :set tabstop=8 softtabstop=4 shiftwidth=4<CR>
-" Source .vimrc
-map <Leader>Vr :source ~/.vimrc<CR>
 
 " Exiting
 map <Leader>Q :qa!<cr>
@@ -523,8 +521,10 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 
 " Substitution, replacement
 " replace word under cursor
-:map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vs :.,$s/\<<C-r><C-w>\>/
+:map <leader>VS :%s/\<<C-r><C-w>\>/
+:map <leader>Vr :.,$s/<C-r><C-w>/
+:map <leader>VR :%s/<C-r><C-w>/
 " replace windows ^M newline (encoding, line wrap)
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 " replace tabs by spaces
