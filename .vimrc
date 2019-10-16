@@ -78,15 +78,6 @@ colorscheme solarized
 
 
 " ==============================================================================
-" Spell checking
-" ==============================================================================
-set spell
-set spelllang=en_us
-hi clear SpellBad
-hi SpellBad cterm=underline
-
-
-" ==============================================================================
 " Trailing whitespaces
 " ==============================================================================
 func! DeleteTrailingWS()
@@ -199,6 +190,10 @@ nmap <C-a>a ^
 nmap <C-a>e $
 
 
+" Diff since last write
+" :w !diff - %
+
+
 " ------------------------------------------------------------------------------
 " Tabs
 " ------------------------------------------------------------------------------
@@ -261,14 +256,15 @@ nmap <c-w>j :wincmd j<cr>
 nmap <c-w>h :wincmd h<cr>
 nmap <c-w>l :wincmd l<cr>
 nmap <c-w>L :vsplit<cr>
+nmap <c-w>O :vsplit<cr>:e <c-r>=expand("%:p:r")<cr>
 cabbr L :vsplit
 nmap <c-w>H :vsplit<cr>:wincmd h<cr>
 cabbr H :split
 nmap <c-w>J :split<cr>
 nmap <c-w>K :split<cr>:wincmd k<cr>
-nmap <C-w><up> :resize -5<cr>
-nmap <C-w><down> :resize +5<cr>
-nmap <C-w><right> :vertical resize -5<cr>
+nmap <c-w><up> :resize -5<cr>
+nmap <c-w><down> :resize +5<cr>
+nmap <c-w><right> :vertical resize -5<cr>
 nmap <c-w><left> :vertical resize +5<cr>
 " zoom in / <c-w>= to zoom out
 nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
@@ -391,6 +387,11 @@ map <LocalLeader>ck :lprev <cr>
 " ------------------------------------------------------------------------------
 " Spell checking
 " ------------------------------------------------------------------------------
+set spell
+set spelllang=en_us
+hi clear SpellBad
+hi SpellBad cterm=underline
+
 map <LocalLeader>st :setlocal spell!<cr>
 map <LocalLeader>sk ]s
 map <LocalLeader>sj [s
@@ -575,7 +576,7 @@ map <c-a>p :CtrlPBuffer<cr>
 map <c-a>j :CtrlPFunky<cr>
 map <c-a>k :CtrlPFunkyMulti<cr>
 map <c-a>u :CtrlPBufTagAll<cr>
-map <c-a>i :CtrlPCurFile<cr>
+map <c-a>I :CtrlPCurFile<cr>
 map <c-a>l :CtrlPLine %<cr>
 map <c-a>L :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
@@ -583,6 +584,7 @@ map <c-a>m :CtrlPSmartTabs<cr>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
+let g:ctrlp_map = ''
 let g:ctrlp_funky_matchtype = 'path'
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_funky_after_jump = 'zxzt'
@@ -600,6 +602,10 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>', '<c-h>'],
     \ 'PrtCurLeft()':         ['<left>', '<c-^>'],
     \}
+
+set grepprg=rg\ --color=never
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+let g:ctrlp_use_caching = 0
 
 
 " ==============================================================================
@@ -632,7 +638,15 @@ nmap ga <Plug>(EasyAlign)
 " ==============================================================================
 " :FZF DIRECTORY
 set rtp+=~/opt/stow/fzf
-map <c-a>I :FZF <c-r>=expand("%:p:h")<cr><cr>
+
+let g:fzf_command_prefix = 'FZF'
+map <c-a>i :FZF <c-r>=expand("%:p:h")<cr><cr>
+map <c-a>o :FZFRg<cr>
+map <c-a>l :FZFBLines<cr>
+map <c-a>L :FZFLines<cr>
+map <c-a>p :FZFHistory<cr>
+map <c-p> :FZFHistory<cr>
+map <c-a>b :FZFBuffer<cr>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -642,8 +656,28 @@ let g:fzf_action = {
   \ 'ctrl-l': 'vsplit'
   \}
 
-let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+" ==============================================================================
+" indentLine
+" ==============================================================================
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+map <leader>Si :IndentLinesToggle<cr>
+
+
+
+" ==============================================================================
+" startify
+" ==============================================================================
+map <leader>SS :Startify<cr>
+
+
+" ==============================================================================
+" sideways
+" ==============================================================================
+map <localleader>a, :SidewaysLeft<cr>
+map <localleader>a. :SidewaysRight<cr>
+map <localleader>a< :SidewaysJumpLeft<cr>
+map <localleader>a> :SidewaysJumpRight<cr>
 
 
 " ==============================================================================

@@ -32,30 +32,30 @@ let g:pymode_lint_sort = ['E', 'C', 'I']
 "let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
 " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pyflakes']
 let g:pymode_python = 'python3'
-let g:pymode_lint_checkers = ['pylint', 'pep8', 'pyflakes']
+" let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_lint_checkers = ['pyflakes']
 let g:pymode_options_max_line_length = 80
+let g:pymode_lint_options_pep8 = {
+  \ 'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_options_colorcolumn = 1
 " pep8: code convention
 " pep257: documentation
 " pyflakes: syntax
 " pylint: syntax, very verbose
 " let g:pymode_lint_ignore = ['E402'] " module level import not at top
-" E501: line too long (83 > 79 characters) [pep8]
-" E402: module level import not at top of file
+" C901: function is too complex (21)
 " E111: indentation not multiple of four
 " E114: indentation not multiple of four
-" E129: visually indented line with same indent as next logical line
 " E125: continuation line with same indent as next logical line
+" E129: visually indented line with same indent as next logical line
 " E231: missing whitespace after ','
-" C901: function is too complex (21)
-"
-autocmd BufNewFile,BufRead *.py let g:pymode_lint_ignore = [
+" E402: module level import not at top of file
+" E501: line too long (83 > 79 characters) [pep8]
+let g:pymode_lint_ignore = [
       \'E402',
-      \'E111',
-      \'E114',
-      \'E129',
+      \'E124',
       \'E125',
-      \'E501',
-      \'E231',
+      \'E129',
       \'C901']
 
 
