@@ -572,11 +572,12 @@ map <Leader>Gl :Glog<cr>:botright cw<cr>
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
 let g:ctrlp_regexp = 1
 
+map <c-p> :CtrlPMRUFiles<cr>
 map <c-a>p :CtrlPBuffer<cr>
 map <c-a>j :CtrlPFunky<cr>
 map <c-a>k :CtrlPFunkyMulti<cr>
 map <c-a>u :CtrlPBufTagAll<cr>
-map <c-a>I :CtrlPCurFile<cr>
+map <c-a>i :CtrlPCurFile<cr>
 map <c-a>l :CtrlPLine %<cr>
 map <c-a>L :CtrlPLine<cr>
 map <c-a>b :CtrlPBookmarkDir<cr>
@@ -640,13 +641,7 @@ nmap ga <Plug>(EasyAlign)
 set rtp+=~/opt/stow/fzf
 
 let g:fzf_command_prefix = 'FZF'
-map <c-a>i :FZF <c-r>=expand("%:p:h")<cr><cr>
-map <c-a>o :FZFRg<cr>
-map <c-a>l :FZFBLines<cr>
-map <c-a>L :FZFLines<cr>
-map <c-a>p :FZFHistory<cr>
-map <c-p> :FZFHistory<cr>
-map <c-a>b :FZFBuffer<cr>
+map <c-a>I :FZF <c-r>=expand("%:p:h")<cr><cr>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -656,19 +651,28 @@ let g:fzf_action = {
   \ 'ctrl-l': 'vsplit'
   \}
 
+command! -bang -nargs=* FZFRg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always 
+  \   --colors "path:fg:190,220,255" --colors "line:fg:128,128,128" 
+  \   --smart-case '.shellescape(<q-args>), 1, 
+  \ { 'options': '--color hl:123,hl+:222' }, 0)
+
+function! FZFGrep()
+  let l:cur_dir = getcwd()
+  execute 'cd' expand('%:p:h')
+  execute 'FZFRg'
+  execute 'cd' l:cur_dir
+endfunction
+
+map <c-a>o :call FZFGrep()<cr>
+
 
 " ==============================================================================
 " indentLine
 " ==============================================================================
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 map <leader>Si :IndentLinesToggle<cr>
-
-
-
-" ==============================================================================
-" startify
-" ==============================================================================
-map <leader>SS :Startify<cr>
 
 
 " ==============================================================================

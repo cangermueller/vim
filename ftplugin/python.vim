@@ -68,19 +68,19 @@ map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>:lfirst<CR>
 map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 if executable("ipdb")
-  map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>
-  map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>
+  map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
+  map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
 else
-  map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>
-  map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>
+  map <LocalLeader>bb oimport pdb; pdb.set_trace()<ESC>:w<CR>
+  map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 endif
 
-map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>
-map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>
-map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>
-map <LocalLeader>uu oimport pudb; pudb.set_trace()<ESC>
-map <LocalLeader>uU Oimport pudb; pudb.set_trace()<ESC>
+map <LocalLeader>Bb oimport pdb; pdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>BB Oimport pdb; pdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>uu oimport pudb; pudb.set_trace()<ESC>:w<CR>
+map <LocalLeader>uU Oimport pudb; pudb.set_trace()<ESC>:w<CR>
 
 map <LocalLeader>bd :g/db\.set_trace()/d<CR>:w<CR>
 map <LocalLeader>bf /db\.set_trace<CR>zz:set nohls<CR>

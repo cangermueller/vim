@@ -38,7 +38,6 @@ Plugin 'vim-scripts/a.vim'
 Plugin 'simeji/winresizer'
 Plugin 'tpope/vim-repeat'
 Plugin 'Yggdroot/indentLine'
-Plugin 'mhinz/vim-startify'
 Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf.vim'
 
