@@ -324,16 +324,17 @@ map gvB :vertical sbNext <cr>
 " ------------------------------------------------------------------------------
 " Settings
 " ------------------------------------------------------------------------------
-map <Leader>St :set textwidth=0 <cr>
-map <Leader>ST :set textwidth=80 <cr>
-map <Leader>Sw :set wrap!<cr>
-map <Leader>So :set nonumber<cr>:set norelativenumber<cr>
-map <Leader>Sn :set number<cr>:set relativenumber!<cr>
-" map <Leader>Sa :set number<cr>:set relativenumber<cr>
+map <Leader>St :setl textwidth=0 <cr>
+map <Leader>ST :setl textwidth=80 <cr>
+map <Leader>Sw :setl wrap!<cr>
+map <Leader>So :setl nonumber<cr>:set norelativenumber<cr>
+map <Leader>Sn :setl number<cr>:set relativenumber!<cr>
 map <Leader>Se :set expandtab! <cr>
-map <Leader>Si :set ignorecase!<cr>l
+map <Leader>Si :setlocal ignorecase!<cr>l
 map <Leader>Sm :set mouse=a<CR>
 map <Leader>SM :set mouse=<CR>
+map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesToggle<cr>
+
 
 
 
@@ -672,7 +673,6 @@ map <c-a>o :call FZFGrep()<cr>
 " indentLine
 " ==============================================================================
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-map <leader>Si :IndentLinesToggle<cr>
 
 
 " ==============================================================================

@@ -75,8 +75,8 @@ else
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 endif
 
-map <LocalLeader>Bb oimport pdb; pdb.set_trace()<ESC>:w<CR>
-map <LocalLeader>BB Oimport pdb; pdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>:w<CR>
+map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>uu oimport pudb; pudb.set_trace()<ESC>:w<CR>
