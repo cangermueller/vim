@@ -74,7 +74,7 @@ filetype plugin on
 set t_Co=256
 let g:solarized_termcolors=256
 set background=dark
-colorscheme solarized
+colorscheme solarized8
 
 
 " ==============================================================================
@@ -149,10 +149,9 @@ set timeoutlen=500 " time to wait after leader key
 map <Leader>fF :NERDTree<cr>
 map <Leader>ff :NERDTree %:p:h<cr>
 
-" Change cwd/pwd to current file
 map <Leader>Ff :cd %:p:h<cr>
-" Show absolute path of current file
 map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
+map <Leader>FP :echo "<c-r>=expand("%:p:h")<cr>"<cr>
 map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
 map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
 " Find non-ASCII characters
@@ -527,11 +526,13 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vr :.,$s/<C-r><C-w>/
 :map <leader>VR :%s/<C-r><C-w>/
+:map <leader>Va :bufdo %s/<C-r><C-w>/
+:map <leader>VA :bufdo %s/
 " replace windows ^M newline (encoding, line wrap)
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 " replace tabs by spaces
 :map <Leader>Vt :%s/\t/  /g
-:map <Leader>VT :tabdo :%s/
+" Remove comments
 :map <Leader>Vc :g/^\s*#/d<cr>
 
 
@@ -690,3 +691,28 @@ map <localleader>a> :SidewaysJumpRight<cr>
 if filereadable($HOME . '/.vim/local_post.vim')
   source ~/.vim/local_post.vim
 endif
+
+
+if has('persistent_undo')
+  let target_path = expand('~/.config/vim-persisted-undo/')
+
+  if !isdirectory(target_path)
+    call system('mkdir -p ' . target_path)
+  endif
+
+  let &undodir = target_path
+  set undofile
+endif
+
+" use tab and shift tab to indent and de-indent code
+nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
+vnoremap <Tab>   >><Esc>gv
+vnoremap <S-Tab> <<<Esc>gv
+inoremap <S-Tab> <C-d>
+
+" use `u` to undo, use `U` to redo, mind = blown
+nnoremap U <C-r>
+
+" I always escape from this mode anyway, best never to enter it
+nnoremap <S-r> <Nop>

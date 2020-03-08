@@ -41,6 +41,13 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf.vim'
 
+Plugin 'romainl/flattened'
+Plugin 'lifepillar/vim-solarized8'
+
+" Plugin 'keith/parsec.vim'
+" Plugin 'arcticicestudio/nord-vim'
+" Plugin 'romainl/flattened'
+" Plugin 'romainl/flattened'
 
 call vundle#end()
 filetype plugin indent on
