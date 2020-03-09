@@ -188,9 +188,18 @@ imap <C-a>e <C-o>$
 nmap <C-a>a ^
 nmap <C-a>e $
 
+" use tab and shift tab to indent and de-indent code
+nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
+vnoremap <Tab>   >><Esc>gv
+vnoremap <S-Tab> <<<Esc>gv
+inoremap <S-Tab> <C-d>
 
-" Diff since last write
-" :w !diff - %
+" use `u` to undo, use `U` to redo, mind = blown
+nnoremap U <C-r>
+
+" I always escape from this mode anyway, best never to enter it
+nnoremap <S-r> <Nop>
 
 
 " ------------------------------------------------------------------------------
@@ -400,6 +409,21 @@ map <LocalLeader>ss z=
 map <LocalLeader>sa zg
 " remove word
 map <LocalLeader>sr zug
+
+
+" ==============================================================================
+" Persistent undo
+" ==============================================================================
+if has('persistent_undo')
+  let target_path = expand('~/.config/vim-persisted-undo/')
+
+  if !isdirectory(target_path)
+    call system('mkdir -p ' . target_path)
+  endif
+
+  let &undodir = target_path
+  set undofile
+endif
 
 
 " ==============================================================================
@@ -691,28 +715,3 @@ map <localleader>a> :SidewaysJumpRight<cr>
 if filereadable($HOME . '/.vim/local_post.vim')
   source ~/.vim/local_post.vim
 endif
-
-
-if has('persistent_undo')
-  let target_path = expand('~/.config/vim-persisted-undo/')
-
-  if !isdirectory(target_path)
-    call system('mkdir -p ' . target_path)
-  endif
-
-  let &undodir = target_path
-  set undofile
-endif
-
-" use tab and shift tab to indent and de-indent code
-nnoremap <Tab>   >>
-nnoremap <S-Tab> <<
-vnoremap <Tab>   >><Esc>gv
-vnoremap <S-Tab> <<<Esc>gv
-inoremap <S-Tab> <C-d>
-
-" use `u` to undo, use `U` to redo, mind = blown
-nnoremap U <C-r>
-
-" I always escape from this mode anyway, best never to enter it
-nnoremap <S-r> <Nop>
