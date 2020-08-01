@@ -42,7 +42,10 @@ set wildmode=longest:full
 set wildmenu
 set wildignore+=*.so,*.swp,*.zip,*.gz,*.pdf,*.pyo,*.ipynb
 set nocp
-set diffopt+=vertical
+if &diff
+    set diffopt-=internal
+    set diffopt+=vertical
+endif
 set splitright
 set splitbelow
 set updatetime=1000
