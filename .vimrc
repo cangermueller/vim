@@ -553,12 +553,14 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <leader>VS :%s/\<<C-r><C-w>\>/
 :map <leader>Vr :.,$s/<C-r><C-w>/
 :map <leader>VR :%s/<C-r><C-w>/
-:map <leader>Va :bufdo %s/<C-r><C-w>/
-:map <leader>VA :bufdo %s/
+:map <leader>Va :bufdo %s/
+:map <leader>VA :bufdo %s/<C-r><C-w>/
+:map <leader>Vt :tabdo %s/
+:map <leader>VT :tabdo %s/<C-r><C-w>/
 " replace windows ^M newline (encoding, line wrap)
 :map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
 " replace tabs by spaces
-:map <Leader>Vt :%s/\t/  /g
+:map <Leader>Vp :%s/\t/  /g
 " Remove comments
 :map <Leader>Vc :g/^\s*#/d<cr>
 
