@@ -345,6 +345,7 @@ map <Leader>Si :setlocal ignorecase!<cr>l
 map <Leader>Sm :set mouse=a<CR>
 map <Leader>SM :set mouse=<CR>
 map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesToggle<cr>
+map <Leader>Sr :redraw!<cr>
 
 
 
@@ -645,6 +646,9 @@ let g:ctrlp_use_caching = 0
 " ==============================================================================
 let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
+
+let g:ycm_auto_hover = ""
+map <LocalLeader>jd <Plug>(YCMHover)
 
 
 " ==============================================================================
