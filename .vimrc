@@ -42,10 +42,7 @@ set wildmode=longest:full
 set wildmenu
 set wildignore+=*.so,*.swp,*.zip,*.gz,*.pdf,*.pyo,*.ipynb
 set nocp
-if &diff
-    set diffopt-=internal
-    set diffopt+=vertical
-endif
+set diffopt+=vertical
 set splitright
 set splitbelow
 set updatetime=1000
@@ -344,7 +341,7 @@ map <Leader>Se :set expandtab! <cr>
 map <Leader>Si :setlocal ignorecase!<cr>l
 map <Leader>Sm :set mouse=a<CR>
 map <Leader>SM :set mouse=<CR>
-map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesToggle<cr>
+map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesDisable<cr>
 map <Leader>Sr :redraw!<cr>
 
 
@@ -451,7 +448,7 @@ let g:LatexBox_fold_sections = ["section", "subsection", "subsubsection"]
 " Tagbar
 " ==============================================================================
 let g:tagbar_autofocus = 1
-let g:tagbar_autopreview = 1
+let g:tagbar_autopreview = 0
 let g:tagbar_autoclose = 1
 let g:tagbar_sort = 0
 map <Leader>t :TagbarToggle<cr>
@@ -646,8 +643,8 @@ let g:ctrlp_use_caching = 0
 " ==============================================================================
 let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
-
 let g:ycm_auto_hover = ""
+let g:ycm_disable_signature_help = 0  " =1 means no function signature
 map <LocalLeader>jd <Plug>(YCMHover)
 
 
@@ -693,6 +690,13 @@ command! -bang -nargs=* FZFRg
   \   --smart-case '.shellescape(<q-args>), 1, 
   \ { 'options': '--color hl:123,hl+:222' }, 0)
 
+" command! -bang -nargs=* FZFRg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --no-heading --color=always 
+"   \   --colors "path:fg:190,220,255" --colors "line:fg:128,128,128" 
+"   \   --smart-case '.shellescape(<q-args>), 1, 
+"   \ { 'options': '--color hl:123,hl+:222' }, 0)
+
 function! FZFGrep()
   let l:cur_dir = getcwd()
   execute 'cd' expand('%:p:h')
@@ -707,6 +711,7 @@ map <c-a>o :call FZFGrep()<cr>
 " indentLine
 " ==============================================================================
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+map <Leader>Si :IndentLinesToggle<cr>
 
 
 " ==============================================================================
