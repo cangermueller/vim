@@ -32,8 +32,8 @@ let g:pymode_lint_message = 1
 let g:pymode_lint_signs = 1
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_python = 'python3'
-"let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
-let g:pymode_lint_checkers = ['pyflakes']
+" let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_options_max_line_length = 80
 let g:pymode_lint_options_pep8 = {
   \ 'max_line_length': g:pymode_options_max_line_length}

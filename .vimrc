@@ -305,6 +305,8 @@ endfunc
 " Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
+" c-w x // with with window to the left
+" c-w r // rotate windows
 
 
 " ------------------------------------------------------------------------------
@@ -342,7 +344,8 @@ map <Leader>Si :setlocal ignorecase!<cr>l
 map <Leader>Sm :set mouse=a<CR>
 map <Leader>SM :set mouse=<CR>
 map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesDisable<cr>
-map <Leader>Sr :redraw!<cr>
+map <Leader>Sr :tabdo redraw!<cr>
+au FocusGained * :redraw! " Redraw buffer when it gains focus
 
 
 
