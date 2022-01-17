@@ -47,8 +47,6 @@ set splitright
 set splitbelow
 set updatetime=1000
 set backspace=2 " Fix backspace problem since vim7.4
-set showmatch " Show matching bracket
-set matchtime=2 " Time show matching bracket
 
 set undofile
 set undodir=~/.vim/undo
@@ -724,6 +722,37 @@ map <localleader>a, :SidewaysLeft<cr>
 map <localleader>a. :SidewaysRight<cr>
 map <localleader>a< :SidewaysJumpLeft<cr>
 map <localleader>a> :SidewaysJumpRight<cr>
+
+
+" ==============================================================================
+" Alternate
+" ==============================================================================
+map <LocalLeader>A :A<cr>
+
+
+" ==============================================================================
+" Custom file switching
+" ==============================================================================
+function! s:alt_name(name) abort
+    if a:name =~ '_test\.cc$'
+        return substitute(a:name, '\v_test\.cc$', '.cc', '')
+    elseif a:name =~ '\.cc$'
+        return substitute(a:name, '\v(.+)\.cc', '\1_test.cc', '')
+    elseif a:name =~ '\.h$'
+        return substitute(a:name, '\v(.+)\.h', '\1.cc', '')
+    elseif a:name =~ '_test\.py$'
+        return substitute(a:name, '\v_test\.py$', '.py', '')
+    elseif a:name =~ '\.py$'
+        return substitute(a:name, '\v(.+)\.py', '\1_test.py', '')
+    else
+        return a:name
+    endif
+endfunction
+
+command! -nargs=0 AltName :exe ':drop '.s:alt_name(expand('%'))
+
+map <localleader>ww :AltName<cr>
+map <localleader>we :vsplit<cr>:AltName<cr>
 
 
 " ==============================================================================

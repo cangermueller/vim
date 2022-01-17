@@ -67,6 +67,12 @@ map <LocalLeader>ll :lclose<CR>:PymodeLint<CR>
 map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>:lfirst<CR>
 map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
+map <LocalLeader>sf F'if<esc>2f'
+
+
+" ==============================================================================
+" PDB
+" ==============================================================================
 if executable("ipdb")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
   map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
@@ -79,22 +85,11 @@ map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>bI Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
-map <LocalLeader>uu oimport pudb; pudb.set_trace()<ESC>:w<CR>
-map <LocalLeader>uU Oimport pudb; pudb.set_trace()<ESC>:w<CR>
 
 map <LocalLeader>bd :g/db\.set_trace()/d<CR>:w<CR>
 map <LocalLeader>bf /db\.set_trace<CR>zz:set nohls<CR>
 map <buffer> <silent> <LocalLeader>K K <c-w>p
 map ff /for.*:$<CR>
-
-
-" ==============================================================================
-" Sphinx
-" ==============================================================================
-map <LocalLeader>Sx :s/^\(.\)/>>> \1/<CR>  " Sphinx doctest
-map <LocalLeader>Sz :s/^>>> //<CR>
-vmap <LocalLeader>Sx :s/^\(.\)/>>> \1/<CR>
-vmap <LocalLeader>Sz :s/^>>> //<CR>
 
 
 " ==============================================================================
@@ -125,20 +120,6 @@ imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
 "   map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
 " endif
 
-
-" ==============================================================================
-" vim-ipython
-" ==============================================================================
-let g:ipy_perform_mappings=0 " Disable default key bindings
-map  <buffer> <silent> <LocalLeader>rf :IPython<CR>
-map  <buffer> <silent> <LocalLeader>aa <Plug>(IPython-RunFile)
-map  <buffer> <silent> <LocalLeader>rh <Plug>(IPython-OpenPyDoc)
-map  <buffer> <silent> <LocalLeader>w <Plug>(IPython-RunLine)
-imap  <buffer> <silent> <LocalLeader>w <C-o><Plug>(IPython-RunLine)
-xmap <buffer> <silent> <LocalLeader>w <Plug>(IPython-RunLines)
-"map  <buffer> <silent> <LocalLeader>d <Plug>(IPython-RunLine)j
-map  <buffer> <silent> <LocalLeader>q <Plug>(IPython-RunLine)j
-imap <buffer> <silent> <LocalLeader>q <C-o><Plug>(IPython-RunLine)<CR>
 
 
 " ==============================================================================
