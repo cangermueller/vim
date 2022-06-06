@@ -493,11 +493,11 @@ set laststatus=2
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#tab_nr_type = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#show_tab_type = 0
 
 let g:airline_section_b = '%{getcwd()}' " cwd in section a
 let g:airline_section_c = '%f' " full filename in section b
@@ -580,6 +580,13 @@ let g:SuperTabDefaultCompletionTypeDiscovery = [
 " ==============================================================================
 " Fugitive
 " ==============================================================================
+function DiffOn()
+  diffthis
+  wincmd l
+  diffthis
+  wincmd r
+endfunction
+
 function DiffOff()
   diffoff
   wincmd l
@@ -587,8 +594,9 @@ function DiffOff()
   wincmd q
 endfunction
 
-map <Leader>Gg :Gdiff<cr>:wincmd r<cr>:wincmd t<cr>gg
-" map <Leader>Gh :windo diffoff<cr>:wincmd t<cr>:wincmd o<cr>
+" map <Leader>Gg :Gdiff<cr>:wincmd r<cr>:wincmd t<cr>gg
+map <Leader>Gg :call DiffOn()<cr>
+command! -nargs=0 Diff :call DiffOn()
 map <Leader>Gh :call DiffOff()<cr>
 map <Leader>Gs :Gstatus <cr>
 map <Leader>GS :Git status -u <cr>
@@ -646,7 +654,7 @@ let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
 let g:ycm_auto_hover = ""
 let g:ycm_disable_signature_help = 0  " =1 means no function signature
-map <LocalLeader>jd <Plug>(YCMHover)
+map <LocalLeader>jD <Plug>(YCMHover)
 
 
 " ==============================================================================
@@ -684,19 +692,14 @@ let g:fzf_action = {
   \ 'ctrl-l': 'vsplit'
   \}
 
+let g:fzf_layout = { 'down': '40%' }
+
 command! -bang -nargs=* FZFRg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always 
   \   --colors "path:fg:190,220,255" --colors "line:fg:128,128,128" 
   \   --smart-case '.shellescape(<q-args>), 1, 
   \ { 'options': '--color hl:123,hl+:222' }, 0)
-
-" command! -bang -nargs=* FZFRg
-"   \ call fzf#vim#grep(
-"   \   'rg --column --no-heading --color=always 
-"   \   --colors "path:fg:190,220,255" --colors "line:fg:128,128,128" 
-"   \   --smart-case '.shellescape(<q-args>), 1, 
-"   \ { 'options': '--color hl:123,hl+:222' }, 0)
 
 function! FZFGrep()
   let l:cur_dir = getcwd()
@@ -712,6 +715,7 @@ map <c-a>o :call FZFGrep()<cr>
 " indentLine
 " ==============================================================================
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:vim_json_syntax_conceal = 0
 map <Leader>Si :IndentLinesToggle<cr>
 
 

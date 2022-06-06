@@ -68,6 +68,9 @@ map <LocalLeader>lf :lclose<CR>:PymodeLint<CR>:lfirst<CR>
 map <LocalLeader>le :lclose<CR>
 map <LocalLeader>la :PymodeLintAuto<CR>
 map <LocalLeader>sf F'if<esc>2f'
+" Make functions private / public
+map <LocalLeader>sp bi_<esc>w
+map <LocalLeader>sP bxw
 
 
 " ==============================================================================
@@ -93,7 +96,7 @@ map ff /for.*:$<CR>
 
 
 " ==============================================================================
-" jedi
+" jedi / YCM
 " ==============================================================================
 let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
@@ -102,23 +105,21 @@ set noshowmode "needed for call_signatures=2
 let g:jedi#show_call_signatures = 0
 let g:jedi#show_call_signatures_delay = 1
 let g:jedi#auto_close_doc = 1
-map <LocalLeader>jj :call jedi#goto() <CR>zt
-map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>zt
-map <LocalLeader>jk :call jedi#show_documentation() <CR>:wincmd k<CR>
-imap <LocalLeader>jk <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
 map <LocalLeader>js :call jedi#show_call_signatures() <CR>
 imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
 
 
-" ==============================================================================
-" YouCompleteMe
-" ==============================================================================
-" if exists("g:ycm_add_preview_to_completeopt")
-"   map <LocalLeader>jj :YcmCompleter GoTo <CR>
-"   map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
-"   map <LocalLeader>jk :YcmCompleter GetDoc <CR>
-"   map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
-" endif
+if exists("g:ycm_add_preview_to_completeopt")
+  map <LocalLeader>jj :YcmCompleter GoTo <CR>
+  map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
+  map <LocalLeader>jd :YcmCompleter GetDoc <CR>
+  map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
+else
+  map <LocalLeader>jj :call jedi#goto() <CR>zt
+  map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>zt
+  map <LocalLeader>jd :call jedi#show_documentation() <CR>:wincmd k<CR>
+  imap <LocalLeader>jd <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
+endif
 
 
 
