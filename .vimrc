@@ -759,6 +759,8 @@ command! -nargs=0 AltName :exe ':drop '.s:alt_name(expand('%'))
 map <localleader>ww :AltName<cr>
 map <localleader>we :vsplit<cr>:AltName<cr>
 
+" Open main file
+command! -nargs=1 EM :exe ':e <args>/*main.*'
 
 " ==============================================================================
 " Source post local configs
