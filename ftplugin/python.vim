@@ -76,7 +76,7 @@ map <LocalLeader>sP bxw
 " ==============================================================================
 " PDB
 " ==============================================================================
-if executable("ipdb")
+if executable("ipdb3")
   map <LocalLeader>bb oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
   map <LocalLeader>bB Oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
 else

@@ -10,7 +10,6 @@ endif
 " ==============================================================================
 source ~/.vim/vundle.vim
 
-
 " ==============================================================================
 " Settings
 " ==============================================================================
@@ -198,6 +197,10 @@ nnoremap U <C-r>
 
 " I always escape from this mode anyway, best never to enter it
 nnoremap <S-r> <Nop>
+
+" Disable command history shortcuts 
+nnoremap q: <nop>
+nnoremap Q <nop>
 
 
 " ------------------------------------------------------------------------------
@@ -468,6 +471,7 @@ let g:NERDCustomDelimiters = {
     \ 'proto': { 'left': '//'},
     \ 'gin': { 'left': '#'}
   \ }
+map <c-_><c-_> <leader>c<space>
 " TODO mappings
 map <Leader>cd oTODO: <ESC><leader>c<space>A
 map <Leader>cD OTODO: <ESC><leader>c<space>A
