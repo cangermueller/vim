@@ -1,14 +1,12 @@
 " ==============================================================================
 " YouCompleteMe
 " ==============================================================================
-map <LocalLeader>jj :YcmCompleter GoToImprecise <cr>zt
-map <LocalLeader>ji :vsplit \| YcmCompleter GoToImprecise <cr>zt
-map <LocalLeader>jJ :YcmCompleter GoToDefinition <cr>zt
+map <LocalLeader>jj :YcmCompleter GoToDefinition <cr>zt
+map <LocalLeader>ji :vsplit \| YcmCompleter GoToDefinition <cr>zt
 map <LocalLeader>ju :YcmCompleter GoToDeclaration <cr>zt
 map <LocalLeader>jd :YcmCompleter GetDoc <cr>
 map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
 map <LocalLeader>jt :YcmCompleter GetType <cr>
-map <LocalLeader>jT :YcmCompleter GetTypeImprecise <cr>
 map <LocalLeader>jf :YcmCompleter FixIt <cr>
 map <LocalLeader>je :YcmShowDetailedDiagnostic<cr>
 map <LocalLeader>jE :YcmDiags<cr>

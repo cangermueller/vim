@@ -454,7 +454,10 @@ let g:LatexBox_fold_sections = ["section", "subsection", "subsubsection"]
 let g:tagbar_autofocus = 1
 let g:tagbar_autopreview = 0
 let g:tagbar_autoclose = 1
-let g:tagbar_sort = 0
+let g:tagbar_sort = 1
+let g:tagbar_position = "left"
+let g:tagbar_width = 60
+let g:tagbar_height = 15
 map <Leader>t :TagbarToggle<cr>
 
 
@@ -658,7 +661,7 @@ let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
 let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
 let g:ycm_auto_hover = ""
 let g:ycm_disable_signature_help = 0  " =1 means no function signature
-map <LocalLeader>jD <Plug>(YCMHover)
+" map <LocalLeader>jD <Plug>(YCMHover)
 
 
 " ==============================================================================

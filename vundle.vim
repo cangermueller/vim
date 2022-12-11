@@ -41,8 +41,12 @@ Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/vim-easy-align'
-
 Plugin 'lifepillar/vim-solarized8'
+
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+
 
 call vundle#end()
 filetype plugin indent on
