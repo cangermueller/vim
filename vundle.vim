@@ -14,9 +14,6 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'python-mode/python-mode'
-Plugin 'davidhalter/jedi-vim'
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'preservim/nerdcommenter'
@@ -26,13 +23,10 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'dkprice/vim-easygrep'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'DavidEGx/ctrlp-smarttabs'
-Plugin 'jalvesaq/Nvim-R'
 Plugin 'tpope/vim-surround'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'vim-scripts/a.vim'
 Plugin 'simeji/winresizer'
 Plugin 'tpope/vim-repeat'
@@ -40,12 +34,15 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/vim-easy-align'
 Plugin 'lifepillar/vim-solarized8'
 
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+" autocomplete
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 call vundle#end()

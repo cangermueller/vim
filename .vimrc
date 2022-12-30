@@ -173,12 +173,6 @@ imap <Leader>Q <esc>:qa!<cr>
 map <Leader>E :xa!<cr>
 imap <Leader>E <esc>:xa!<cr>
 
-"  Completion
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <C-l> <C-x><C-l>
-inoremap <C-f> <C-x><C-f>
-
 " Emacs like
 imap <C-a>a <C-o>^
 imap <C-a>e <C-o>$
@@ -228,7 +222,7 @@ map gk :tablast <cr>
 map g, :tabm -1 <cr>
 map g. :tabm +1 <cr>
 map g? :tab help 
-cabbr ? help
+map g" :vert help 
 
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> gP :exe "tabn ".g:lasttab<cr>
@@ -514,45 +508,8 @@ let g:airline#extensions#branch#enabled = 1
 
 
 " ==============================================================================
-" EasyGrep, vimgrep
-" ==============================================================================
-" \vv // match word
-" \vV // match whole word
-" \vo // option explorer
-" \vr // replace word
-"   * buffers (\vyb), to replace in all buffers
-"   * 'User' (\vyu), to replace only in current file
-" \vR // replace whole word
-" Replace what by // will ask for confirmation
-" Replace /num?y/numpy/
-" ReplaceUndo
-let EasyGrepCommand = 1
-let g:EasyGrepFilesToExclude = ".svn,.git,*.pyc,*.swp"
-let EasyGrepJumpToMatch = 0
-let EasyGrepMode = 2
-let EasyGrepEveryMatch = 1
-let EasyGrepWindow = 1
-let EasyGrepReplaceWindowMode = 2
-let EasyGrepRecursive = 1
-let EasyGrepSearchCurrentBufferDir = 0
-let EasyGrepIgnoreCase = 0
-
-
-" function GrepRel()
-"   let EasyGrepRoot = expand('<sfile>:p:h')
-"   call s:GrepCommandLine( <q-args> , "")
-" endfunction
-"
-cabbr eg Grep
-
-
-" ==============================================================================
 " Substitution / replacements
 " ==============================================================================
-cabbr vg vimgrep
-" Grep word under cursor and show occurrences in current file
-map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botright cw<cr><c-w>k
-
 " Substitution, replacement
 " replace word under cursor
 :map <leader>Vs :.,$s/\<<C-r><C-w>\>/
@@ -569,19 +526,6 @@ map <Leader>Vv * :vimgrep /\<<c-r><c-w>\>/j <c-r>=expand("%:p")<cr><cr> :botrigh
 :map <Leader>Vp :%s/\t/  /g
 " Remove comments
 :map <Leader>Vc :g/^\s*#/d<cr>
-
-
-" ==============================================================================
-" Supertab
-" ==============================================================================
-set completeopt=menuone,longest,preview
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
-let g:SuperTabMappingTabLiteral = "<Leader><tab>"
-let g:SuperTabDefaultCompletionTypeDiscovery = [
-\ "&omnifunc:<c-x><c-o>",
-\ "&completefunc:<c-x><c-u>"
-\ ]
 
 
 " ==============================================================================
@@ -652,35 +596,6 @@ let g:ctrlp_prompt_mappings = {
 set grepprg=rg\ --color=never
 let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
 let g:ctrlp_use_caching = 0
-
-
-" ==============================================================================
-" YouCompleteMe
-" ==============================================================================
-let g:ycm_key_list_select_completion=['<TAB>', '<Down>']
-let g:ycm_key_list_stop_completion = ['<c-y>','<CR>']
-let g:ycm_auto_hover = ""
-let g:ycm_disable_signature_help = 0  " =1 means no function signature
-" map <LocalLeader>jD <Plug>(YCMHover)
-
-
-" ==============================================================================
-" easy-align
-" ==============================================================================
-" gaip, // align paragraph by 1st ,
-" gaip*, // align paragraph by all ,
-" a= // align in visual mode by =
-" :EasyAlign  // starts interative mode
-"   c-d   // press c-d multiple times to change alignment
-" :EasyAlign 1 ,  // align by 1st ,
-" :EasyAlign * ,  // align by all ,
-" :EasyAlign! * , // right-align all by ,
-" :EasyAlign * ,ar  // right-align all by ,
-" :EasyAlign * ,ac  // center-align all by ,
-" Use <c-i> to open quickfix selection in new tab (see above)
-vmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
 
 " ==============================================================================
 " Fuzzy Finder
@@ -768,6 +683,11 @@ map <localleader>we :vsplit<cr>:AltName<cr>
 
 " Open main file
 command! -nargs=1 EM :exe ':e <args>/*main.*'
+
+" ==============================================================================
+" Source post local configs
+" ==============================================================================
+source ~/.vim/coc.vim
 
 " ==============================================================================
 " Source post local configs

@@ -1,0 +1,24 @@
+{
+  "languageserver": {
+    "ciderlsp": {
+      "command": "",
+      "args": [
+        "--tooltag=coc-nvim",
+        "--noforward_sync_responses"
+      ],
+      "filetypes": [
+        "borg",
+        "c",
+        "cpp",
+        "go",
+        "java",
+        "kotlin",
+        "proto",
+        "python",
+        "textproto"
+      ]
+    }
+  },
+  "diagnostic.checkCurrentLine": true,
+  "suggest.maxCompleteItemCount": 20
+}

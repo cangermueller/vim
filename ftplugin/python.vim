@@ -96,37 +96,22 @@ map ff /for.*:$<CR>
 
 
 " ==============================================================================
-" jedi / YCM
+"  Jedi
 " ==============================================================================
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_tabs_not_buffers = 0
-set noshowmode "needed for call_signatures=2
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#use_tabs_not_buffers = 0
+" set noshowmode "needed for call_signatures=2
 " call_signature: 1=above, 2=bottom
-let g:jedi#show_call_signatures = 0
-let g:jedi#show_call_signatures_delay = 1
-let g:jedi#auto_close_doc = 1
-map <LocalLeader>js :call jedi#show_call_signatures() <CR>
-imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
+" let g:jedi#show_call_signatures = 0
+" let g:jedi#show_call_signatures_delay = 1
+" let g:jedi#auto_close_doc = 1
 
-
-if exists("g:ycm_add_preview_to_completeopt")
-  map <LocalLeader>jj :YcmCompleter GoTo <CR>
-  map <LocalLeader>jJ :YcmCompleter GoTo <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>
-  map <LocalLeader>jd :YcmCompleter GetDoc <CR>
-  map <LocalLeader>jr :YcmCompleter GoToReferences <CR>
-else
-  map <LocalLeader>jj :call jedi#goto() <CR>zt
-  map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>zt
-  map <LocalLeader>jd :call jedi#show_documentation() <CR>:wincmd k<CR>
-  imap <LocalLeader>jd <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
-endif
-
-
-
-" ==============================================================================
-" Supertab
-" ==============================================================================
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+" map <LocalLeader>js :call jedi#show_call_signatures() <CR>
+" imap <LocalLeader>js <ESC>:call jedi#show_call_signatures() <CR>a
+" map <LocalLeader>jj :call jedi#goto() <CR>zt
+" map <LocalLeader>jJ :call jedi#goto() <CR> :-tabnew<CR><C-O><C-O>:tabnext<CR>zt
+" map <LocalLeader>jd :call jedi#show_documentation() <CR>:wincmd k<CR>
+" imap <LocalLeader>jd <ESC>:call jedi#show_documentation() <CR>:wincmd k<CR>a
 
 
 " ==============================================================================
