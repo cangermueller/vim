@@ -105,11 +105,9 @@ autocmd BufNewFile,BufRead *.gin set filetype=gin
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setl noexpandtab tabstop=4 shiftwidth=4
 " Do not break/wrap lines automatically
-autocmd FileType * setlocal formatoptions-=t
-autocmd FileType * setlocal formatoptions-=c
-set filetype-=t
-set filetype-=c
-
+autocmd FileType * setlocal formatoptions-=tc
+" Do not continue comments when hitting o (use -=r or insert mode)
+autocmd FileType * setlocal formatoptions-=o
 
 
 " ==============================================================================
@@ -454,8 +452,7 @@ map <c-_><c-_> <leader>c<space>
 map <Leader>cd oTODO: <ESC><leader>c<space>A
 map <Leader>cD OTODO: <ESC><leader>c<space>A
 imap <Leader>cd TODO: <ESC><leader>c<space>A
-" vmap <Leader>c<space> :NERDCommenterToggle<cr>
-
+vmap <Leader>c<space> :NERDCommenterToggle<cr>
 
 " ==============================================================================
 " NERDtree
