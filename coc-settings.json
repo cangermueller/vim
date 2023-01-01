@@ -1,7 +1,7 @@
 {
   "languageserver": {
     "ciderlsp": {
-      "command": "",
+      "command": "/google/bin/releases/cider/ciderlsp/ciderlsp",
       "args": [
         "--tooltag=coc-nvim",
         "--noforward_sync_responses"

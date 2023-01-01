@@ -36,6 +36,8 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'lifepillar/vim-solarized8'
 
+Plugin 'christoomey/vim-tmux-navigator'
+
 " autocomplete
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'Valloric/YouCompleteMe'

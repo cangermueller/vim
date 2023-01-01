@@ -118,21 +118,9 @@ set filetype-=c
 cabbr th tab help
 cabbr tn tab new
 cabbr lop lopen 20
-cabbr Py python3
 command Q qa!
 command S xa!
 command W wa!
-" command Sh ocwd="google/src/cloud/christofa/al/google3/medical/retina" | cd %:p:h | sh | cd ocwd
-
-function Sh_ ()
-  let a:cwd = getcwd()
-  exec "cd" expand("%:p:h")
-  sh
-  exec "cd" a:cwd
-endfunction
-
-command Sh call Sh_()
-command Apwd echo expand('%:p')
 
 " ==============================================================================
 " Key bindings
@@ -179,18 +167,14 @@ imap <C-a>e <C-o>$
 nmap <C-a>a ^
 nmap <C-a>e $
 
-" use tab and shift tab to indent and de-indent code
-nnoremap <Tab>   >>
-nnoremap <S-Tab> <<
-vnoremap <Tab>   >><Esc>gv
-vnoremap <S-Tab> <<<Esc>gv
-inoremap <S-Tab> <C-d>
-
 " use `u` to undo, use `U` to redo, mind = blown
 nnoremap U <C-r>
 
 " I always escape from this mode anyway, best never to enter it
 nnoremap <S-r> <Nop>
+
+" Disable recording mode
+map q <Nop>
 
 " Disable command history shortcuts 
 nnoremap q: <nop>
@@ -260,15 +244,13 @@ nmap <c-w>h :wincmd h<cr>
 nmap <c-w>l :wincmd l<cr>
 nmap <c-w>L :vsplit<cr>
 nmap <c-w>O :vsplit<cr>:e <c-r>=expand("%:p:r")<cr>
-cabbr L :vsplit
 nmap <c-w>H :vsplit<cr>:wincmd h<cr>
-cabbr H :split
 nmap <c-w>J :split<cr>
 nmap <c-w>K :split<cr>:wincmd k<cr>
-nmap <c-w><up> :resize -5<cr>
-nmap <c-w><down> :resize +5<cr>
-nmap <c-w><right> :vertical resize -5<cr>
-nmap <c-w><left> :vertical resize +5<cr>
+nmap <c-w><up> :resize +5<cr>
+nmap <c-w><down> :resize -5<cr>
+nmap <c-w><right> :vertical resize +5<cr>
+nmap <c-w><left> :vertical resize -5<cr>
 " zoom in / <c-w>= to zoom out
 nmap <c-w>z :wincmd \|<cr>:wincmd _<cr>
 " close below
@@ -300,8 +282,7 @@ endfunc
 " Move windows or tabs
 map g< :call MoveToPrevTab()<CR>
 map g> :call MoveToNextTab()<CR>
-" c-w x // with with window to the left
-" c-w r // rotate windows
+map <c-w>! <c-w>T
 
 
 " ------------------------------------------------------------------------------

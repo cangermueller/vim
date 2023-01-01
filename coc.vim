@@ -34,22 +34,17 @@ endif
 
 nmap <LocalLeader>jj <Plug>(coc-definition)
 nmap <LocalLeader>ji :vert split \| call CocActionAsync('jumpDefinition')<cr>zt
-nmap <LocalLeader>jI :vert split \| call CocActionAsync('jumpDefinition')<cr>zt
+nmap <LocalLeader>jI <LocalLeader>ji <c-w>T
+nmap <LocalLeader>jp :call CocActionAsync('jumpDefinition', v:false)<cr>
 nmap <LocalLeader>jJ <Plug>(coc-declaration)
 nmap <LocalLeader>jr <Plug>(coc-references-used)
 nmap <LocalLeader>jR <Plug>(coc-rename)
-nmap <LocalLeader>jf <Plug>(coc-fix-current)
-nmap <LocalLeader>jG <Plug>(coc-format)
-nmap <LocalLeader>jg <Plug>(cc-format-selected)
+xmap <LocalLeader>jf <Plug>(coc-format-selected)
+nmap <LocalLeader>jf <Plug>(coc-format-selected)l
+nmap <LocalLeader>jF <Plug>(coc-format)
 nmap <LocalLeader>jt <Plug>(coc-type-definition)
-
-nmap <LocalLeader>je :CocList diagnostics<cr>
-nmap <c-a>n :CocList outline<cr>
-
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" Clsoe the location list when selecting the first item
-:autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
+nmap <LocalLeader>jA <Plug>(coc-codeaction)
+nmap <LocalLeader>ja <Plug>(coc-codeaction-cursor)
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -61,12 +56,20 @@ endfunction
 
 nnoremap <LocalLeader>jd :call ShowDocumentation()<CR>
 
+nmap <space>dd :CocDiagnostics<cr>
+nmap <space>ds :call CocAction('diagnosticPreview')<cr>
+nmap <space>df <Plug>(coc-codeaction-line)
+nmap <space>dg <Plug>(coc-fix-current)
+nmap <space>dt :call CocAction('diagnosticToggle')<cr>
+nmap <space>dr :call CocAction('diagnosticRefresh')<cr>
+nmap <silent><space>dj <Plug>(coc-diagnostic-next)
+nmap <silent><space>dk <Plug>(coc-diagnostic-prev)
+:autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
+
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nmap <LocalLeader>jA <Plug>(coc-codeaction)
-nmap <LocalLeader>ja <Plug>(coc-codeaction-cursor)
 
 " Enable selecting the content of a function or class.
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server
