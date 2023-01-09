@@ -68,10 +68,16 @@ filetype plugin on
 " ==============================================================================
 " Appearance
 " ==============================================================================
-set t_Co=256
-let g:solarized_termcolors=256
 set background=dark
-colorscheme solarized8
+set termguicolors
+
+let g:sonokai_style = 'default'
+let g:sonokai_better_performance = 1
+let g:sonokai_diagnostic_text_highlight = 1
+let g:sonokai_diagnostic_line_highlight = 1
+let g:sonokai_current_word = 'underline'
+
+colorscheme sonokai
 
 
 " ==============================================================================
@@ -464,7 +470,7 @@ let g:NERDTreeShowBookmarks=1
 " ==============================================================================
 " Airline
 " ==============================================================================
-let g:airline_theme='badwolf' " badwolf, powerlineish
+let g:airline_theme='sonokai' " badwolf, powerlineish
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -666,6 +672,12 @@ command! -nargs=1 EM :exe ':e <args>/*main.*'
 " Source post local configs
 " ==============================================================================
 source ~/.vim/coc.vim
+
+
+" ==============================================================================
+" Hexokinase
+" ==============================================================================
+let g:Hexokinase_highlighters = ['sign_column']
 
 " ==============================================================================
 " Source post local configs

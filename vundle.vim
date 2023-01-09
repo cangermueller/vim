@@ -18,11 +18,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'preservim/nerdcommenter'
 Plugin 'majutsushi/tagbar'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'DavidEGx/ctrlp-smarttabs'
@@ -34,9 +31,12 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'lifepillar/vim-solarized8'
-
 Plugin 'christoomey/vim-tmux-navigator'
+
+" Colors
+" Plugin 'lifepillar/vim-solarized8'
+Plugin 'sainnhe/sonokai'
+Plugin 'RRethy/vim-hexokinase'
 
 " autocomplete
 " Plugin 'davidhalter/jedi-vim'

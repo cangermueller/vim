@@ -32,19 +32,22 @@ else
   imap <silent><expr> <c-@> coc#refresh()
 endif
 
-nmap <LocalLeader>jj <Plug>(coc-definition)
-nmap <LocalLeader>ji :vert split \| call CocActionAsync('jumpDefinition')<cr>zt
-nmap <LocalLeader>jI <LocalLeader>ji <c-w>T
+nmap <LocalLeader>jj :call CocAction('jumpDefinition')<cr>zt
+nmap <LocalLeader>ji :vert split \| call CocAction('jumpDefinition')<cr>zt
+nmap <LocalLeader>jI <LocalLeader>ji <c-w>T zt
 nmap <LocalLeader>jp :call CocActionAsync('jumpDefinition', v:false)<cr>
 nmap <LocalLeader>jJ <Plug>(coc-declaration)
-nmap <LocalLeader>jr <Plug>(coc-references-used)
-nmap <LocalLeader>jR <Plug>(coc-rename)
+nmap <c-a>n :CocList --height=20 outline<cr>
+nmap <LocalLeader>jr <Plug>(coc-rename)
+nmap <LocalLeader>jR <Plug>(coc-references-used)
 xmap <LocalLeader>jf <Plug>(coc-format-selected)
 nmap <LocalLeader>jf <Plug>(coc-format-selected)l
 nmap <LocalLeader>jF <Plug>(coc-format)
 nmap <LocalLeader>jt <Plug>(coc-type-definition)
 nmap <LocalLeader>jA <Plug>(coc-codeaction)
 nmap <LocalLeader>ja <Plug>(coc-codeaction-cursor)
+nmap <LocalLeader>jq :CocRestart<cr>
+nmap <LocalLeader>jS :CocInfo<cr>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -54,16 +57,22 @@ function! ShowDocumentation()
   endif
 endfunction
 
-nnoremap <LocalLeader>jd :call ShowDocumentation()<CR>
+nmap <LocalLeader>jd :call ShowDocumentation()<CR>
+inoremap <silent> <c-p> <c-\><c-O>:call CocActionAsync('showSignatureHelp')<cr>
 
-nmap <space>dd :CocDiagnostics<cr>
-nmap <space>ds :call CocAction('diagnosticPreview')<cr>
-nmap <space>df <Plug>(coc-codeaction-line)
-nmap <space>dg <Plug>(coc-fix-current)
-nmap <space>dt :call CocAction('diagnosticToggle')<cr>
-nmap <space>dr :call CocAction('diagnosticRefresh')<cr>
-nmap <silent><space>dj <Plug>(coc-diagnostic-next)
-nmap <silent><space>dk <Plug>(coc-diagnostic-prev)
+augroup mygroup
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+nmap <LocalLeader>dd :CocDiagnostics<cr>
+nmap <LocalLeader>ds :call CocAction('diagnosticPreview')<cr>
+nmap <LocalLeader>df <Plug>(coc-codeaction-line)
+nmap <LocalLeader>dF <Plug>(coc-fix-current)
+nmap <LocalLeader>dt :call CocAction('diagnosticToggle')<cr>
+nmap <LocalLeader>dr :call CocAction('diagnosticRefresh')<cr>
+nmap <silent><LocalLeader>dj <Plug>(coc-diagnostic-next)
+nmap <silent><LocalLeader>dk <Plug>(coc-diagnostic-prev)
 :autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>
 
 

@@ -19,6 +19,5 @@
       ]
     }
   },
-  "diagnostic.checkCurrentLine": true,
   "suggest.maxCompleteItemCount": 20
 }

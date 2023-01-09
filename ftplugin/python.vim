@@ -121,10 +121,10 @@ map <LocalLeader>eJ :call pymode#motion#move('\v^(class\|def)\s', '')<cr>zt
 map <LocalLeader>eK :call pymode#motion#move('\v^(class\|def)\s', 'b')<cr>zt
 map <LocalLeader>ej :call pymode#motion#move('^\s*def\s', '')<cr>zt
 map <LocalLeader>ek k:call pymode#motion#move('^\s*def\s', 'b')<cr>zt
-map <LocalLeader>ja gg /ArgumentParser<cr>zt:nohls<cr>
-map <LocalLeader>jm gg /def main<cr>zt:nohls<cr>
-map <LocalLeader>ji G ?^import<cr>]]3kz.:nohls<cr>
-map <LocalLeader>jI [[3kz.
+map <LocalLeader>ea gg /ArgumentParser<cr>zt:nohls<cr>
+map <LocalLeader>em gg /def main<cr>zt:nohls<cr>
+map <LocalLeader>ei G ?^import<cr>]]3kz.:nohls<cr>
+map <LocalLeader>eI [[3kz.
 
 if filereadable($HOME . '/.vim/ftplugin/python_local.vim')
   source ~/.vim/ftplugin/python_local.vim
