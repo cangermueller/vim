@@ -38,8 +38,8 @@ nmap <LocalLeader>jI <LocalLeader>ji <c-w>T zt
 nmap <LocalLeader>jp :call CocActionAsync('jumpDefinition', v:false)<cr>
 nmap <LocalLeader>jJ <Plug>(coc-declaration)
 nmap <c-a>n :CocList --height=20 outline<cr>
-nmap <LocalLeader>jr <Plug>(coc-rename)
-nmap <LocalLeader>jR <Plug>(coc-references-used)
+nmap <LocalLeader>jr <Plug>(coc-references-used)
+nmap <LocalLeader>jR <Plug>(coc-rename)
 xmap <LocalLeader>jf <Plug>(coc-format-selected)
 nmap <LocalLeader>jf <Plug>(coc-format-selected)l
 nmap <LocalLeader>jF <Plug>(coc-format)

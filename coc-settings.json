@@ -19,5 +19,8 @@
       ]
     }
   },
-  "suggest.maxCompleteItemCount": 20
+  "diagnostic.virtualText": false,
+  "diagnostic.checkCurrentLine": true,
+  "suggest.maxCompleteItemCount": 20,
+  "inlayHint.enable": false
 }
