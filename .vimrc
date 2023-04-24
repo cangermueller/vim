@@ -184,6 +184,9 @@ map q <Nop>
 nnoremap q: <nop>
 nnoremap Q <nop>
 
+# Obtain diff from current line until end
+map dO :.,$diffget<cr>
+
 
 " ------------------------------------------------------------------------------
 " Tabs
