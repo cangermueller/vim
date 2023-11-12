@@ -13,7 +13,7 @@ call vundle#begin()
 " see :h vundle for more details or wiki for FAQ
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'python-mode/python-mode'
+" Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'preservim/nerdcommenter'
