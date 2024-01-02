@@ -33,7 +33,6 @@ set textwidth=80
 set linebreak
 set cc=+1
 
-set mouse=  "a
 set expandtab
 set tabstop=8 softtabstop=2 shiftwidth=2
 set tabpagemax=20
@@ -45,7 +44,6 @@ set diffopt+=vertical
 set splitright
 set splitbelow
 set updatetime=1000
-set backspace=2 " Fix backspace problem since vim7.4
 
 set undofile
 set undodir=~/.vim/undo
@@ -53,21 +51,28 @@ set undodir=~/.vim/undo
 set directory=~/tmp,/tmp,. " directories for swap files
 set noswapfile
 
-set list
+set list " show whitespaces as a character
 set listchars=tab:▸-,trail:·,extends:»,precedes:«,nbsp:⍽
 
+runtime ftplugin/man.vim " Enable Man pages with :Man
+let g:ft_man_open_mode = 'tab' " Show Man pages as tab instead of :split
 
-runtime ftplugin/man.vim " :Man MANPAGE
-let g:ft_man_open_mode = 'tab'
 
-syntax on
-filetype indent on
-filetype plugin on
+" ==============================================================================
+" Shortcuts
+" ==============================================================================
+command Q qa!
+command S xa!
+command W wa!
 
 
 " ==============================================================================
 " Appearance
 " ==============================================================================
+syntax on
+filetype indent on
+filetype plugin on
+
 set background=dark
 set termguicolors
 
@@ -117,16 +122,6 @@ autocmd FileType * setlocal formatoptions-=o
 
 
 " ==============================================================================
-" Commands
-" ==============================================================================
-cabbr th tab help
-cabbr tn tab new
-cabbr lop lopen 20
-command Q qa!
-command S xa!
-command W wa!
-
-" ==============================================================================
 " Key bindings
 " ==============================================================================
 let maplocalleader=','
@@ -135,35 +130,17 @@ set timeoutlen=500 " time to wait after leader key
 " ------------------------------------------------------------------------------
 " Misc
 " ------------------------------------------------------------------------------
-map <Leader>fF :NERDTree<cr>
-map <Leader>ff :NERDTree %:p:h<cr>
-
-map <Leader>Ff :cd %:p:h<cr>
+" filename
 map <Leader>Fp :echo "<c-r>=expand("%:p")<cr>"<cr>
+" directory name
 map <Leader>FP :echo "<c-r>=expand("%:p:h")<cr>"<cr>
-map <Leader>Rx :!chmod u+x <c-r>=expand("%:p")<cr><cr><cr>
-map <Leader>Rr :!clear && <c-r>=expand("%:p")<cr><cr>
-" Find non-ASCII characters
-map <Leader>Ru /[^\x00-\x7F]<cr>
 
 " Join/wrap lines without space
 map <Leader>J Jx
-" Apply macro on every visually selected line
-vmap <Leader>m :normal @
-" Deleting stuff
-map <Leader>Dt :call DeleteTrailingWS()<cr>
-map <Leader>De :call DeleteEndLines()<cr>
-map <Leader>Dw :g/^\_$\n\_^$/d<cr>:nohlsearch<cr>
-map <Leader>Dl ddO<esc>
+
 " Change indentation
 map <Leader>T2 :set tabstop=8 softtabstop=2 shiftwidth=2<CR>
 map <Leader>T4 :set tabstop=8 softtabstop=4 shiftwidth=4<CR>
-
-" Exiting
-map <Leader>Q :qa!<cr>
-imap <Leader>Q <esc>:qa!<cr>
-map <Leader>E :xa!<cr>
-imap <Leader>E <esc>:xa!<cr>
 
 " Emacs like
 imap <C-a>a <C-o>^
@@ -174,8 +151,8 @@ nmap <C-a>e $
 " use `u` to undo, use `U` to redo, mind = blown
 nnoremap U <C-r>
 
-" I always escape from this mode anyway, best never to enter it
-nnoremap <S-r> <Nop>
+" prevent replace mode
+" nnoremap <S-r> <Nop>
 
 " Disable recording mode
 map q <Nop>
@@ -184,9 +161,25 @@ map q <Nop>
 nnoremap q: <nop>
 nnoremap Q <nop>
 
-" Obtain diff from current line until end
-map dO :.,$diffget<cr>
-
+" ==============================================================================
+" Substitution / replacements
+" ==============================================================================
+" Substitution, replacement
+" replace word under cursor
+:map <leader>Vs :.,$s/\<<C-r><C-w>\>/
+:map <leader>VS :%s/\<<C-r><C-w>\>/
+:map <leader>Vr :.,$s/<C-r><C-w>/
+:map <leader>VR :%s/<C-r><C-w>/
+:map <leader>Va :bufdo %s/
+:map <leader>VA :bufdo %s/<C-r><C-w>/
+:map <leader>Vt :tabdo %s/
+:map <leader>VT :tabdo %s/<C-r><C-w>/
+" replace windows ^M newline (encoding, line wrap)
+:map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
+" replace tabs by spaces
+:map <Leader>Vp :%s/\t/  /g
+" Remove comments
+:map <Leader>Vc :g/^\s*#/d<cr>
 
 " ------------------------------------------------------------------------------
 " Tabs
@@ -292,27 +285,6 @@ map g> :call MoveToNextTab()<CR>
 map <c-w>! <c-w>T
 
 
-" ------------------------------------------------------------------------------
-" winresizer
-" ------------------------------------------------------------------------------
-" let g:winresizer_start_key="<c-w>w"
-" r // resize mode
-" m // move mode
-" f // focus mode
-let g:winresizer_start_key="<c-w>w"
-
-
-
-" ------------------------------------------------------------------------------
-" Buffers
-" ------------------------------------------------------------------------------
-map gb :bnext <cr>
-map gB :bNext <cr>
-map gsb :sbnext <cr>
-map gsB :sbNext <cr>
-map gvb :vertical sbnext <cr>
-map gvB :vertical sbNext <cr>
-
 
 " ------------------------------------------------------------------------------
 " Settings
@@ -329,8 +301,6 @@ map <Leader>SM :set mouse=<CR>
 map <Leader>Sc :vsplit<cr>:wincmd T<cr>:setl nonumber<cr>:setl norelativenumber<cr>:IndentLinesDisable<cr>
 map <Leader>Sr :tabdo redraw!<cr>
 au FocusGained * :redraw! " Redraw buffer when it gains focus
-
-
 
 
 " ------------------------------------------------------------------------------
@@ -388,14 +358,14 @@ set spelllang=en_us
 hi clear SpellBad
 hi SpellBad cterm=underline
 
+" toggle spell
 map <LocalLeader>st :setlocal spell!<cr>
+" previous error
 map <LocalLeader>sk ]s
+" next error
 map <LocalLeader>sj [s
+" list corrections
 map <LocalLeader>ss z=
-" add word
-map <LocalLeader>sa zg
-" remove word
-map <LocalLeader>sr zug
 
 
 " ==============================================================================
@@ -413,22 +383,25 @@ if has('persistent_undo')
 endif
 
 
-" ==============================================================================
-" vim-markdown
-" ==============================================================================
-let g:vim_markdown_folding_disabled=1
+" ------------------------------------------------------------------------------
+" winresizer
+" ------------------------------------------------------------------------------
+" let g:winresizer_start_key="<c-w>w"
+" r // resize mode
+" m // move mode
+" f // focus mode
+let g:winresizer_start_key="<c-w>w"
 
 
 " ==============================================================================
-" Latex-box
+" NERDTree (files)
 " ==============================================================================
-let g:LatexBox_viewer='open -a Preview'
-let g:LatexBox_quickfix=2
-let g:LatexBox_show_warnings=0
-let g:LatexBox_latexmk_preview_continuously=1
-let g:LatexBox_complete_inlineMath=1
-let g:LatexBox_Folding=0
-let g:LatexBox_fold_sections = ["section", "subsection", "subsubsection"]
+let NERDSpaceDelims=1
+let g:NERDTreeShowBookmarks=1
+
+map <Leader>fF :NERDTree<cr>
+map <Leader>ff :NERDTree %:p:h<cr>
+
 
 " ==============================================================================
 " Tagbar
@@ -463,12 +436,6 @@ map <Leader>cD OTODO: <ESC><leader>c<space>A
 imap <Leader>cd TODO: <ESC><leader>c<space>A
 vmap <Leader>c<space> :NERDCommenterToggle<cr>
 
-" ==============================================================================
-" NERDtree
-" ==============================================================================
-let NERDSpaceDelims=1
-let g:NERDTreeShowBookmarks=1
-
 
 " ==============================================================================
 " Airline
@@ -494,29 +461,9 @@ let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#branch#enabled = 1
 
 
-" ==============================================================================
-" Substitution / replacements
-" ==============================================================================
-" Substitution, replacement
-" replace word under cursor
-:map <leader>Vs :.,$s/\<<C-r><C-w>\>/
-:map <leader>VS :%s/\<<C-r><C-w>\>/
-:map <leader>Vr :.,$s/<C-r><C-w>/
-:map <leader>VR :%s/<C-r><C-w>/
-:map <leader>Va :bufdo %s/
-:map <leader>VA :bufdo %s/<C-r><C-w>/
-:map <leader>Vt :tabdo %s/
-:map <leader>VT :tabdo %s/<C-r><C-w>/
-" replace windows ^M newline (encoding, line wrap)
-:map <Leader>Vn mmHmt:%s/<C-V><cr>/\r/ge<cr>'tzt'm
-" replace tabs by spaces
-:map <Leader>Vp :%s/\t/  /g
-" Remove comments
-:map <Leader>Vc :g/^\s*#/d<cr>
-
 
 " ==============================================================================
-" Fugitive
+" Fugitive (git)
 " ==============================================================================
 function DiffOn()
   diffthis
@@ -671,16 +618,11 @@ map <localleader>we :vsplit<cr>:AltName<cr>
 " Open main file
 command! -nargs=1 EM :exe ':e <args>/*main.*'
 
+
 " ==============================================================================
-" Source post local configs
+" COC
 " ==============================================================================
 source ~/.vim/coc.vim
-
-
-" ==============================================================================
-" Hexokinase
-" ==============================================================================
-let g:Hexokinase_highlighters = ['sign_column']
 
 " ==============================================================================
 " Source post local configs

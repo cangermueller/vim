@@ -13,7 +13,6 @@ call vundle#begin()
 " see :h vundle for more details or wiki for FAQ
 
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'preservim/nerdcommenter'
@@ -32,19 +31,11 @@ Plugin 'AndrewRadev/sideways.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Colors
-" Plugin 'lifepillar/vim-solarized8'
 Plugin 'sainnhe/sonokai'
 Plugin 'RRethy/vim-hexokinase'
-
-" autocomplete
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'prabirshrestha/vim-lsp'
-" Plugin 'prabirshrestha/asyncomplete.vim'
-" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 call vundle#end()
