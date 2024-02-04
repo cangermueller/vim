@@ -157,7 +157,7 @@ nnoremap U <C-r>
 " Disable recording mode
 map q <Nop>
 
-" Disable command history shortcuts 
+" Disable command history shortcuts
 nnoremap q: <nop>
 nnoremap Q <nop>
 
@@ -199,10 +199,10 @@ map gm :$tabnew
 map gM :0tabnew 
 map ge :tabclose <cr>
 map gE :tabonly <cr>
-map gh :tabprev <cr>
-map gl :tabnext <cr>
-map gj :tabfirst <cr>
-map gk :tablast <cr>
+map gj :tabprev <cr>
+map gk :tabnext <cr>
+map gh :tabfirst <cr>
+map gl :tablast <cr>
 map g, :tabm -1 <cr>
 map g. :tabm +1 <cr>
 map g? :tab help 
@@ -420,21 +420,13 @@ map <Leader>t :TagbarToggle<cr>
 " NERDCommenter
 " ==============================================================================
 let NERDDefaultAlign='both'
-au BufRead,BufNewFile *.uni setfiletype unison
 let g:NERDCustomDelimiters = {
-    \ 'unison': { 'left': '#'},
     \ 'python': { 'left': '#'},
     \ 'borg': { 'left': '//'},
     \ 'textpb': { 'left': '#'},
     \ 'proto': { 'left': '//'},
     \ 'gin': { 'left': '#'}
   \ }
-map <c-_><c-_> <leader>c<space>
-" TODO mappings
-map <Leader>cd oTODO: <ESC><leader>c<space>A
-map <Leader>cD OTODO: <ESC><leader>c<space>A
-imap <Leader>cd TODO: <ESC><leader>c<space>A
-vmap <Leader>c<space> :NERDCommenterToggle<cr>
 
 
 " ==============================================================================

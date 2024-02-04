@@ -10,6 +10,7 @@ else
   map <LocalLeader>bB Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 endif
 
+map <LocalLeader>bf /pdb\.set_trace/g<cr>
 map <LocalLeader>BB oimport pdb; pdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>Bb Oimport pdb; pdb.set_trace()<ESC>:w<CR>
 map <LocalLeader>bi oimport ipdb; ipdb.set_trace()<ESC>:w<CR>
